@@ -193,7 +193,7 @@ namespace SMA.Vendedor
             {
                 //Busqueda por codigo
                 Int32 Codigo = Convert.ToInt32(Busqueda);
-                var obj = DbVendedor.List.OfType<cVendedor>().ToList().Find(f => f.ID == Codigo);
+                var obj = DbVendedor.List.OfType<cVendedor>().ToList().Find(f => f.Codigo == Codigo);
                 var pos = DbVendedor.IndexOf(obj);
                 DbVendedor.Position = pos;
             }

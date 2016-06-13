@@ -10,7 +10,7 @@ namespace SMA.Factura
     {
         //void SeleccionarCliente(Int32 Codigo);
         void BuscarArticulo(Int64 Codigo);
-        void BusquedaCliente(Int64 Codigo);
+        void BusquedaCliente(Int32 Codigo);
         void BuscarReferencia(Int64 DocumentoID);
     }
 }

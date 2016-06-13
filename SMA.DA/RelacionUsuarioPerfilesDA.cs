@@ -3,32 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SMA.Entity;
+using MySql.Data.MySqlClient;
+using MySql.Data;
 using System.Data;
-using System.Data.SqlClient;
 
 namespace SMA.DA
 {
     public static class RelacionUsuarioPerfilesDA
     {
-        public static List<cRelacionUsuarioPerfil> Listar(int UsuarioID)
+        public static List<cRelacionUsuarioPerfil> Listar(Int32 UsuarioCodigo)
         {
             try
             {
                 //Declaramos la conexion hacia la base de datos
-                using (SqlConnection Conn = new SqlConnection(cConexion.CadenaConexion()))
+                using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
                 {
                     Conn.Open();
                     //Nombre del procedimiento
-                    string StoreProc = "uspListarPerfilesPorUsuarioID";
+                    string StoreProc = "uspListarRelPerfPorUsrCodigo";
                     //Creamos el command para la insercion
-                    SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
+                    MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
 
                     //Parametros
-                    Cmd.Parameters.AddWithValue("UsuarioID", UsuarioID);
+                    Cmd.Parameters.AddWithValue("p_CodigoUsr", UsuarioCodigo);
 
                     //Ejecutamos el lector 
-                    SqlDataReader Reader = Cmd.ExecuteReader();
+                    MySqlDataReader Reader = Cmd.ExecuteReader();
 
 
                     List<cRelacionUsuarioPerfil> Lista = new List<cRelacionUsuarioPerfil>();
@@ -36,9 +37,9 @@ namespace SMA.DA
                     {
                         cRelacionUsuarioPerfil Relacion = new cRelacionUsuarioPerfil();
 
-                        Relacion.ID = Reader.GetInt32(Reader.GetOrdinal("ID"));
-                        Relacion.UsuarioID = Reader.GetString(Reader.GetOrdinal("Usuario"));
-                        Relacion.PerfilID = Reader.GetString(Reader.GetOrdinal("Perfil"));
+                        Relacion.Codigo = Reader.GetInt32(Reader.GetOrdinal("Codigo"));
+                        Relacion.UsuarioCodigo = Reader.GetString(Reader.GetOrdinal("Usuario"));
+                        Relacion.PerfilCodigo = Reader.GetString(Reader.GetOrdinal("Perfil"));
 
                         //Agregamos el articulo a la lista
                         Lista.Add(Relacion);
@@ -49,31 +50,32 @@ namespace SMA.DA
                     return Lista;
                 }
             }
-            catch (SqlException Ex)
+            catch (MySqlException Ex)
             {
                 throw Ex;
             }
         }
 
-        public static List<cRelacionUsuarioPerfil> BuscarPorID(int UsuarioID)
+        public static List<cRelacionUsuarioPerfil> BuscarPorCodigo(Int32 UsuarioCodigo)
         {
+            //BUSCA LA RELACION EXISTENTE ENTRE UN USUARIO Y LOS PERFILES
             try
             {
                 //Declaramos la conexion hacia la base de datos
-                using (SqlConnection Conn = new SqlConnection(cConexion.CadenaConexion()))
+                using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
                 {
                     Conn.Open();
                     //Nombre del procedimiento
-                    string StoreProc = "uspBuscarRelacionUsuarioPerfil";
+                    string StoreProc = "uspBuscarRelUsrPerf";
                     //Creamos el command para la insercion
-                    SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
+                    MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
 
                     //Parametros
-                    Cmd.Parameters.AddWithValue("UsuarioID", UsuarioID);
+                    Cmd.Parameters.AddWithValue("p_CodigoUsr", UsuarioCodigo);
 
                     //Ejecutamos el lector 
-                    SqlDataReader Reader = Cmd.ExecuteReader();
+                    MySqlDataReader Reader = Cmd.ExecuteReader();
 
 
                     List<cRelacionUsuarioPerfil> Lista = new List<cRelacionUsuarioPerfil>();
@@ -81,9 +83,9 @@ namespace SMA.DA
                     {
                         cRelacionUsuarioPerfil Relacion = new cRelacionUsuarioPerfil();
 
-                        Relacion.ID = Reader.GetInt32(Reader.GetOrdinal("ID"));
-                        Relacion.UsuarioID = Reader.GetInt32(Reader.GetOrdinal("UsuarioID"));
-                        Relacion.PerfilID = Reader.GetInt32(Reader.GetOrdinal("PerfilID"));
+                        Relacion.Codigo = Reader.GetInt32(Reader.GetOrdinal("Codigo"));
+                        Relacion.UsuarioCodigo = Reader.GetInt32(Reader.GetOrdinal("CodigoUsr"));
+                        Relacion.PerfilCodigo = Reader.GetInt32(Reader.GetOrdinal("CodigoPerf"));
 
                         //Agregamos el articulo a la lista
                         Lista.Add(Relacion);
@@ -94,7 +96,7 @@ namespace SMA.DA
                     return Lista;
                 }
             }
-            catch (SqlException Ex)
+            catch (MySqlException Ex)
             {
                 throw Ex;
             }
@@ -102,27 +104,28 @@ namespace SMA.DA
 
         public static void Crear(cRelacionUsuarioPerfil Relacion)
         {
+            //INSERTA UNA RELACION ENTRE UN USUARIO Y UN PERFIL
             try
             {
                 
                 //Declaramos la conexion hacia la base de datos
-                using (SqlConnection Conn = new SqlConnection(cConexion.CadenaConexion()))
+                using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
                 {
                     Conn.Open();
                     //Nombre del procedimiento
-                    string StoreProc = "uspInsertarRelacionUsuarioPerfil";
+                    string StoreProc = "uspInsertarRelPerfUsr";
                     //Creamos el command para la insercion
-                    SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
+                    MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
 
                     //Parametros
-                    Cmd.Parameters.AddWithValue("UsuarioID", Relacion.UsuarioID);
-                    Cmd.Parameters.AddWithValue("PerfilID", Relacion.PerfilID);
+                    Cmd.Parameters.AddWithValue("p_CodigoUsr", Relacion.UsuarioCodigo);
+                    Cmd.Parameters.AddWithValue("p_CodigoPerf", Relacion.PerfilCodigo);
                     Cmd.ExecuteNonQuery();
                 }
              
             }
-            catch(SqlException Ex)
+            catch(MySqlException Ex)
             {
                 throw Ex;
             }
@@ -130,11 +133,11 @@ namespace SMA.DA
     
         }
 
-        public static Boolean Existe(Int32 PerfilID,Int32 UsuarioID)
+        public static Boolean Existe(Int16 PerfilCodigo,Int32 UsuarioCodigo)
         {
             //VERIFICAMOS SI LA RELACION EXISTE
-            List<cRelacionUsuarioPerfil> Relacion = (from c in BuscarPorID(UsuarioID)
-                                               where (Int32) c.PerfilID == PerfilID
+            List<cRelacionUsuarioPerfil> Relacion = (from c in BuscarPorCodigo(UsuarioCodigo)
+                                               where (Int32) c.PerfilCodigo == PerfilCodigo
                                                select c).ToList();
             if(Relacion.Count>=1)
             {
@@ -145,6 +148,35 @@ namespace SMA.DA
                 return true;
             }
 
+        }
+        public static void Eliminar(Int32 Codigo)
+        {
+            //ELIMINA LA RELACION ENTRE UN PERFIL Y UN USUARIO
+            try
+            {
+
+                //Declaramos la conexion hacia la base de datos
+                using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
+                {
+                    Conn.Open();
+                    //Nombre del procedimiento
+                    string StoreProc = "uspEliminarRelPerfUsr";
+                    //Creamos el command para la insercion
+                    MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
+                    Cmd.CommandType = CommandType.StoredProcedure;
+
+                    //Parametros
+                    Cmd.Parameters.AddWithValue("p_Codigo", Codigo);
+
+                    Cmd.ExecuteNonQuery();
+                }
+
+
+            }
+            catch (MySqlException Ex)
+            {
+                throw Ex;
+            }
         }
     }
 }

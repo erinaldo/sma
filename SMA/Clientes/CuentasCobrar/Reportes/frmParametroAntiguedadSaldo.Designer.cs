@@ -48,6 +48,8 @@
             this.btnCancelar = new DevComponents.DotNetBar.ButtonX();
             this.btnAceptar = new DevComponents.DotNetBar.ButtonX();
             this.styleManager1 = new DevComponents.DotNetBar.StyleManager(this.components);
+            this.btnListaFamiliares2 = new DevComponents.DotNetBar.ButtonX();
+            this.btnListaFamiliares1 = new DevComponents.DotNetBar.ButtonX();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -56,6 +58,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnListaFamiliares2);
+            this.groupBox2.Controls.Add(this.btnListaFamiliares1);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.cbbClienteHasta);
@@ -70,7 +74,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 49);
+            this.label2.Location = new System.Drawing.Point(9, 50);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 3;
@@ -79,7 +83,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 22);
+            this.label1.Location = new System.Drawing.Point(9, 23);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 13);
             this.label1.TabIndex = 2;
@@ -90,7 +94,7 @@
             this.cbbClienteHasta.FormattingEnabled = true;
             this.cbbClienteHasta.Location = new System.Drawing.Point(56, 46);
             this.cbbClienteHasta.Name = "cbbClienteHasta";
-            this.cbbClienteHasta.Size = new System.Drawing.Size(306, 21);
+            this.cbbClienteHasta.Size = new System.Drawing.Size(269, 21);
             this.cbbClienteHasta.TabIndex = 1;
             // 
             // cbbClienteDesde
@@ -98,7 +102,7 @@
             this.cbbClienteDesde.FormattingEnabled = true;
             this.cbbClienteDesde.Location = new System.Drawing.Point(56, 19);
             this.cbbClienteDesde.Name = "cbbClienteDesde";
-            this.cbbClienteDesde.Size = new System.Drawing.Size(306, 21);
+            this.cbbClienteDesde.Size = new System.Drawing.Size(269, 21);
             this.cbbClienteDesde.TabIndex = 0;
             // 
             // groupBox1
@@ -231,13 +235,35 @@
             // 
             // styleManager1
             // 
-            this.styleManager1.ManagerStyle = DevComponents.DotNetBar.eStyle.Office2007Blue;
+            this.styleManager1.ManagerStyle = DevComponents.DotNetBar.eStyle.Office2010Blue;
+            // 
+            // btnListaFamiliares2
+            // 
+            this.btnListaFamiliares2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnListaFamiliares2.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnListaFamiliares2.Image = ((System.Drawing.Image)(resources.GetObject("btnListaFamiliares2.Image")));
+            this.btnListaFamiliares2.Location = new System.Drawing.Point(331, 45);
+            this.btnListaFamiliares2.Name = "btnListaFamiliares2";
+            this.btnListaFamiliares2.Size = new System.Drawing.Size(26, 23);
+            this.btnListaFamiliares2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnListaFamiliares2.TabIndex = 14;
+            // 
+            // btnListaFamiliares1
+            // 
+            this.btnListaFamiliares1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnListaFamiliares1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnListaFamiliares1.Image = ((System.Drawing.Image)(resources.GetObject("btnListaFamiliares1.Image")));
+            this.btnListaFamiliares1.Location = new System.Drawing.Point(331, 18);
+            this.btnListaFamiliares1.Name = "btnListaFamiliares1";
+            this.btnListaFamiliares1.Size = new System.Drawing.Size(26, 23);
+            this.btnListaFamiliares1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnListaFamiliares1.TabIndex = 13;
             // 
             // frmParametroAntiguedadSaldo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(396, 231);
+            this.ClientSize = new System.Drawing.Size(385, 231);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
@@ -246,6 +272,11 @@
             this.Controls.Add(this.groupBox2);
             this.DoubleBuffered = true;
             this.EnableGlass = false;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(401, 269);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(401, 269);
             this.Name = "frmParametroAntiguedadSaldo";
             this.Text = "Antiguedad de Saldo";
             this.Load += new System.EventHandler(this.frmParametroAntiguedadSaldo_Load);
@@ -281,5 +312,7 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.CheckBox ckbDetalle;
         private DevComponents.DotNetBar.StyleManager styleManager1;
+        private DevComponents.DotNetBar.ButtonX btnListaFamiliares2;
+        private DevComponents.DotNetBar.ButtonX btnListaFamiliares1;
     }
 }

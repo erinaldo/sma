@@ -31,7 +31,7 @@ namespace SMA.DA
                    while (Reader.Read())
                    {
                        cUnidadInventario Unidad = new cUnidadInventario();
-                       Unidad.ID = Reader.GetInt32(Reader.GetOrdinal("ID"));
+                       Unidad.Codigo = Reader.GetInt32(Reader.GetOrdinal("ID"));
                        Unidad.Descripcion = Reader.GetString(Reader.GetOrdinal("Descripcion"));
                        
 

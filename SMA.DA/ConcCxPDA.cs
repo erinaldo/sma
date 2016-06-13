@@ -58,7 +58,7 @@ namespace SMA.DA
                     Cmd.CommandType = CommandType.StoredProcedure;
 
                     //Parametros
-                    Cmd.Parameters.AddWithValue("ConceptoID", Concepto.ID);
+                    Cmd.Parameters.AddWithValue("ConceptoID", Concepto.Codigo);
                     Cmd.Parameters.AddWithValue("Descripcion", Concepto.Descripcion);
                     Cmd.Parameters.AddWithValue("Notas", Concepto.Notas);
                     Cmd.Parameters.AddWithValue("Referencia", Concepto.Referencia);
@@ -71,9 +71,10 @@ namespace SMA.DA
                 throw Ex;
             }
         }
-
-        public static cConcepto BuscarPorID(int ID)
+       //TODO Busqueda de Concepto por ID
+        public static cConcepto BuscarPorID(Int16 ID)
         {
+            
             try
             {
                 //Declaramos la conexion hacia la base de datos
@@ -86,13 +87,13 @@ namespace SMA.DA
                     SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
                     //Parametros
-                    Cmd.Parameters.AddWithValue("ConceptoID", ID);
+                    Cmd.Parameters.AddWithValue("p_Codigo", ID);
                     SqlDataReader Reader = Cmd.ExecuteReader();
 
                     cConcepto Concepto = new cConcepto();
                     while (Reader.Read())
                     {
-                        Concepto.ID = Reader.GetInt32(Reader.GetOrdinal("ID"));
+                        Concepto.Codigo = Reader.GetInt16(Reader.GetOrdinal("Codigo"));
                         Concepto.Descripcion = Reader.GetString(Reader.GetOrdinal("Descripcion"));
                         Concepto.Tipo = Reader.GetString(Reader.GetOrdinal("Tipo"));
                         Concepto.Notas = Reader.IsDBNull(Reader.GetOrdinal("Notas")) ? null : Reader.GetString(Reader.GetOrdinal("Notas"));
@@ -133,7 +134,7 @@ namespace SMA.DA
                     while (Reader.Read())
                     {
                         cConcepto Concepto = new cConcepto();
-                        Concepto.ID = Reader.GetInt32(Reader.GetOrdinal("ID"));
+                        Concepto.Codigo = Reader.GetByte(Reader.GetOrdinal("Codigo"));
                         Concepto.Descripcion = Reader.GetString(Reader.GetOrdinal("Descripcion"));
                         Concepto.Tipo = Reader.GetString(Reader.GetOrdinal("Tipo"));
                         Concepto.Notas = Reader.IsDBNull(Reader.GetOrdinal("Notas")) ? null : Reader.GetString(Reader.GetOrdinal("Notas"));
@@ -158,14 +159,14 @@ namespace SMA.DA
 
 
 
-        public static Boolean Existe(int ID)
+        public static Boolean Existe(Int16 ID)
         {
             //Buscamos si un Articulo existe en la base de datos
-            int result;
-            string Valor = BuscarPorID(ID).ID.ToString();
+            SByte result;
+            string Valor = BuscarPorID(ID).Codigo.ToString();
             if (Valor != "0")
             {
-                return int.TryParse(Valor, out result);
+                return SByte.TryParse(Valor, out result);
             }
             else
             {

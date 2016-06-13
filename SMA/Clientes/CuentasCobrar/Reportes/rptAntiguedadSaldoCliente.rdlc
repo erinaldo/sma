@@ -6,28 +6,28 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.7881cm</Width>
+              <Width>1.32609cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>7.16071cm</Width>
+              <Width>6.79029cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.4525cm</Width>
+              <Width>3cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.4525cm</Width>
+              <Width>3cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.4525cm</Width>
+              <Width>3cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.17283cm</Width>
+              <Width>3cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.17283cm</Width>
+              <Width>3cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.17283cm</Width>
+              <Width>3cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -50,35 +50,26 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox1</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <TopBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
+                          <Width>0.75pt</Width>
                         </TopBorder>
                         <BottomBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
+                          <Width>1.5pt</Width>
                         </BottomBorder>
-                        <LeftBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </LeftBorder>
-                        <RightBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </RightBorder>
-                        <BackgroundColor>LightGrey</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -109,29 +100,18 @@
                       <rd:DefaultName>Textbox3</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <TopBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
+                          <Width>0.75pt</Width>
                         </TopBorder>
                         <BottomBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
+                          <Width>1.5pt</Width>
                         </BottomBorder>
-                        <LeftBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </LeftBorder>
-                        <RightBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </RightBorder>
-                        <BackgroundColor>LightGrey</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -164,29 +144,18 @@
                       <rd:DefaultName>Textbox2</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <TopBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
+                          <Width>0.75pt</Width>
                         </TopBorder>
                         <BottomBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
+                          <Width>1.5pt</Width>
                         </BottomBorder>
-                        <LeftBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </LeftBorder>
-                        <RightBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </RightBorder>
-                        <BackgroundColor>LightGrey</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -219,29 +188,18 @@
                       <rd:DefaultName>Textbox5</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <TopBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
+                          <Width>0.75pt</Width>
                         </TopBorder>
                         <BottomBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
+                          <Width>1.5pt</Width>
                         </BottomBorder>
-                        <LeftBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </LeftBorder>
-                        <RightBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </RightBorder>
-                        <BackgroundColor>LightGrey</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -274,29 +232,18 @@
                       <rd:DefaultName>Textbox26</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <TopBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
+                          <Width>0.75pt</Width>
                         </TopBorder>
                         <BottomBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
+                          <Width>1.5pt</Width>
                         </BottomBorder>
-                        <LeftBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </LeftBorder>
-                        <RightBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </RightBorder>
-                        <BackgroundColor>LightGrey</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -329,29 +276,18 @@
                       <rd:DefaultName>Textbox29</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <TopBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
+                          <Width>0.75pt</Width>
                         </TopBorder>
                         <BottomBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
+                          <Width>1.5pt</Width>
                         </BottomBorder>
-                        <LeftBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </LeftBorder>
-                        <RightBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </RightBorder>
-                        <BackgroundColor>LightGrey</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -384,29 +320,18 @@
                       <rd:DefaultName>Textbox32</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <TopBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
+                          <Width>0.75pt</Width>
                         </TopBorder>
                         <BottomBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
+                          <Width>1.5pt</Width>
                         </BottomBorder>
-                        <LeftBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </LeftBorder>
-                        <RightBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </RightBorder>
-                        <BackgroundColor>LightGrey</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -439,29 +364,18 @@
                       <rd:DefaultName>Textbox35</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <TopBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
+                          <Width>0.75pt</Width>
                         </TopBorder>
                         <BottomBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
+                          <Width>1.5pt</Width>
                         </BottomBorder>
-                        <LeftBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </LeftBorder>
-                        <RightBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </RightBorder>
-                        <BackgroundColor>LightGrey</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -477,23 +391,25 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="ID">
+                    <Textbox Name="Codigo">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!ID.Value</Value>
+                              <Value>=Fields!Codigo.Value</Value>
                               <Style>
-                                <FontSize>9pt</FontSize>
+                                <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>ID</rd:DefaultName>
+                      <rd:DefaultName>Codigo</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -517,7 +433,7 @@
                             <TextRun>
                               <Value>=Fields!NombreComercial.Value</Value>
                               <Style>
-                                <FontSize>9pt</FontSize>
+                                <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -548,8 +464,8 @@
                             <TextRun>
                               <Value>=Fields!TotalFactura.Value</Value>
                               <Style>
-                                <FontSize>9pt</FontSize>
-                                <Format>'RD$'#,0.00;('RD$'#,0.00)</Format>
+                                <FontSize>8pt</FontSize>
+                                <Format>n2</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -583,8 +499,8 @@
                             <TextRun>
                               <Value>=Fields!Corriente.Value</Value>
                               <Style>
-                                <FontSize>9pt</FontSize>
-                                <Format>'RD$'#,0.00;('RD$'#,0.00)</Format>
+                                <FontSize>8pt</FontSize>
+                                <Format>n2</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -618,8 +534,8 @@
                             <TextRun>
                               <Value>=Fields!Dias0a30.Value</Value>
                               <Style>
-                                <FontSize>9pt</FontSize>
-                                <Format>'RD$'#,0.00;('RD$'#,0.00)</Format>
+                                <FontSize>8pt</FontSize>
+                                <Format>n2</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -653,8 +569,8 @@
                             <TextRun>
                               <Value>=Fields!Dias31a60.Value</Value>
                               <Style>
-                                <FontSize>9pt</FontSize>
-                                <Format>'RD$'#,0.00;('RD$'#,0.00)</Format>
+                                <FontSize>8pt</FontSize>
+                                <Format>n2</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -688,8 +604,8 @@
                             <TextRun>
                               <Value>=Fields!Dias61a90.Value</Value>
                               <Style>
-                                <FontSize>9pt</FontSize>
-                                <Format>'RD$'#,0.00;('RD$'#,0.00)</Format>
+                                <FontSize>8pt</FontSize>
+                                <Format>n2</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -723,8 +639,8 @@
                             <TextRun>
                               <Value>=Fields!Mas91Dias.Value</Value>
                               <Style>
-                                <FontSize>9pt</FontSize>
-                                <Format>'RD$'#,0.00;('RD$'#,0.00)</Format>
+                                <FontSize>8pt</FontSize>
+                                <Format>n2</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -742,7 +658,6 @@
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
-                        <rd:FormatSymbolCulture>es-DO</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -754,7 +669,7 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox19">
+                    <Textbox Name="Textbox7">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -763,18 +678,26 @@
                             <TextRun>
                               <Value />
                               <Style>
-                                <FontSize>9pt</FontSize>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox19</rd:DefaultName>
+                      <rd:DefaultName>Textbox7</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
                         </Border>
+                        <TopBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </TopBorder>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -794,7 +717,7 @@
                             <TextRun>
                               <Value>Grand Total:</Value>
                               <Style>
-                                <FontSize>9pt</FontSize>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -812,13 +735,8 @@
                         <TopBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>0.5pt</Width>
+                          <Width>1pt</Width>
                         </TopBorder>
-                        <BottomBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>0.5pt</Width>
-                        </BottomBorder>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -838,9 +756,9 @@
                             <TextRun>
                               <Value>=Sum(Fields!TotalFactura.Value)</Value>
                               <Style>
-                                <FontSize>9pt</FontSize>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
-                                <Format>'RD$'#,0.00;('RD$'#,0.00)</Format>
+                                <Format>n2</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -857,13 +775,8 @@
                         <TopBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>0.5pt</Width>
+                          <Width>1pt</Width>
                         </TopBorder>
-                        <BottomBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>0.5pt</Width>
-                        </BottomBorder>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -884,9 +797,9 @@
                             <TextRun>
                               <Value>=Sum(Fields!Corriente.Value)</Value>
                               <Style>
-                                <FontSize>9pt</FontSize>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
-                                <Format>'RD$'#,0.00;('RD$'#,0.00)</Format>
+                                <Format>n2</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -903,13 +816,8 @@
                         <TopBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>0.5pt</Width>
+                          <Width>1pt</Width>
                         </TopBorder>
-                        <BottomBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>0.5pt</Width>
-                        </BottomBorder>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -930,9 +838,9 @@
                             <TextRun>
                               <Value>=Sum(Fields!Dias0a30.Value)</Value>
                               <Style>
-                                <FontSize>9pt</FontSize>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
-                                <Format>'RD$'#,0.00;('RD$'#,0.00)</Format>
+                                <Format>n2</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -949,13 +857,8 @@
                         <TopBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>0.5pt</Width>
+                          <Width>1pt</Width>
                         </TopBorder>
-                        <BottomBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>0.5pt</Width>
-                        </BottomBorder>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -976,9 +879,9 @@
                             <TextRun>
                               <Value>=Sum(Fields!Dias31a60.Value)</Value>
                               <Style>
-                                <FontSize>9pt</FontSize>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
-                                <Format>'RD$'#,0.00;('RD$'#,0.00)</Format>
+                                <Format>n2</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -995,13 +898,8 @@
                         <TopBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>0.5pt</Width>
+                          <Width>1pt</Width>
                         </TopBorder>
-                        <BottomBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>0.5pt</Width>
-                        </BottomBorder>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -1022,9 +920,9 @@
                             <TextRun>
                               <Value>=Sum(Fields!Dias61a90.Value)</Value>
                               <Style>
-                                <FontSize>9pt</FontSize>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
-                                <Format>'RD$'#,0.00;('RD$'#,0.00)</Format>
+                                <Format>n2</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1041,13 +939,8 @@
                         <TopBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>0.5pt</Width>
+                          <Width>1pt</Width>
                         </TopBorder>
-                        <BottomBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>0.5pt</Width>
-                        </BottomBorder>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -1068,9 +961,9 @@
                             <TextRun>
                               <Value>=Sum(Fields!Mas91Dias.Value)</Value>
                               <Style>
-                                <FontSize>9pt</FontSize>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
-                                <Format>'RD$'#,0.00;('RD$'#,0.00)</Format>
+                                <Format>n2</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1087,13 +980,8 @@
                         <TopBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>0.5pt</Width>
+                          <Width>1pt</Width>
                         </TopBorder>
-                        <BottomBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>0.5pt</Width>
-                        </BottomBorder>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -1133,10 +1021,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>dsAntiguedadSaldo</DataSetName>
-        <Top>0.42016cm</Top>
-        <Left>0.3175cm</Left>
+        <Top>0cm</Top>
+        <Left>0cm</Left>
         <Height>1.8cm</Height>
-        <Width>28.8248cm</Width>
+        <Width>26.11639cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1147,10 +1035,10 @@
     <Height>2in</Height>
     <Style />
   </Body>
-  <Width>11.52991in</Width>
+  <Width>10.31104in</Width>
   <Page>
     <PageHeader>
-      <Height>0.8425in</Height>
+      <Height>0.62153in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -1165,6 +1053,7 @@
                   <Style>
                     <FontStyle>Normal</FontStyle>
                     <FontSize>14pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
                     <TextDecoration>None</TextDecoration>
                   </Style>
                 </TextRun>
@@ -1172,6 +1061,7 @@
                   <Value>de Saldo 30, 60, 90</Value>
                   <Style>
                     <FontSize>14pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -1181,10 +1071,9 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox15</rd:DefaultName>
-          <Top>0.19667in</Top>
-          <Left>4.23891in</Left>
+          <Left>3.5201in</Left>
           <Height>0.32292in</Height>
-          <Width>3.05208in</Width>
+          <Width>3.27083in</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1204,6 +1093,7 @@
                 <TextRun>
                   <Value>=Fields!FechaReferencia.Value</Value>
                   <Style>
+                    <FontWeight>Bold</FontWeight>
                     <Format>d</Format>
                   </Style>
                 </TextRun>
@@ -1212,10 +1102,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox16</rd:DefaultName>
-          <Top>0.19667in</Top>
-          <Left>10.56101in</Left>
+          <Top>0.32292in</Top>
+          <Left>4.88122in</Left>
           <Height>0.25in</Height>
-          <Width>0.91234in</Width>
+          <Width>1.90972in</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>
@@ -1234,7 +1124,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Fecha referencia:</Value>
+                  <Value>Saldos vencidos al:</Value>
                   <Style>
                     <FontWeight>Bold</FontWeight>
                   </Style>
@@ -1246,10 +1136,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox17</rd:DefaultName>
-          <Top>0.19667in</Top>
-          <Left>9.31448in</Left>
+          <Top>0.32292in</Top>
+          <Left>3.5201in</Left>
           <Height>0.25in</Height>
-          <Width>1.24653in</Width>
+          <Width>1.36111in</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -1270,15 +1160,19 @@
                 <TextRun>
                   <Value>=Globals!ExecutionTime</Value>
                   <Style>
+                    <FontSize>9pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
                     <Format>d</Format>
                   </Style>
                 </TextRun>
               </TextRuns>
-              <Style />
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>ExecutionTime</rd:DefaultName>
-          <Top>0.19667in</Top>
+          <Left>0.52208in</Left>
           <Height>0.25in</Height>
           <Width>1.32292in</Width>
           <ZIndex>3</ZIndex>
@@ -1292,17 +1186,6 @@
             <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
-        <Line Name="Line1">
-          <Top>0.80778in</Top>
-          <Height>0in</Height>
-          <Width>11.47335in</Width>
-          <ZIndex>4</ZIndex>
-          <Style>
-            <Border>
-              <Style>Solid</Style>
-            </Border>
-          </Style>
-        </Line>
         <Textbox Name="PageNumber2">
           <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
@@ -1320,11 +1203,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>PageNumber</rd:DefaultName>
-          <Top>0.51611in</Top>
-          <Left>10.12961in</Left>
+          <Left>9.59107in</Left>
           <Height>0.25in</Height>
-          <Width>0.51042in</Width>
-          <ZIndex>5</ZIndex>
+          <Width>0.25in</Width>
+          <ZIndex>4</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1352,11 +1234,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>TotalPages</rd:DefaultName>
-          <Top>0.51611in</Top>
-          <Left>10.85877in</Left>
+          <Left>10.03204in</Left>
           <Height>0.25in</Height>
-          <Width>0.61458in</Width>
-          <ZIndex>6</ZIndex>
+          <Width>0.25in</Width>
+          <ZIndex>5</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1384,10 +1265,40 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox29</rd:DefaultName>
-          <Top>0.51611in</Top>
-          <Left>10.6678in</Left>
+          <Left>9.84107in</Left>
           <Height>0.25in</Height>
           <Width>0.19097in</Width>
+          <ZIndex>6</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox8">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Fecha:</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox8</rd:DefaultName>
+          <Height>0.25in</Height>
+          <Width>0.52208in</Width>
           <ZIndex>7</ZIndex>
           <Style>
             <Border>
@@ -1408,10 +1319,9 @@
     </PageHeader>
     <PageHeight>8.5in</PageHeight>
     <PageWidth>11in</PageWidth>
-    <LeftMargin>0.7874in</LeftMargin>
-    <RightMargin>0.7874in</RightMargin>
-    <TopMargin>0.7874in</TopMargin>
-    <BottomMargin>0.7874in</BottomMargin>
+    <RightMargin>0.3in</RightMargin>
+    <TopMargin>0.3in</TopMargin>
+    <BottomMargin>0.3in</BottomMargin>
     <ColumnSpacing>0.05118in</ColumnSpacing>
     <Style />
   </Page>
@@ -1432,6 +1342,10 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
+        <Field Name="Codigo">
+          <DataField>Codigo</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
         <Field Name="Corriente">
           <DataField>Corriente</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
@@ -1452,10 +1366,6 @@
           <DataField>FechaReferencia</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
-        <Field Name="ID">
-          <DataField>ID</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
         <Field Name="Mas91Dias">
           <DataField>Mas91Dias</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
@@ -1472,7 +1382,7 @@
       <rd:DataSetInfo>
         <rd:DataSetName>SMA.Entity</rd:DataSetName>
         <rd:TableName>cAntiguedadSaldo</rd:TableName>
-        <rd:ObjectDataSourceType>SMA.Entity.cAntiguedadSaldo, SMA.Entity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceType>SMA.Entity.cAntiguedadSaldo, SMA.Entity, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

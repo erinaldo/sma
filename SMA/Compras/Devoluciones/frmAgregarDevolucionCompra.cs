@@ -52,7 +52,7 @@ namespace SMA.Compras.Devoluciones
 
         }
 
-        public void BusquedaProveedor(Int64 Codigo)
+        public void BusquedaProveedor(Int32 Codigo)
         {
             try
             {
@@ -61,7 +61,7 @@ namespace SMA.Compras.Devoluciones
                 cProveedor Proveedor = ObjetoProveedor.BuscarPorID(Codigo);
                 lblDireccion.Text = Proveedor.Direccion.ToString();
                 lblRNC.Text = Proveedor.RNC.ToString();
-                cbProveedor.SelectedValue = Proveedor.ID;
+                cbProveedor.SelectedValue = Proveedor.Codigo;
             }
 
             catch (Exception Ex)
@@ -407,7 +407,7 @@ namespace SMA.Compras.Devoluciones
             {
                 lblDireccion.Text = Proveedor.Direccion.ToString();
                 lblRNC.Text = Proveedor.RNC.ToString();
-                cbProveedor.SelectedValue = Proveedor.ID;
+                cbProveedor.SelectedValue = Proveedor.Codigo;
             }
             catch (Exception Ex)
             {
@@ -446,7 +446,7 @@ namespace SMA.Compras.Devoluciones
                     {
                         //Guardamos el ID de la FacturA
                         Int64 FacturaID = Factura.ID;
-                        Int64 ProveedorID = Convert.ToInt64(Factura.ProveedorID);
+                        Int32 ProveedorID = Convert.ToInt32(Factura.ProveedorID);
 
                         //Asignamos los datos del cliente que se encuentra en la cotizacion
                         AsignarDatosProveedor(ObjetoProveedor.BuscarPorID(ProveedorID));

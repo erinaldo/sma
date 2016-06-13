@@ -12,7 +12,7 @@ namespace SMA.BL
         public void GuardarCambios(cConcepto Concepto)
         {
              //Si el concepto existe actualizamos
-            if (ConcCxCDA.Existe(Concepto.ID))
+            if (ConcCxCDA.Existe(Concepto.Codigo))
             {
                 try
                 {
@@ -50,7 +50,7 @@ namespace SMA.BL
             }
         }
 
-        public cConcepto BuscarPorID(int ID)
+        public cConcepto BuscarPorID(Int16 ID)
         {
             try
             {

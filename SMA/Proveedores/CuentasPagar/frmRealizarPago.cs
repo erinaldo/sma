@@ -14,7 +14,7 @@ namespace SMA.Clientes.CuentasPagar
 {
     public partial class frmRealizarPago : Office2007Form, IAgregarCxP
     {
-        private Int64? ProveedorID;
+        private Int32? ProveedorID;
         Decimal Monto_;
 
         #region Constructores
@@ -23,7 +23,7 @@ namespace SMA.Clientes.CuentasPagar
             InitializeComponent();
         }
 
-        public frmRealizarPago(Int64 ProveedorID):this()
+        public frmRealizarPago(Int32 ProveedorID):this()
         {
             this.ProveedorID = ProveedorID;
         }
@@ -181,11 +181,11 @@ namespace SMA.Clientes.CuentasPagar
                 foreach (DataGridViewRow Item in dgvPagos.Rows)
                 {
                     cCuentasPagar Cuenta = new cCuentasPagar();
-                    Cuenta.ID = -1;
-                    Cuenta.ConceptoID = Item.Cells[0].Value;
+                    Cuenta.Codigo = -1;
+                    Cuenta.CodigoConcepto = Item.Cells[0].Value;
                     Cuenta.ProveedorID = ObtenerProveedor();
-                    Cuenta.DocumentoID = Item.Cells[2].Value;
-                    Cuenta.ReferenciaID = Item.Cells[3].Value.ToString();
+                    Cuenta.CodigoDocumento = Item.Cells[2].Value;
+                    Cuenta.CodigoReferencia = Item.Cells[3].Value.ToString();
                     Cuenta.Notas = Item.Cells[6].Value.ToString();
                     Cuenta.FechaEmision = Convert.ToDateTime(Item.Cells[4].Value);
                     Cuenta.FechaVencimiento = Convert.ToDateTime(Item.Cells[4].Value);

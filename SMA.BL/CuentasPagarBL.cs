@@ -14,6 +14,10 @@ namespace SMA.BL
             try
             {
                 //Retornamos la lista de cargos generales que no posee referencia
+                ///<remarks>
+                ///La lista de cargos generales son escencialmente cargos que no tienen referencia
+                ///osea son los cargos a los que se les hace referencia
+                ///</remarks
                 return CuentaPagarDA.ListaCargosGenerales(ID);
             }
             catch (Exception Ex)
@@ -48,7 +52,7 @@ namespace SMA.BL
                 if (ValidacionDocumentos(Cuenta))
                 {
                     //Si el almacen existe entonces actualizamos 
-                    if (CuentaPagarDA.Existe(Cuenta.ID))
+                    if (CuentaPagarDA.Existe(Cuenta.Codigo))
                     {
                         CuentaPagarDA.Actualizar(Cuenta);
                     }
@@ -58,7 +62,7 @@ namespace SMA.BL
                     //Si el almacen es nuevo entonces creamos
                     {
 
-                        if ((CuentaPagarDA.Existe(Cuenta.DocumentoID.ToString(), (Int32)Cuenta.ProveedorID))==false || (ConcCxPDA.BuscarPorID((Int32)Cuenta.ConceptoID).Referencia == "S"))
+                        if ((CuentaPagarDA.Existe(Cuenta.CodigoDocumento.ToString(), (Int32)Cuenta.ProveedorID))==false || (ConcCxPDA.BuscarPorID((Int16)Cuenta.CodigoConcepto).Referencia == "S"))
                         {
                             if (ValidacionReferencia(Cuenta))
                             {
@@ -84,7 +88,7 @@ namespace SMA.BL
         private Boolean ValidacionDocumentos(cCuentasPagar Cuenta)
         {
             //Validacion de documento vacio
-            if (Cuenta.DocumentoID.ToString() == String.Empty)
+            if (Cuenta.CodigoDocumento.ToString() == String.Empty)
             {
                 throw new Exception("Debe especificar un numero de documento");
             }
@@ -98,10 +102,10 @@ namespace SMA.BL
         private Boolean ValidacionReferencia(cCuentasPagar Cuenta)
         {
             //Validamos si la referencia existe en caso de que el concepto asi lo requiera 
-            Int32 Concepto = Convert.ToInt32(Cuenta.ConceptoID);
+            Int16 Concepto = Convert.ToInt16(Cuenta.CodigoConcepto);
             if (ConcCxPDA.BuscarPorID(Concepto).Referencia == "S")
             {
-                if (Cuenta.ReferenciaID.ToString() != String.Empty)
+                if (Cuenta.CodigoReferencia.ToString() != String.Empty)
                 {
                     return true;
                 }
@@ -149,7 +153,7 @@ namespace SMA.BL
                 //Int64 Codigo; //Variable de comprobacion
 
                 //Validamos que retornamos un valor no nulo
-                if (Cuenta.ID == 0)
+                if (Cuenta.Codigo == 0)
                 {
                     //Retornamos un error si no existe resultado
                     throw new Exception("El documento seleccionada no existe, favor verificar");
@@ -171,7 +175,7 @@ namespace SMA.BL
         {
             //Cancelacion de un abono
             //Localizamos el concepto para verificar el tipo
-            cConcepto Concepto = ConcCxPDA.BuscarPorID((Int32)Cuenta.ConceptoID);
+            cConcepto Concepto = ConcCxPDA.BuscarPorID((Byte)Cuenta.CodigoConcepto);
 
             //Tipo Abono
             if (Concepto.Tipo.ToString() == "A")
@@ -180,7 +184,7 @@ namespace SMA.BL
                 if (Concepto.Descripcion.ToString() == "Nota de Credito")
                 {
                     //Documento Nota de Credito
-                    cCompras stNotaCredito = ComprasDA.BuscarPorID(Cuenta.FacturaID, "D");
+                    cCompras stNotaCredito = ComprasDA.BuscarPorID(Cuenta.CodigoFactura, "D");
                     //Verificamos Si esta Cancelado
                     if (stNotaCredito.EstatusID.ToString() == "C")
                     {
@@ -205,7 +209,7 @@ namespace SMA.BL
                 //Verificamos el estatus de la factura en caso de que sea
                 if (Concepto.Descripcion.ToString() == "Compras")
                 {
-                    cCompras stFactura = ComprasDA.BuscarPorID(Cuenta.FacturaID, "R");
+                    cCompras stFactura = ComprasDA.BuscarPorID(Cuenta.CodigoFactura, "R");
 
                     //Si la factura esta cancelada cancelamos la transaccion
                     if (stFactura.EstatusID.ToString() == "C")
@@ -221,7 +225,7 @@ namespace SMA.BL
                 else
                 {
                     //Si es un cargo aplicado verificamos que no tenga pagos vigentes
-                    List<cCuentasPagar> ListaPagos = (from c in ListaPagoCargos(Cuenta.FacturaID.ToString(), (Int64)Cuenta.ProveedorID)
+                    List<cCuentasPagar> ListaPagos = (from c in ListaPagoCargos(Cuenta.CodigoFactura.ToString(), (Int64)Cuenta.ProveedorID)
                                                        select c).ToList();
 
                     //Si tiene Cargos o pagos relacionados

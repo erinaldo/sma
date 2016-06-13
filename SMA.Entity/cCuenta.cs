@@ -7,42 +7,42 @@ namespace SMA.Entity
 {
    public abstract class cCuenta
     {
-        private Int64 _ID;
+        private Int32 _Codigo;
 
-        public Int64 ID
+        public Int32 Codigo
         {
-            get { return _ID; }
-            set { _ID = value; }
+            get { return _Codigo; }
+            set { _Codigo = value; }
         }
-        private Object _ConceptoID;
+        private Object _CodigoConcepto;
 
-        public Object ConceptoID
+        public Object CodigoConcepto
         {
-            get { return _ConceptoID; }
-            set { _ConceptoID = value; }
+            get { return _CodigoConcepto; }
+            set { _CodigoConcepto = value; }
         }
        
-        private Int64 _FacturaID;
+        private Int64 _CodigoFactura;
 
-        public Int64 FacturaID
+        public Int64 CodigoFactura
         {
-            get { return _FacturaID; }
-            set { _FacturaID = value; }
+            get { return _CodigoFactura; }
+            set { _CodigoFactura = value; }
         }
 
-        private Object _DocumentoID;
+        private Object _CodigoDocumento;
 
-        public Object DocumentoID
+        public Object CodigoDocumento
         {
-            get { return _DocumentoID; }
-            set { _DocumentoID = value; }
+            get { return _CodigoDocumento; }
+            set { _CodigoDocumento = value; }
         }
-        private String _ReferenciaID;
+        private String _CodigoReferencia;
 
-        public String ReferenciaID
+        public String CodigoReferencia
         {
-            get { return _ReferenciaID; }
-            set { _ReferenciaID = value; }
+            get { return _CodigoReferencia; }
+            set { _CodigoReferencia = value; }
         }
 
         private Boolean _Estatus;

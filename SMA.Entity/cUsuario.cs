@@ -7,26 +7,26 @@ namespace SMA.Entity
 {
    public class cUsuario
     {
-        int _ID;
+        int _Codigo;
 
-        public int ID
+        public int Codigo
         {
-            get { return _ID; }
-            set { _ID = value; }
+            get { return _Codigo; }
+            set { _Codigo = value; }
         }
-        String _LoginUsuario;
+        String _Login;
 
-        public String LoginUsuario
+        public String Login
         {
-            get { return _LoginUsuario; }
-            set { _LoginUsuario = value; }
+            get { return _Login; }
+            set { _Login = value; }
         }
-        String _PassUsuario;
+        String _Pass;
 
-        public String PassUsuario
+        public String Pass
         {
-            get { return _PassUsuario; }
-            set { _PassUsuario = value; }
+            get { return _Pass; }
+            set { _Pass = value; }
         }
         Boolean _Estatus;
 

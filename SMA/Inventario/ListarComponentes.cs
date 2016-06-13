@@ -239,7 +239,7 @@ namespace SMA.Inventario
                                 FamiliaBL ObjetoFamilia = new FamiliaBL();
                                 //ASIGNAMOS VALORES A LA FAMILIA
                                 cFamilia Familia = new cFamilia();
-                                Familia.ID = -1;
+                                Familia.Codigo = -1;
                                 Familia.Descripcion = txtBusqueda.Text;
                                 Familia.Notas = "";
                                 //AGREGAMOS LA FAMILIA
@@ -265,7 +265,7 @@ namespace SMA.Inventario
                                 MarcaBL ObjetoMarca = new MarcaBL();
                                 //ASIGNAMOS VALORES A LA FAMILIA
                                 cMarca Marca = new cMarca();
-                                Marca.ID = -1;  
+                                Marca.Codigo = -1;  
                                 Marca.Descripcion = txtBusqueda.Text;
                                 Marca.Notas = "";
                                 //AGREGAMOS LA FAMILIA

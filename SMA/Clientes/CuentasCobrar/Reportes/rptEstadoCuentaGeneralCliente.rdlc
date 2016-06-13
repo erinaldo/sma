@@ -6,25 +6,25 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>3.28021cm</Width>
+              <Width>2.5cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.75167cm</Width>
+              <Width>2.5cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.215cm</Width>
+              <Width>2.5cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.74354cm</Width>
+              <Width>2.5cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.71167cm</Width>
+              <Width>3cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.68521cm</Width>
+              <Width>3cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.68521cm</Width>
+              <Width>3cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -33,7 +33,7 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox20">
+                    <Textbox Name="Textbox1">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -42,6 +42,7 @@
                             <TextRun>
                               <Value>Concepto</Value>
                               <Style>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -49,32 +50,21 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox20</rd:DefaultName>
+                      <rd:DefaultName>Textbox1</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <TopBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
+                          <Width>0.5pt</Width>
                         </TopBorder>
                         <BottomBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
+                          <Width>1.5pt</Width>
                         </BottomBorder>
-                        <LeftBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </LeftBorder>
-                        <RightBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </RightBorder>
-                        <BackgroundColor>LightGrey</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -85,7 +75,7 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox22">
+                    <Textbox Name="Textbox5">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -94,6 +84,7 @@
                             <TextRun>
                               <Value>Documento</Value>
                               <Style>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -101,32 +92,21 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox22</rd:DefaultName>
+                      <rd:DefaultName>Textbox5</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <TopBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
+                          <Width>0.5pt</Width>
                         </TopBorder>
                         <BottomBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
+                          <Width>1.5pt</Width>
                         </BottomBorder>
-                        <LeftBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </LeftBorder>
-                        <RightBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </RightBorder>
-                        <BackgroundColor>LightGrey</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -144,8 +124,9 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Fecha Emisión</Value>
+                              <Value>F. Emisión</Value>
                               <Style>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -156,29 +137,18 @@
                       <rd:DefaultName>Textbox24</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <TopBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
+                          <Width>0.5pt</Width>
                         </TopBorder>
                         <BottomBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
+                          <Width>1.5pt</Width>
                         </BottomBorder>
-                        <LeftBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </LeftBorder>
-                        <RightBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </RightBorder>
-                        <BackgroundColor>LightGrey</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -196,8 +166,9 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Fecha Vencimiento</Value>
+                              <Value>F. Vencimiento</Value>
                               <Style>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -208,29 +179,18 @@
                       <rd:DefaultName>Textbox26</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <TopBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
+                          <Width>0.5pt</Width>
                         </TopBorder>
                         <BottomBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
+                          <Width>1.5pt</Width>
                         </BottomBorder>
-                        <LeftBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </LeftBorder>
-                        <RightBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </RightBorder>
-                        <BackgroundColor>LightGrey</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -250,6 +210,7 @@
                             <TextRun>
                               <Value>Cargos</Value>
                               <Style>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -260,29 +221,18 @@
                       <rd:DefaultName>Textbox29</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <TopBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
+                          <Width>0.5pt</Width>
                         </TopBorder>
                         <BottomBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
+                          <Width>1.5pt</Width>
                         </BottomBorder>
-                        <LeftBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </LeftBorder>
-                        <RightBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </RightBorder>
-                        <BackgroundColor>LightGrey</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -302,6 +252,7 @@
                             <TextRun>
                               <Value>Abonos</Value>
                               <Style>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -312,29 +263,18 @@
                       <rd:DefaultName>Textbox31</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <TopBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
+                          <Width>0.5pt</Width>
                         </TopBorder>
                         <BottomBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
+                          <Width>1.5pt</Width>
                         </BottomBorder>
-                        <LeftBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </LeftBorder>
-                        <RightBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </RightBorder>
-                        <BackgroundColor>LightGrey</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -354,6 +294,7 @@
                             <TextRun>
                               <Value>Balance</Value>
                               <Style>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -364,29 +305,18 @@
                       <rd:DefaultName>Textbox33</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <TopBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
+                          <Width>0.5pt</Width>
                         </TopBorder>
                         <BottomBorder>
                           <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
+                          <Width>1.5pt</Width>
                         </BottomBorder>
-                        <LeftBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </LeftBorder>
-                        <RightBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </RightBorder>
-                        <BackgroundColor>LightGrey</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -402,15 +332,17 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="ConceptoID">
+                    <Textbox Name="CodigoConcepto">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!ConceptoID.Value</Value>
-                              <Style />
+                              <Value>=Fields!CodigoConcepto.Value</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -418,7 +350,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>ConceptoID</rd:DefaultName>
+                      <rd:DefaultName>CodigoConcepto</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -433,15 +365,17 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="DocumentoID">
+                    <Textbox Name="CodigoDocumento">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!DocumentoID.Value</Value>
-                              <Style />
+                              <Value>=Fields!CodigoDocumento.Value</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -449,7 +383,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>DocumentoID</rd:DefaultName>
+                      <rd:DefaultName>CodigoDocumento</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -473,6 +407,7 @@
                             <TextRun>
                               <Value>=Fields!FechaEmision.Value</Value>
                               <Style>
+                                <FontSize>8pt</FontSize>
                                 <Format>d</Format>
                               </Style>
                             </TextRun>
@@ -506,6 +441,7 @@
                             <TextRun>
                               <Value>=Fields!FechaVencimiento.Value</Value>
                               <Style>
+                                <FontSize>8pt</FontSize>
                                 <Format>d</Format>
                               </Style>
                             </TextRun>
@@ -539,7 +475,8 @@
                             <TextRun>
                               <Value>=Fields!Monto.Value</Value>
                               <Style>
-                                <Format>'RD$'#,0.00;('RD$'#,0.00)</Format>
+                                <FontSize>8pt</FontSize>
+                                <Format>n2</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -557,7 +494,6 @@
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
-                        <rd:FormatSymbolCulture>es-DO</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -573,7 +509,8 @@
                             <TextRun>
                               <Value>=Fields!Abonos.Value</Value>
                               <Style>
-                                <Format>'RD$'#,0.00;('RD$'#,0.00)</Format>
+                                <FontSize>8pt</FontSize>
+                                <Format>n2</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -591,7 +528,6 @@
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
-                        <rd:FormatSymbolCulture>es-DO</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -607,7 +543,8 @@
                             <TextRun>
                               <Value>=Fields!Balance.Value</Value>
                               <Style>
-                                <Format>'RD$'#,0.00;('RD$'#,0.00)</Format>
+                                <FontSize>8pt</FontSize>
+                                <Format>n2</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -625,7 +562,6 @@
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
-                        <rd:FormatSymbolCulture>es-DO</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -637,7 +573,7 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox35">
+                    <Textbox Name="Textbox4">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -646,6 +582,7 @@
                             <TextRun>
                               <Value>Totales</Value>
                               <Style>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -655,11 +592,10 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox35</rd:DefaultName>
+                      <rd:DefaultName>Textbox4</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -671,7 +607,7 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox36">
+                    <Textbox Name="Textbox7">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -680,6 +616,7 @@
                             <TextRun>
                               <Value />
                               <Style>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -689,11 +626,10 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox36</rd:DefaultName>
+                      <rd:DefaultName>Textbox7</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -714,6 +650,7 @@
                             <TextRun>
                               <Value />
                               <Style>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -726,8 +663,7 @@
                       <rd:DefaultName>Textbox37</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -748,6 +684,7 @@
                             <TextRun>
                               <Value />
                               <Style>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -760,8 +697,7 @@
                       <rd:DefaultName>Textbox38</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -782,8 +718,9 @@
                             <TextRun>
                               <Value>=Sum(Fields!Monto.Value)</Value>
                               <Style>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
-                                <Format>'RD$'#,0.00;('RD$'#,0.00)</Format>
+                                <Format>n2</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -795,14 +732,12 @@
                       <rd:DefaultName>Textbox39</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
-                        <rd:FormatSymbolCulture>es-DO</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -818,8 +753,9 @@
                             <TextRun>
                               <Value>=Sum(Fields!Abonos.Value)</Value>
                               <Style>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
-                                <Format>'RD$'#,0.00;('RD$'#,0.00)</Format>
+                                <Format>n2</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -831,14 +767,12 @@
                       <rd:DefaultName>Textbox40</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
-                        <rd:FormatSymbolCulture>es-DO</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -854,8 +788,9 @@
                             <TextRun>
                               <Value>=Sum(Fields!Balance.Value)</Value>
                               <Style>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
-                                <Format>'RD$'#,0.00;('RD$'#,0.00)</Format>
+                                <Format>n2</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -867,14 +802,16 @@
                       <rd:DefaultName>Textbox41</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
+                        <TopBorder>
+                          <Style>Solid</Style>
+                          <Width>1.5pt</Width>
+                        </TopBorder>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
-                        <rd:FormatSymbolCulture>es-DO</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -909,9 +846,9 @@
         </TablixRowHierarchy>
         <DataSetName>dsEstadoCuentaGeneralCliente</DataSetName>
         <Top>0.32465cm</Top>
-        <Left>0.86995cm</Left>
+        <Left>0.28571cm</Left>
         <Height>1.8cm</Height>
-        <Width>21.07251cm</Width>
+        <Width>19cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -922,10 +859,10 @@
     <Height>2in</Height>
     <Style />
   </Body>
-  <Width>8.85827in</Width>
+  <Width>7.5928in</Width>
   <Page>
     <PageHeader>
-      <Height>5.12259cm</Height>
+      <Height>1.71468in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -947,8 +884,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox2</rd:DefaultName>
-          <Top>0.26141cm</Top>
-          <Left>0.86995cm</Left>
+          <Top>0.1688cm</Top>
+          <Left>0cm</Left>
           <Height>0.78521cm</Height>
           <Width>10.25229cm</Width>
           <Style>
@@ -970,6 +907,7 @@
                 <TextRun>
                   <Value>=First(Fields!NombreCliente.Value, "dsEstadoCuentaGeneralCliente")</Value>
                   <Style>
+                    <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
@@ -980,8 +918,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>NombreCliente</rd:DefaultName>
-          <Top>1.22301cm</Top>
-          <Left>0.86995cm</Left>
+          <Top>1.0378cm</Top>
+          <Left>0cm</Left>
           <Height>0.6cm</Height>
           <Width>8.90292cm</Width>
           <ZIndex>1</ZIndex>
@@ -1004,7 +942,9 @@
               <TextRuns>
                 <TextRun>
                   <Value>=First(Fields!Direccion.Value, "dsEstadoCuentaGeneralCliente")</Value>
-                  <Style />
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style>
@@ -1013,8 +953,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Direccion</rd:DefaultName>
-          <Top>1.82301cm</Top>
-          <Left>0.86995cm</Left>
+          <Top>1.6378cm</Top>
+          <Left>0cm</Left>
           <Height>0.6cm</Height>
           <Width>7.87104cm</Width>
           <ZIndex>2</ZIndex>
@@ -1037,7 +977,9 @@
               <TextRuns>
                 <TextRun>
                   <Value>="RNC: " &amp; First(Fields!RNC.Value, "dsEstadoCuentaGeneralCliente")</Value>
-                  <Style />
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style>
@@ -1046,8 +988,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>RNC</rd:DefaultName>
-          <Top>3.09356cm</Top>
-          <Left>0.86995cm</Left>
+          <Top>2.90835cm</Top>
+          <Left>0cm</Left>
           <Height>0.6cm</Height>
           <Width>7.87104cm</Width>
           <ZIndex>3</ZIndex>
@@ -1070,7 +1012,9 @@
               <TextRuns>
                 <TextRun>
                   <Value>="Telefono: " &amp; First(Fields!Telefono.Value, "dsEstadoCuentaGeneralCliente")</Value>
-                  <Style />
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style>
@@ -1079,8 +1023,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Telefono</rd:DefaultName>
-          <Top>3.69356cm</Top>
-          <Left>0.86995cm</Left>
+          <Top>3.50835cm</Top>
+          <Left>0cm</Left>
           <Height>0.6cm</Height>
           <Width>4.00812cm</Width>
           <ZIndex>4</ZIndex>
@@ -1103,7 +1047,9 @@
               <TextRuns>
                 <TextRun>
                   <Value>="Fax: " &amp; First(Fields!Fax.Value, "dsEstadoCuentaGeneralCliente")</Value>
-                  <Style />
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style>
@@ -1112,8 +1058,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Fax</rd:DefaultName>
-          <Top>3.69356cm</Top>
-          <Left>4.87807cm</Left>
+          <Top>3.50835cm</Top>
+          <Left>4.00812cm</Left>
           <Height>0.6cm</Height>
           <Width>4.00812cm</Width>
           <ZIndex>5</ZIndex>
@@ -1136,15 +1082,17 @@
               <TextRuns>
                 <TextRun>
                   <Value>=First(Fields!Ciudad.Value, "dsEstadoCuentaGeneralCliente")</Value>
-                  <Style />
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style />
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Ciudad</rd:DefaultName>
-          <Top>2.49356cm</Top>
-          <Left>0.86995cm</Left>
+          <Top>2.30835cm</Top>
+          <Left>0cm</Left>
           <Height>0.6cm</Height>
           <Width>5.04cm</Width>
           <ZIndex>6</ZIndex>
@@ -1166,15 +1114,17 @@
               <TextRuns>
                 <TextRun>
                   <Value>=First(Fields!Provincia.Value, "dsEstadoCuentaGeneralCliente")</Value>
-                  <Style />
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style />
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Provincia</rd:DefaultName>
-          <Top>2.49356cm</Top>
-          <Left>6.35974cm</Left>
+          <Top>2.30835cm</Top>
+          <Left>5.48979cm</Left>
           <Height>0.6cm</Height>
           <Width>4.7625cm</Width>
           <ZIndex>7</ZIndex>
@@ -1195,16 +1145,18 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!ClienteID.Value, "dsEstadoCuentaGeneralCliente")</Value>
-                  <Style />
+                  <Value>=First(Fields!CodigoCliente.Value, "dsEstadoCuentaGeneralCliente")</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style />
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>ClienteID</rd:DefaultName>
-          <Top>1.22301cm</Top>
-          <Left>15.60724cm</Left>
+          <Top>1.0378cm</Top>
+          <Left>14.38694cm</Left>
           <Height>0.6cm</Height>
           <Width>4.73479cm</Width>
           <ZIndex>8</ZIndex>
@@ -1227,7 +1179,8 @@
                 <TextRun>
                   <Value>=First(Fields!LimiteCredito.Value, "dsEstadoCuentaGeneralCliente")</Value>
                   <Style>
-                    <Format>'RD$'#,0.00;('RD$'#,0.00)</Format>
+                    <FontSize>9pt</FontSize>
+                    <Format>n2</Format>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -1235,8 +1188,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>LimiteCredito</rd:DefaultName>
-          <Top>2.42301cm</Top>
-          <Left>15.60724cm</Left>
+          <Top>2.30835cm</Top>
+          <Left>14.38694cm</Left>
           <Height>0.6cm</Height>
           <Width>4.73479cm</Width>
           <ZIndex>9</ZIndex>
@@ -1248,7 +1201,6 @@
             <PaddingRight>2pt</PaddingRight>
             <PaddingTop>2pt</PaddingTop>
             <PaddingBottom>2pt</PaddingBottom>
-            <rd:FormatSymbolCulture>es-DO</rd:FormatSymbolCulture>
           </Style>
         </Textbox>
         <Textbox Name="Textbox13">
@@ -1260,6 +1212,7 @@
                 <TextRun>
                   <Value>Limite de Crédito:</Value>
                   <Style>
+                    <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
@@ -1268,10 +1221,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox13</rd:DefaultName>
-          <Top>2.42301cm</Top>
-          <Left>12.02245cm</Left>
+          <Top>2.30835cm</Top>
+          <Left>11.18315cm</Left>
           <Height>0.6cm</Height>
-          <Width>3.58479cm</Width>
+          <Width>3.10854cm</Width>
           <ZIndex>10</ZIndex>
           <Style>
             <Border>
@@ -1292,7 +1245,8 @@
                 <TextRun>
                   <Value>=First(Fields!BalanceDisponible.Value, "dsEstadoCuentaGeneralCliente")</Value>
                   <Style>
-                    <Format>'RD$'#,0.00;('RD$'#,0.00)</Format>
+                    <FontSize>9pt</FontSize>
+                    <Format>n2</Format>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -1300,8 +1254,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>BalanceDisponible</rd:DefaultName>
-          <Top>3.02301cm</Top>
-          <Left>15.60724cm</Left>
+          <Top>2.90835cm</Top>
+          <Left>14.38694cm</Left>
           <Height>0.6cm</Height>
           <Width>4.73479cm</Width>
           <ZIndex>11</ZIndex>
@@ -1313,7 +1267,6 @@
             <PaddingRight>2pt</PaddingRight>
             <PaddingTop>2pt</PaddingTop>
             <PaddingBottom>2pt</PaddingBottom>
-            <rd:FormatSymbolCulture>es-DO</rd:FormatSymbolCulture>
           </Style>
         </Textbox>
         <Textbox Name="Textbox14">
@@ -1325,6 +1278,7 @@
                 <TextRun>
                   <Value>Balance Disponible:</Value>
                   <Style>
+                    <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
@@ -1333,10 +1287,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox13</rd:DefaultName>
-          <Top>3.02301cm</Top>
-          <Left>12.02245cm</Left>
+          <Top>2.90835cm</Top>
+          <Left>11.18315cm</Left>
           <Height>0.6cm</Height>
-          <Width>3.58479cm</Width>
+          <Width>3.10854cm</Width>
           <ZIndex>12</ZIndex>
           <Style>
             <Border>
@@ -1356,15 +1310,18 @@
               <TextRuns>
                 <TextRun>
                   <Value>=Sum(Fields!DiasCredito.Value, "dsEstadoCuentaGeneralCliente")</Value>
-                  <Style />
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                    <Format>f2</Format>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style />
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>DiasCredito</rd:DefaultName>
-          <Top>1.82301cm</Top>
-          <Left>15.60724cm</Left>
+          <Top>1.6378cm</Top>
+          <Left>14.38694cm</Left>
           <Height>0.6cm</Height>
           <Width>4.73479cm</Width>
           <ZIndex>13</ZIndex>
@@ -1387,6 +1344,7 @@
                 <TextRun>
                   <Value>Días de Crédito:</Value>
                   <Style>
+                    <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
@@ -1395,73 +1353,11 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox13</rd:DefaultName>
-          <Top>1.82301cm</Top>
-          <Left>12.02245cm</Left>
+          <Top>1.6378cm</Top>
+          <Left>11.18315cm</Left>
           <Height>0.6cm</Height>
-          <Width>3.58479cm</Width>
+          <Width>3.10854cm</Width>
           <ZIndex>14</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="Textbox16">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>Atención a Cobros:</Value>
-                  <Style>
-                    <FontWeight>Bold</FontWeight>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox13</rd:DefaultName>
-          <Top>4.29356cm</Top>
-          <Left>0.86995cm</Left>
-          <Height>0.6cm</Height>
-          <Width>3.58479cm</Width>
-          <ZIndex>15</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="ContactoCobros">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>=First(Fields!ContactoCobros.Value, "dsEstadoCuentaGeneralCliente")</Value>
-                  <Style />
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>ContactoCobros</rd:DefaultName>
-          <Top>4.29356cm</Top>
-          <Left>4.45474cm</Left>
-          <Height>0.6cm</Height>
-          <Width>6.6675cm</Width>
-          <ZIndex>16</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1481,22 +1377,23 @@
                 <TextRun>
                   <Value>=Globals!ExecutionTime</Value>
                   <Style>
+                    <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                     <Format>d</Format>
                   </Style>
                 </TextRun>
               </TextRuns>
               <Style>
-                <TextAlign>Center</TextAlign>
+                <TextAlign>Right</TextAlign>
               </Style>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>ExecutionTime</rd:DefaultName>
-          <Top>0.26141cm</Top>
-          <Left>15.60724cm</Left>
-          <Height>0.6cm</Height>
+          <Top>0.1688cm</Top>
+          <Left>14.38694cm</Left>
+          <Height>0.78521cm</Height>
           <Width>4.73479cm</Width>
-          <ZIndex>17</ZIndex>
+          <ZIndex>15</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1515,7 +1412,9 @@
               <TextRuns>
                 <TextRun>
                   <Value>=Globals!PageNumber</Value>
-                  <Style />
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style>
@@ -1524,11 +1423,11 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>PageNumber</rd:DefaultName>
-          <Top>1.6766in</Top>
-          <Left>6.66493in</Left>
+          <Top>1.39246in</Top>
+          <Left>6.83727in</Left>
           <Height>0.25in</Height>
-          <Width>0.51042in</Width>
-          <ZIndex>18</ZIndex>
+          <Width>0.25in</Width>
+          <ZIndex>16</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1547,7 +1446,9 @@
               <TextRuns>
                 <TextRun>
                   <Value>=Globals!TotalPages</Value>
-                  <Style />
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style>
@@ -1556,11 +1457,11 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>TotalPages</rd:DefaultName>
-          <Top>1.6766in</Top>
-          <Left>7.39409in</Left>
+          <Top>1.39246in</Top>
+          <Left>7.27824in</Left>
           <Height>0.25in</Height>
-          <Width>0.61458in</Width>
-          <ZIndex>19</ZIndex>
+          <Width>0.25in</Width>
+          <ZIndex>17</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1579,7 +1480,9 @@
               <TextRuns>
                 <TextRun>
                   <Value>/</Value>
-                  <Style />
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style>
@@ -1588,11 +1491,11 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox29</rd:DefaultName>
-          <Top>1.6766in</Top>
-          <Left>7.20312in</Left>
+          <Top>1.39246in</Top>
+          <Left>7.08727in</Left>
           <Height>0.25in</Height>
           <Width>0.19097in</Width>
-          <ZIndex>20</ZIndex>
+          <ZIndex>18</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1610,13 +1513,11 @@
         </Border>
       </Style>
     </PageHeader>
-    <PageHeight>29.7cm</PageHeight>
-    <PageWidth>21cm</PageWidth>
-    <LeftMargin>2cm</LeftMargin>
-    <RightMargin>2cm</RightMargin>
-    <TopMargin>2cm</TopMargin>
-    <BottomMargin>2cm</BottomMargin>
-    <ColumnSpacing>0.13cm</ColumnSpacing>
+    <LeftMargin>0.3in</LeftMargin>
+    <RightMargin>0.3in</RightMargin>
+    <TopMargin>0.3in</TopMargin>
+    <BottomMargin>0.3in</BottomMargin>
+    <ColumnSpacing>0.05118in</ColumnSpacing>
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
@@ -1652,13 +1553,29 @@
           <DataField>Ciudad</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ClienteID">
-          <DataField>ClienteID</DataField>
+        <Field Name="Codigo">
+          <DataField>Codigo</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CodigoCliente">
+          <DataField>CodigoCliente</DataField>
           <rd:TypeName>System.Object</rd:TypeName>
         </Field>
-        <Field Name="ConceptoID">
-          <DataField>ConceptoID</DataField>
+        <Field Name="CodigoConcepto">
+          <DataField>CodigoConcepto</DataField>
           <rd:TypeName>System.Object</rd:TypeName>
+        </Field>
+        <Field Name="CodigoDocumento">
+          <DataField>CodigoDocumento</DataField>
+          <rd:TypeName>System.Object</rd:TypeName>
+        </Field>
+        <Field Name="CodigoFactura">
+          <DataField>CodigoFactura</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="CodigoReferencia">
+          <DataField>CodigoReferencia</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="ContactoCobros">
           <DataField>ContactoCobros</DataField>
@@ -1672,17 +1589,9 @@
           <DataField>Direccion</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="DocumentoID">
-          <DataField>DocumentoID</DataField>
-          <rd:TypeName>System.Object</rd:TypeName>
-        </Field>
         <Field Name="Estatus">
           <DataField>Estatus</DataField>
           <rd:TypeName>System.Boolean</rd:TypeName>
-        </Field>
-        <Field Name="FacturaID">
-          <DataField>FacturaID</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="Fax">
           <DataField>Fax</DataField>
@@ -1692,13 +1601,21 @@
           <DataField>FechaEmision</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
+        <Field Name="FechaFin">
+          <DataField>FechaFin</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="FechaInicio">
+          <DataField>FechaInicio</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="FechaReferencia">
+          <DataField>FechaReferencia</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
         <Field Name="FechaVencimiento">
           <DataField>FechaVencimiento</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="ID">
-          <DataField>ID</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="LimiteCredito">
           <DataField>LimiteCredito</DataField>
@@ -1720,10 +1637,6 @@
           <DataField>Provincia</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ReferenciaID">
-          <DataField>ReferenciaID</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="RNC">
           <DataField>RNC</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -1736,10 +1649,10 @@
       <rd:DataSetInfo>
         <rd:DataSetName>SMA.Entity</rd:DataSetName>
         <rd:TableName>cReporteEstadoCuenta</rd:TableName>
-        <rd:ObjectDataSourceType>SMA.Entity.cReporteEstadoCuenta, SMA.Entity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceType>SMA.Entity.cReporteEstadoCuenta, SMA.Entity, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
-  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
   <rd:ReportID>576cfb2e-49ea-4cfc-87a3-defb0338c61a</rd:ReportID>
 </Report>

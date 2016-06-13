@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using SMA.Entity;
 using System.Data;
-using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
+using MySql.Data;
 
 namespace SMA.DA
 {
@@ -16,23 +17,23 @@ namespace SMA.DA
             try
             {
                 //Declaramos la conexion hacia la base de datos
-                using (SqlConnection Conn = new SqlConnection(cConexion.CadenaConexion()))
+                using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
                 {
                     Conn.Open();
                     //Nombre del procedimiento
-                    string StoreProc = "uspListarModulos";
+                    string StoreProc = "uspListarMod";
                     //Creamos el command para la insercion
-                    SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
+                    MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
                     //Ejecutamos el lector 
-                    SqlDataReader Reader = Cmd.ExecuteReader();
+                    MySqlDataReader Reader = Cmd.ExecuteReader();
 
 
                     List<cModulo> Lista = new List<cModulo>();
                     while (Reader.Read())
                     {
                         cModulo Modulo = new cModulo();
-                        Modulo.ID = Reader.GetInt32(Reader.GetOrdinal("ID"));
+                        Modulo.Codigo = Reader.GetInt16(Reader.GetOrdinal("Codigo"));
                         Modulo.Descripcion = Reader.GetString(Reader.GetOrdinal("Descripcion"));
                         Modulo.Notas = Reader.IsDBNull(Reader.GetOrdinal("Notas")) ? null : Reader.GetString(Reader.GetOrdinal("Notas"));
                         //Agregamos el articulo a la lista
@@ -45,7 +46,7 @@ namespace SMA.DA
                 }
             }
 
-            catch (SqlException Ex)
+            catch (MySqlException Ex)
             {
                 throw Ex;
 

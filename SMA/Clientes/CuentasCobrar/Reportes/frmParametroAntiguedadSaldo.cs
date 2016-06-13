@@ -14,16 +14,16 @@ namespace SMA.Clientes.CuentasCobrar.Reportes
 {
     public partial class frmParametroAntiguedadSaldo : Office2007Form
     {
-        private Int64? ClienteID;
+        private Int32? CodigoCliente;
 
         public frmParametroAntiguedadSaldo()
         {
             InitializeComponent();
         }
 
-        public frmParametroAntiguedadSaldo(Int64 ClienteID):this()
+        public frmParametroAntiguedadSaldo(Int32 CodigoCliente):this()
         {
-            this.ClienteID = ClienteID;
+            this.CodigoCliente = CodigoCliente;
         }
 
         private void frmParametroAntiguedadSaldo_Load(object sender, EventArgs e)
@@ -31,19 +31,19 @@ namespace SMA.Clientes.CuentasCobrar.Reportes
             ClienteBL ObjetoCliente = new ClienteBL();
             //Si el parametro de Proveedor tiene algun valor entonces filtramos al Proveedor seleccionado para que
             //solo muestre informacion de este
-            Int64 Codigo = Convert.ToInt64(ClienteID);
+            Int32 Codigo = Convert.ToInt32(CodigoCliente);
             cbbClienteDesde.DataSource = ObjetoCliente.Listar();
             cbbClienteHasta.DataSource = ObjetoCliente.Listar();
          
-            cbbClienteDesde.ValueMember = "ID";
-            cbbClienteHasta.ValueMember = "ID";
+            cbbClienteDesde.ValueMember = "Codigo";
+            cbbClienteHasta.ValueMember = "Codigo";
             cbbClienteDesde.DisplayMember = "NombreComercial";
             cbbClienteHasta.DisplayMember = "NombreComercial";
 
-            if (ClienteID.HasValue)
+            if (CodigoCliente.HasValue)
             {
-                cbbClienteDesde.SelectedValue = ClienteID;
-                cbbClienteHasta.SelectedValue = ClienteID;
+                cbbClienteDesde.SelectedValue = CodigoCliente;
+                cbbClienteHasta.SelectedValue = CodigoCliente;
             }
         }
 
@@ -53,8 +53,8 @@ namespace SMA.Clientes.CuentasCobrar.Reportes
             {
                 DateTime? FechaCorte = ObtenerFechaCorte();
                 String IndicadorFecha = ObtenerIndicadorFecha();
-                Int64 ClienteDesde = Convert.ToInt64(cbbClienteDesde.SelectedValue.ToString());
-                Int64 ClienteHasta = Convert.ToInt64(cbbClienteHasta.SelectedValue.ToString());
+                Int32 ClienteDesde = Convert.ToInt32(cbbClienteDesde.SelectedValue.ToString());
+                Int32 ClienteHasta = Convert.ToInt32(cbbClienteHasta.SelectedValue.ToString());
                 DateTime FechaReferencia = dtpFechaReferencia.Value;
 
                 CuentasCobrarBL ObjetoCuenta = new CuentasCobrarBL();

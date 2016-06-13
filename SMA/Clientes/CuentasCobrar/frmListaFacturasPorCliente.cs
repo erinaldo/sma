@@ -14,7 +14,7 @@ namespace SMA.Clientes.CuentasPagar
 {
     public partial class frmListaFacturasPorCliente :Office2007Form
     {
-        private Int64 ClienteID;
+        private Int32 CodigoCliente;
         private String TipoDocumento;
 
 
@@ -24,18 +24,25 @@ namespace SMA.Clientes.CuentasPagar
         }
 
         //Constructor con parametro de cliente
-        public frmListaFacturasPorCliente(Int64 ClienteID, String TipoDocumento):this()
+        public frmListaFacturasPorCliente(Int32 CodigoCliente, String TipoDocumento):this()
         {
-            this.ClienteID = ClienteID;
+            this.CodigoCliente = CodigoCliente;
             this.TipoDocumento = TipoDocumento;
         }
 
         private void frmListaFacturasPorCliente_Load(object sender, EventArgs e)
         {
-            CuentasCobrarBL ObjetoCuenta = new CuentasCobrarBL();
-            dgvDocumentos.AutoGenerateColumns = false;
-            dgvDocumentos.DataSource = ObjetoCuenta.ListaDocumentosCxC(ClienteID);
-
+            //CARGAMOS LOS DOCUMENTOS DE CUENTAS POR COBRAR CON BALANCE MAYOR A 0
+            try
+            {
+                CuentasCobrarBL ObjetoCuenta = new CuentasCobrarBL();
+                dgvDocumentos.AutoGenerateColumns = false;
+                dgvDocumentos.DataSource = ObjetoCuenta.ListaDocumentosCxC(CodigoCliente);
+            }
+            catch(Exception Ex)
+            {
+                MessageBox.Show(Ex.Message);
+            }
         }
 
         private void dgvDocumentos_CellContentClick(object sender, DataGridViewCellEventArgs e)

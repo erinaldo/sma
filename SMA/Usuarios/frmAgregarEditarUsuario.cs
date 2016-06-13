@@ -14,35 +14,38 @@ namespace SMA.Usuarios
 {
     public partial class frmAgregarEditarUsuario : Office2007Form
     {
-        int? ID;
-        Int32 RelacionID;
-        RelacionUsuarioPerfilesBL ObjetoRelacion = new RelacionUsuarioPerfilesBL();
-
+        Int32? CodigoUsuario;    //CODIGO DE USUARIO
+        Int32 RelacionCodigo;  //CODIGO DE RELACION PERFIL                     
+        RelacionUsuarioPerfilesBL ObjetoRelacion = new RelacionUsuarioPerfilesBL(); //OBJETO RELACION USUARIO PERFIL NEGOCIO
+        
+        #region Constructores
         public frmAgregarEditarUsuario()
         {
             InitializeComponent();
         }
-
-        public frmAgregarEditarUsuario(int ID):this()
+        
+        public frmAgregarEditarUsuario(Int32 CodigoUsuario):this()
         {
-            this.ID = ID;
+            this.CodigoUsuario = CodigoUsuario;
         }
+        #endregion
 
-        public void AgregarPerfil(Int32 Codigo)
+        #region Acciones y Metodos
+        public void AgregarPerfil(Int16 Codigo)
         {
             try
             {
-                if (ID.HasValue)
+                if (CodigoUsuario.HasValue)
                 {
-                    Int32 UsuarioID = Convert.ToInt32(ID);
+                    Int32 UsuarioCodigo = Convert.ToInt32(CodigoUsuario);
                     cRelacionUsuarioPerfil Relacion = new cRelacionUsuarioPerfil();
-                    Relacion.ID = -1;
-                    Relacion.PerfilID = Codigo;
-                    Relacion.UsuarioID = UsuarioID;
+                    Relacion.Codigo = -1;
+                    Relacion.PerfilCodigo = Codigo;
+                    Relacion.UsuarioCodigo = UsuarioCodigo;
 
                     RelacionUsuarioPerfilesBL ObjetoRelacion = new RelacionUsuarioPerfilesBL();
                     ObjetoRelacion.Crear(Relacion);
-                    VerPerfiles(ObjetoRelacion.Listar(UsuarioID));
+                    VerPerfiles(ObjetoRelacion.Listar(UsuarioCodigo));
                 }
             }
             catch(Exception Ex)
@@ -51,39 +54,13 @@ namespace SMA.Usuarios
             }
 
         }
-        private void frmAgregarEditarUsuario_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                if (ID.HasValue)
-                {
-                    //BUSQUEDA DE USUARIOS Y MUESTRA DE INFORMACION
-                    Int32 Codigo = Convert.ToInt32(ID);
-                    UsuarioBL ObjetoUsuario = new UsuarioBL();
-                    
-                    AsignarValores(ObjetoUsuario.BuscarPorID(Codigo));
-                    VerPerfiles(ObjetoRelacion.Listar(Codigo));
-                }
-                else
-                {
-                    lblID.Text = "-1";
-                    txtFechaCreacion.Text = DateTime.Now.Date.ToShortDateString();
-                    txtFechaModificacion.Text = DateTime.Now.Date.ToShortDateString();
-                
-                }
-            }
-            catch(Exception Ex)
-            {
-                MessageBox.Show(Ex.Message);
-            }
-        }
 
         private void AsignarValores(cUsuario Usuario)
         {
             //CARGAMOS LA INFORMACION DEL USUARIO
-            lblID.Text = Usuario.ID.ToString();
-            txtLoginUsuario.Text = Usuario.LoginUsuario;
-            txtPassword.Text = Usuario.PassUsuario;
+            lblCodigo.Text = Usuario.Codigo.ToString();
+            txtLoginUsuario.Text = Usuario.Login;
+            txtPassword.Text = Usuario.Pass;
             ckbEstatus.Checked = Usuario.Estatus;
             txtNombre.Text = Usuario.Nombre;
             txtTelefono.Text = Usuario.Telefono;
@@ -94,8 +71,54 @@ namespace SMA.Usuarios
 
         private void VerPerfiles(List<cRelacionUsuarioPerfil> Perfiles)
         {
+            //VISUALIZAMOS LA LISTA DE PERFILES RELACIONADOS CON EL USUARIO
             dgvPerfil.AutoGenerateColumns = false;
-            dgvPerfil.DataSource = Perfiles;   
+            dgvPerfil.DataSource = Perfiles;
+        }
+
+        private cUsuario ObtenerDatos()
+        {
+            //OBTENEMOS LA INFORMACION DEL USUARIO A MODIFICAR O AGREGAR
+            cUsuario Usuario = new cUsuario();
+            Usuario.Codigo = Convert.ToInt32(lblCodigo.Text);
+            Usuario.Login = txtLoginUsuario.Text;
+            Usuario.Pass = txtPassword.Text;
+            Usuario.Estatus = ckbEstatus.Checked;
+            Usuario.Nombre = txtNombre.Text;
+            Usuario.Telefono = txtTelefono.Text;
+            Usuario.ResetPassOnLogin = ckbResetOnLogin.Checked;
+            return Usuario;
+
+        }
+
+        #endregion
+
+        #region Acciones de controles formulario
+        private void frmAgregarEditarUsuario_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                if (CodigoUsuario.HasValue)
+                {
+                    //BUSQUEDA DE USUARIOS Y MUESTRA DE INFORMACION
+                    Int32 RelacionCodigo = Convert.ToInt32(CodigoUsuario);
+                    UsuarioBL ObjetoUsuario = new UsuarioBL();
+                    
+                    AsignarValores(ObjetoUsuario.BuscarPorCodigo(RelacionCodigo));
+                    VerPerfiles(ObjetoRelacion.Listar(RelacionCodigo));
+                }
+                else
+                {
+                    lblCodigo.Text = "-1";
+                    txtFechaCreacion.Text = DateTime.Now.Date.ToShortDateString();
+                    txtFechaModificacion.Text = DateTime.Now.Date.ToShortDateString();
+                
+                }
+            }
+            catch(Exception Ex)
+            {
+                MessageBox.Show(Ex.Message);
+            }
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -112,19 +135,6 @@ namespace SMA.Usuarios
             }
         }
 
-        private cUsuario ObtenerDatos()
-        {
-            cUsuario Usuario = new cUsuario();
-            Usuario.ID = Convert.ToInt32(lblID.Text);
-            Usuario.LoginUsuario = txtLoginUsuario.Text;
-            Usuario.PassUsuario = txtPassword.Text;
-            Usuario.Estatus = ckbEstatus.Checked;
-            Usuario.Nombre = txtNombre.Text;
-            Usuario.Telefono = txtTelefono.Text;
-            Usuario.ResetPassOnLogin = ckbResetOnLogin.Checked;
-            return Usuario;
-
-        }
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -138,13 +148,15 @@ namespace SMA.Usuarios
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
+            //ELIMINA LA RELACION EXISTENTE ENTRE UN USUARIO Y LOS PERFILES
             try
             {
-                PerfilBL ObjetoPerfil = new PerfilBL();
-                ObjetoPerfil.Eliminar(RelacionID);
-                if(ID.HasValue)
+                RelacionUsuarioPerfilesBL ObjetoPerfil = new RelacionUsuarioPerfilesBL();
+                ObjetoPerfil.Eliminar(RelacionCodigo);
+                //SI LA VARIABLE CONTIENE UN VALOR BUSCAMOS LOS PERFILES RELACIONADOS
+                if(CodigoUsuario.HasValue)
                 {
-                    Int32 Codigo = Convert.ToInt32(ID);
+                    Int32 Codigo = Convert.ToInt32(CodigoUsuario);
                     VerPerfiles(ObjetoRelacion.Listar(Codigo));
                 }
             }
@@ -163,8 +175,8 @@ namespace SMA.Usuarios
                 {
                     return;
                 }
-                //Codigo de cliente que se obtiene desde el grid
-                RelacionID = Convert.ToInt32(dgvPerfil.Rows[e.RowIndex].Cells[0].Value);
+                //Codigo de cliente que se obtiene desde el grCodigo
+                RelacionCodigo = Convert.ToInt32(dgvPerfil.Rows[e.RowIndex].Cells[0].Value);
             }
             catch (Exception Ex)
             {
@@ -172,5 +184,6 @@ namespace SMA.Usuarios
             }
 
         }
+        #endregion
     }
 }

@@ -51,7 +51,7 @@ namespace SMA.Vendedor
         {
             try
             {
-                txtCodigo.Text = Vendedor.ID.ToString();
+                txtCodigo.Text = Vendedor.Codigo.ToString();
                 txtNombre.Text = Vendedor.Nombre;
                 txtApellido.Text = Vendedor.Apellido;
                 txtCelular.Text = Vendedor.Celular;
@@ -70,7 +70,7 @@ namespace SMA.Vendedor
             try
             {
                 cVendedor Vendedor = new cVendedor();
-                Vendedor.ID = Convert.ToInt32(txtCodigo.Text);
+                Vendedor.Codigo = Convert.ToInt32(txtCodigo.Text);
                 Vendedor.Nombre = txtNombre.Text;
                 Vendedor.Apellido = txtApellido.Text;
                 Vendedor.Telefono = txtTelefono.Text;

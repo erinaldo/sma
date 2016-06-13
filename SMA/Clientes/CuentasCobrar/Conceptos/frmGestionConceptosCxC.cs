@@ -14,7 +14,7 @@ namespace SMA.Clientes.CuentasPagar.Conceptos
 {
     public partial class frmGestionConceptosCxC : Office2007Form
     {
-        private int ConceptoID;
+        private Byte ConceptoID;
 
         public frmGestionConceptosCxC()
         {
@@ -32,7 +32,7 @@ namespace SMA.Clientes.CuentasPagar.Conceptos
             {
                 //SELECCIONAMOS EL MODULO DE CLIENTES
                 List<cRolesModulosUsuarios> PermisosClientes = (from C in cGlobal.ListaModulosPermisos
-                                                                where C.Modulo.Contains("Conceptos CxC")
+                                                                where C.Modulo.Contains("Cptos Cuentas Cobrar")
                                                                 select C).ToList();
                 //Recorremos la lista de modulos para permitir o no el acceso
                 foreach (cRolesModulosUsuarios p in PermisosClientes)
@@ -92,10 +92,27 @@ namespace SMA.Clientes.CuentasPagar.Conceptos
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            frmAgregarEditarConceptos EditarConcepto = new frmAgregarEditarConceptos(this, ConceptoID);
-            EditarConcepto.ShowDialog(this);
-            Refrescar();
+            try
+            {
+                Editar();
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Error al editar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
+        private void Editar()
+        {
+            try
+            {
+                frmAgregarEditarConceptos EditarConcepto = new frmAgregarEditarConceptos(this, ConceptoID);
+                EditarConcepto.ShowDialog(this);
+            }
+            catch(Exception Ex)
+            {
+                throw Ex;
+            }
         }
 
         private void btnRefrescar_Click(object sender, EventArgs e)
@@ -113,11 +130,23 @@ namespace SMA.Clientes.CuentasPagar.Conceptos
                     return;
                 }
                 //Codigo  que se obtiene desde el grid
-                ConceptoID = Convert.ToInt32(dgvConcepto.Rows[e.RowIndex].Cells[0].Value);
+                ConceptoID = Convert.ToByte(dgvConcepto.Rows[e.RowIndex].Cells[0].Value);
             }
             catch (Exception Ex)
             {
                 MessageBox.Show(Ex.Message);
+            }
+        }
+
+        private void dgvConcepto_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                Editar();
+            }
+            catch(Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Error al editar", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

@@ -7,12 +7,12 @@ namespace SMA.Entity
 {
     public class cRelacionModuloPerfil
     {
-        private Int32 _ID;
+        private Int32 _Codigo;
 
-        public Int32 ID
+        public Int32 Codigo
         {
-            get { return _ID; }
-            set { _ID = value; }
+            get { return _Codigo; }
+            set { _Codigo = value; }
         }
         private Object _PerfilID;
 

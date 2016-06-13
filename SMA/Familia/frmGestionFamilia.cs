@@ -122,7 +122,7 @@ namespace SMA.Familia
         private void MostarDatos(cFamilia Familia)
         {
             //Mostramos los datos seleccionados en el grid
-            txtCodigo.Text = Familia.ID.ToString();
+            txtCodigo.Text = Familia.Codigo.ToString();
             txtDescripcion.Text = Familia.Descripcion;
             txtNotas.Text = Familia.Notas;
         }
@@ -138,7 +138,7 @@ namespace SMA.Familia
             {
                 //Obtenemos los datos referentes a la familia de articulos
                 cFamilia Familia = new cFamilia();
-                Familia.ID = Convert.ToInt32(txtCodigo.Text);
+                Familia.Codigo = Convert.ToInt32(txtCodigo.Text);
                 Familia.Descripcion = txtDescripcion.Text;
                 Familia.Notas = txtNotas.Text;
 
@@ -246,7 +246,7 @@ namespace SMA.Familia
             if (cbCriterio.SelectedItem.ToString() == "Codigo")
             {
                 int Codigo = Convert.ToInt32(txtBusqueda.Text);
-                var obj = BDMarca.List.OfType<cFamilia>().ToList().Find(f => f.ID == Codigo);
+                var obj = BDMarca.List.OfType<cFamilia>().ToList().Find(f => f.Codigo == Codigo);
                 var pos = BDMarca.IndexOf(obj);
                 BDMarca.Position = pos;
             }

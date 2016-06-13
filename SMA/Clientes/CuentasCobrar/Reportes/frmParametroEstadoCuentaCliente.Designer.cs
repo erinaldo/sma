@@ -34,9 +34,7 @@
             this.dtpFechaCorte = new System.Windows.Forms.DateTimePicker();
             this.rbFechaCorte = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.cbbClienteHasta = new System.Windows.Forms.ComboBox();
             this.cbbClienteDesde = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dtpFechaHasta = new System.Windows.Forms.DateTimePicker();
@@ -55,7 +53,7 @@
             // 
             this.groupBox3.Controls.Add(this.dtpFechaCorte);
             this.groupBox3.Controls.Add(this.rbFechaCorte);
-            this.groupBox3.Location = new System.Drawing.Point(12, 179);
+            this.groupBox3.Location = new System.Drawing.Point(12, 144);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(126, 75);
             this.groupBox3.TabIndex = 125;
@@ -64,7 +62,7 @@
             // dtpFechaCorte
             // 
             this.dtpFechaCorte.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaCorte.Location = new System.Drawing.Point(9, 42);
+            this.dtpFechaCorte.Location = new System.Drawing.Point(10, 39);
             this.dtpFechaCorte.Name = "dtpFechaCorte";
             this.dtpFechaCorte.Size = new System.Drawing.Size(106, 20);
             this.dtpFechaCorte.TabIndex = 1;
@@ -72,7 +70,7 @@
             // rbFechaCorte
             // 
             this.rbFechaCorte.AutoSize = true;
-            this.rbFechaCorte.Location = new System.Drawing.Point(9, 19);
+            this.rbFechaCorte.Location = new System.Drawing.Point(10, 16);
             this.rbFechaCorte.Name = "rbFechaCorte";
             this.rbFechaCorte.Size = new System.Drawing.Size(97, 17);
             this.rbFechaCorte.TabIndex = 0;
@@ -82,47 +80,28 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.cbbClienteHasta);
             this.groupBox2.Controls.Add(this.cbbClienteDesde);
             this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(337, 94);
+            this.groupBox2.Size = new System.Drawing.Size(337, 68);
             this.groupBox2.TabIndex = 124;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Rango de Clientes";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 62);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Hasta:";
+            this.groupBox2.Text = "Seleccionar cliente";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 35);
+            this.label1.Location = new System.Drawing.Point(10, 27);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 13);
+            this.label1.Size = new System.Drawing.Size(42, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Desde:";
-            // 
-            // cbbClienteHasta
-            // 
-            this.cbbClienteHasta.FormattingEnabled = true;
-            this.cbbClienteHasta.Location = new System.Drawing.Point(56, 59);
-            this.cbbClienteHasta.Name = "cbbClienteHasta";
-            this.cbbClienteHasta.Size = new System.Drawing.Size(269, 21);
-            this.cbbClienteHasta.TabIndex = 1;
+            this.label1.Text = "Cliente:";
             // 
             // cbbClienteDesde
             // 
             this.cbbClienteDesde.FormattingEnabled = true;
-            this.cbbClienteDesde.Location = new System.Drawing.Point(56, 32);
+            this.cbbClienteDesde.Location = new System.Drawing.Point(57, 24);
             this.cbbClienteDesde.Name = "cbbClienteDesde";
             this.cbbClienteDesde.Size = new System.Drawing.Size(269, 21);
             this.cbbClienteDesde.TabIndex = 0;
@@ -133,9 +112,9 @@
             this.groupBox1.Controls.Add(this.dtpFechaDesde);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(12, 112);
+            this.groupBox1.Location = new System.Drawing.Point(12, 86);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(337, 61);
+            this.groupBox1.Size = new System.Drawing.Size(337, 52);
             this.groupBox1.TabIndex = 123;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Fecha vencimiento";
@@ -143,7 +122,7 @@
             // dtpFechaHasta
             // 
             this.dtpFechaHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaHasta.Location = new System.Drawing.Point(220, 27);
+            this.dtpFechaHasta.Location = new System.Drawing.Point(223, 22);
             this.dtpFechaHasta.Name = "dtpFechaHasta";
             this.dtpFechaHasta.Size = new System.Drawing.Size(105, 20);
             this.dtpFechaHasta.TabIndex = 6;
@@ -151,7 +130,7 @@
             // dtpFechaDesde
             // 
             this.dtpFechaDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaDesde.Location = new System.Drawing.Point(53, 27);
+            this.dtpFechaDesde.Location = new System.Drawing.Point(56, 22);
             this.dtpFechaDesde.Name = "dtpFechaDesde";
             this.dtpFechaDesde.Size = new System.Drawing.Size(105, 20);
             this.dtpFechaDesde.TabIndex = 5;
@@ -159,7 +138,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(176, 31);
+            this.label4.Location = new System.Drawing.Point(179, 26);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(38, 13);
             this.label4.TabIndex = 4;
@@ -168,7 +147,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 31);
+            this.label3.Location = new System.Drawing.Point(9, 26);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 13);
             this.label3.TabIndex = 3;
@@ -179,9 +158,9 @@
             this.btnCancelar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnCancelar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
-            this.btnCancelar.Location = new System.Drawing.Point(252, 212);
+            this.btnCancelar.Location = new System.Drawing.Point(252, 177);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(102, 42);
+            this.btnCancelar.Size = new System.Drawing.Size(97, 42);
             this.btnCancelar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnCancelar.TabIndex = 127;
             this.btnCancelar.Text = "Cancelar";
@@ -192,9 +171,9 @@
             this.btnAceptar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnAceptar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnAceptar.Image = ((System.Drawing.Image)(resources.GetObject("btnAceptar.Image")));
-            this.btnAceptar.Location = new System.Drawing.Point(144, 212);
+            this.btnAceptar.Location = new System.Drawing.Point(149, 177);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(102, 42);
+            this.btnAceptar.Size = new System.Drawing.Size(97, 42);
             this.btnAceptar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnAceptar.TabIndex = 126;
             this.btnAceptar.Text = "Aceptar";
@@ -208,7 +187,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(358, 262);
+            this.ClientSize = new System.Drawing.Size(358, 222);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.groupBox3);
@@ -216,6 +195,10 @@
             this.Controls.Add(this.groupBox1);
             this.DoubleBuffered = true;
             this.EnableGlass = false;
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(374, 260);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(374, 260);
             this.Name = "frmParametroEstadoCuentaCliente";
             this.Load += new System.EventHandler(this.frmParametroEstadoCuentaCliente_Load);
             this.groupBox3.ResumeLayout(false);
@@ -236,9 +219,7 @@
         private System.Windows.Forms.DateTimePicker dtpFechaCorte;
         private System.Windows.Forms.RadioButton rbFechaCorte;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cbbClienteHasta;
         private System.Windows.Forms.ComboBox cbbClienteDesde;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DateTimePicker dtpFechaHasta;

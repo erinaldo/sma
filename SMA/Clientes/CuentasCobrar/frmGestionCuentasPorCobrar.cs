@@ -18,9 +18,9 @@ namespace SMA.Clientes.CuentasPagar
 {
     public partial class frmGestionCuentasPorCobrar : Office2007Form, IGestionCuentasCobrar
     {
-        private Int64? ClienteID; //Codigo de cliente
+        private Int32? CodigoCliente; //Codigo de cliente
         private String Referencia;
-        private Int64 CuentaID;
+        private Int32 CodigoCuenta;
 
         #region Constructores
         public frmGestionCuentasPorCobrar()
@@ -28,10 +28,9 @@ namespace SMA.Clientes.CuentasPagar
             InitializeComponent();
         }
 
-        public frmGestionCuentasPorCobrar(Int64 ClienteID)
-            : this()
+        public frmGestionCuentasPorCobrar(Int32 CodigoCliente): this()
         {
-            this.ClienteID = ClienteID;
+            this.CodigoCliente = CodigoCliente;
         }
         #endregion
 
@@ -71,11 +70,11 @@ namespace SMA.Clientes.CuentasPagar
                     switch (p.Rol.ToString())
                     {
                         //REALIZAR PAGOS
-                        case "Registrar pagos":
+                        case "Registrar Pagos":
                             btnRecibirPago.Enabled = true;
                             break;
                         //REALIZAR CARGOS
-                        case "Registrar cargos":
+                        case "Registrar Cargos":
                             btnCrearAsiento.Enabled = true;
                             break;
                         //CONSULTAR PROVEEDORES
@@ -85,7 +84,7 @@ namespace SMA.Clientes.CuentasPagar
                             btnInformacion.Enabled = true;
                             break;
                         //IMPRIMIR REPORTES
-                        case "Imprimir reportes":
+                        case "Imprimir Reportes":
                             btnImprimir.Enabled = true;
                             btnReportes.Enabled = true;
                             break;
@@ -102,7 +101,7 @@ namespace SMA.Clientes.CuentasPagar
             {
                 switch (m.Modulo.ToString())
                 {
-                    case "Conceptos CxC":
+                    case "Cptos Cuentas Cobrar":
                         btnConceptos.Enabled = true;
                         break;
                 }
@@ -119,9 +118,9 @@ namespace SMA.Clientes.CuentasPagar
         {
             try
             {
-                if (ClienteID.HasValue && ClienteID > 0)
+                if (CodigoCliente.HasValue && CodigoCliente > 0)
                 {
-                    Int64 Codigo = Convert.ToInt64(ClienteID);
+                    Int32 Codigo = Convert.ToInt32(CodigoCliente);
                     //Informacion de cuentas
                     CuentasCobrarBL ObjetoCuenta = new CuentasCobrarBL();
                     dgvCargosGenerales.AutoGenerateColumns = false;
@@ -130,7 +129,7 @@ namespace SMA.Clientes.CuentasPagar
                     ClienteBL ObjetoCliente = new ClienteBL();
                     cCliente Cliente = ObjetoCliente.BuscarPorID(Codigo);
                     txtNombreCliente.Text = Cliente.NombreComercial.ToString();
-                    txtCodigoCliente.Text = Cliente.ID.ToString();
+                    txtCodigoCliente.Text = Cliente.Codigo.ToString();
                     txtBalance.Text = Cliente.Balance.ToString("C2");
                 }
                 else
@@ -164,9 +163,9 @@ namespace SMA.Clientes.CuentasPagar
             try
             {
                 //Si la variable cliente posee codigo entonces lo pasamos
-                if (ClienteID.HasValue)
+                if (CodigoCliente.HasValue)
                 {
-                    Int64 Codigo = Convert.ToInt64(ClienteID);
+                    Int32 Codigo = Convert.ToInt32(CodigoCliente);
                     frmRecibirPago RecibirPago = new frmRecibirPago(Codigo);
                     RecibirPago.ShowDialog(this);
                 }
@@ -186,9 +185,9 @@ namespace SMA.Clientes.CuentasPagar
 
         private void btnInformacion_Click(object sender, EventArgs e)
         {
-            if (ClienteID.HasValue)
+            if (CodigoCliente.HasValue)
             {
-                Int64 Codigo = Convert.ToInt64(ClienteID);
+                Int32 Codigo = Convert.ToInt32(CodigoCliente);
                 frmInfoCliente InformacionCliente = new frmInfoCliente(Codigo);
                 InformacionCliente.ShowDialog(this);
             }
@@ -197,9 +196,9 @@ namespace SMA.Clientes.CuentasPagar
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            if (ClienteID.HasValue)
+            if (CodigoCliente.HasValue)
             {
-                Int64 Codigo = Convert.ToInt64(ClienteID);
+                Int32 Codigo = Convert.ToInt32(CodigoCliente);
                 frmBuscarCxC BuscarCuenta = new frmBuscarCxC(Codigo);
                 BuscarCuenta.ShowDialog(this);
             }
@@ -208,9 +207,10 @@ namespace SMA.Clientes.CuentasPagar
 
         private void btnCrearAsiento_Click(object sender, EventArgs e)
         {
-            if (ClienteID.HasValue)
+            //INSERTAMOS EL ASIENTO DE CUENTAS POR COBRAR
+            if (CodigoCliente.HasValue)
             {
-                Int64 Codigo = Convert.ToInt64(ClienteID);
+                Int32 Codigo = Convert.ToInt32(CodigoCliente);
                 frmAgregarCxC AgregarMovimiento = new frmAgregarCxC(Codigo, this);
                 AgregarMovimiento.ShowDialog(this);
             }
@@ -227,7 +227,7 @@ namespace SMA.Clientes.CuentasPagar
             try
             {
                 CuentasCobrarBL ObjetoCuenta = new CuentasCobrarBL();
-                frmrptReciboCuentasCobrar ReciboCuentaCobrar = new frmrptReciboCuentasCobrar(ObjetoCuenta.ImpresionComprobanteAbono(CuentaID));
+                frmrptReciboCuentasCobrar ReciboCuentaCobrar = new frmrptReciboCuentasCobrar(ObjetoCuenta.ImpresionComprobanteAbono(CodigoCuenta));
                 ReciboCuentaCobrar.ShowDialog(this);
             }
             catch (Exception Ex)
@@ -247,7 +247,7 @@ namespace SMA.Clientes.CuentasPagar
                 }
                 //Codigo  que se obtiene desde el grid
                 Referencia = Convert.ToString(dgvCargosGenerales.Rows[e.RowIndex].Cells[2].Value);
-                CuentaID = Convert.ToInt64(dgvCargosGenerales.Rows[e.RowIndex].Cells[0].Value);
+                CodigoCuenta = Convert.ToInt32(dgvCargosGenerales.Rows[e.RowIndex].Cells[0].Value);
             }
             catch (Exception Ex)
             {
@@ -259,9 +259,9 @@ namespace SMA.Clientes.CuentasPagar
         {
             try
             {
-                if (ClienteID.HasValue)
+                if (CodigoCliente.HasValue)
                 {
-                    Int64 Codigo = Convert.ToInt64(ClienteID);
+                    Int32 Codigo = Convert.ToInt32(CodigoCliente);
                     CuentasCobrarBL ObjetoCuenta = new CuentasCobrarBL();
                     dgvDetalle.AutoGenerateColumns = false;
                     dgvDetalle.DataSource = ObjetoCuenta.ListaPagoCargos(Referencia, Codigo);
@@ -283,7 +283,7 @@ namespace SMA.Clientes.CuentasPagar
                     return;
                 }
                 //Codigo  que se obtiene desde el grid
-                CuentaID = Convert.ToInt64(dgvDetalle.Rows[e.RowIndex].Cells[0].Value);
+                CodigoCuenta = Convert.ToInt32(dgvDetalle.Rows[e.RowIndex].Cells[0].Value);
 
             }
             catch (Exception Ex)
@@ -308,8 +308,8 @@ namespace SMA.Clientes.CuentasPagar
                     return;
                 }
                 //Codigo  que se obtiene desde el grid
-                CuentaID = Convert.ToInt64(dgvDetalle.Rows[e.RowIndex].Cells[0].Value);
-                frmAgregarCxC VerCuenta = new frmAgregarCxC(CuentaID);
+                CodigoCuenta = Convert.ToInt32(dgvDetalle.Rows[e.RowIndex].Cells[0].Value);
+                frmAgregarCxC VerCuenta = new frmAgregarCxC(CodigoCuenta);
                 VerCuenta.ShowDialog(this);
             }
             catch (Exception Ex)
@@ -328,8 +328,8 @@ namespace SMA.Clientes.CuentasPagar
                     return;
                 }
                 //Codigo  que se obtiene desde el grid
-                CuentaID = Convert.ToInt64(dgvCargosGenerales.Rows[e.RowIndex].Cells[0].Value);
-                frmAgregarCxC VerCuenta = new frmAgregarCxC(CuentaID);
+                CodigoCuenta = Convert.ToInt32(dgvCargosGenerales.Rows[e.RowIndex].Cells[0].Value);
+                frmAgregarCxC VerCuenta = new frmAgregarCxC(CodigoCuenta);
                 VerCuenta.ShowDialog(this);
             }
             catch (Exception Ex)
@@ -341,9 +341,9 @@ namespace SMA.Clientes.CuentasPagar
 
         private void btnImprimirEstadoGeneral_Click(object sender, EventArgs e)
         {
-            if (ClienteID.HasValue)
+            if (CodigoCliente.HasValue)
             {
-                Int64 Codigo = Convert.ToInt64(ClienteID);
+                Int32 Codigo = Convert.ToInt32(CodigoCliente);
                 frmParametroEstadoCuentaCliente ParametrosEstadosCuenta = new frmParametroEstadoCuentaCliente(Codigo, "General");
                 ParametrosEstadosCuenta.Text = "Estado de cuenta general";
                 ParametrosEstadosCuenta.ShowDialog(this);
@@ -353,9 +353,9 @@ namespace SMA.Clientes.CuentasPagar
 
         private void btnImprimirEstadoDetallado_Click(object sender, EventArgs e)
         {
-            if (ClienteID.HasValue)
+            if (CodigoCliente.HasValue)
             {
-                Int64 Codigo = Convert.ToInt64(ClienteID);
+                Int32 Codigo = Convert.ToInt32(CodigoCliente);
                 frmParametroEstadoCuentaCliente ParametrosEstadosCuenta = new frmParametroEstadoCuentaCliente(Codigo, "Detallado");
                 ParametrosEstadosCuenta.Text = "Estado de cuenta detallado";
                 ParametrosEstadosCuenta.ShowDialog(this);
@@ -370,9 +370,9 @@ namespace SMA.Clientes.CuentasPagar
 
         private void btnCobranzaGeneral_Click(object sender, EventArgs e)
         {
-            if (ClienteID.HasValue)
+            if (CodigoCliente.HasValue)
             {
-                Int64 Codigo = Convert.ToInt64(ClienteID);
+                Int32 Codigo = Convert.ToInt32(CodigoCliente);
                 frmParametroCobranzaGeneral CobranzaGeneral = new frmParametroCobranzaGeneral(Codigo);
                 CobranzaGeneral.ShowDialog(this);
             }
@@ -385,9 +385,9 @@ namespace SMA.Clientes.CuentasPagar
 
         private void btnAntiguedadSaldo_Click(object sender, EventArgs e)
         {
-            if (ClienteID.HasValue)
+            if (CodigoCliente.HasValue)
             {
-                Int64 Codigo = Convert.ToInt64(ClienteID);
+                Int32 Codigo = Convert.ToInt32(CodigoCliente);
                 frmParametroAntiguedadSaldo ParametroAntiguedadSaldo = new frmParametroAntiguedadSaldo(Codigo);
                 ParametroAntiguedadSaldo.Text = "Antiguedad de Saldo";
                 ParametroAntiguedadSaldo.ShowDialog(this);
@@ -402,9 +402,9 @@ namespace SMA.Clientes.CuentasPagar
 
         private void btnReportePorConcepto_Click(object sender, EventArgs e)
         {
-            if (ClienteID.HasValue)
+            if (CodigoCliente.HasValue)
             {
-                Int64 Codigo = Convert.ToInt64(ClienteID);
+                Int32 Codigo = Convert.ToInt32(CodigoCliente);
                 frmParametroReportePorConcepto ReportePorConcepto = new frmParametroReportePorConcepto(Codigo);
                 ReportePorConcepto.ShowDialog(this);
             }
@@ -417,9 +417,9 @@ namespace SMA.Clientes.CuentasPagar
 
         private void btnResumenMovimientos_Click(object sender, EventArgs e)
         {
-            if (ClienteID.HasValue)
+            if (CodigoCliente.HasValue)
             {
-                Int64 Codigo = Convert.ToInt64(ClienteID);
+                Int32 Codigo = Convert.ToInt32(CodigoCliente);
                 frmParametroResumenCuentaCobrar ParametrosResumenCuentaCobrar = new frmParametroResumenCuentaCobrar(Codigo);
                 ParametrosResumenCuentaCobrar.ShowDialog(this);
             }
@@ -434,9 +434,9 @@ namespace SMA.Clientes.CuentasPagar
 
         private void btnAbonoPorPeriodo_Click(object sender, EventArgs e)
         {
-            if (ClienteID.HasValue)
+            if (CodigoCliente.HasValue)
             {
-                Int64 Codigo = Convert.ToInt64(ClienteID);
+                Int32 Codigo = Convert.ToInt32(CodigoCliente);
                 frmParametroAbonosCuentaCobrar ParametrosResumenCuentaCobrar = new frmParametroAbonosCuentaCobrar(Codigo);
                 ParametrosResumenCuentaCobrar.ShowDialog(this);
             }
@@ -451,9 +451,9 @@ namespace SMA.Clientes.CuentasPagar
 
         private void btnEstadoCuentaDetallado_Click(object sender, EventArgs e)
         {
-            if (ClienteID.HasValue)
+            if (CodigoCliente.HasValue)
             {
-                Int64 Codigo = Convert.ToInt64(ClienteID);
+                Int32 Codigo = Convert.ToInt32(CodigoCliente);
                 frmParametroEstadoCuentaCliente ParametrosEstadosCuenta = new frmParametroEstadoCuentaCliente(Codigo, "Detallado");
                 ParametrosEstadosCuenta.Text = "Estado de cuenta detallado";
                 ParametrosEstadosCuenta.ShowDialog(this);
@@ -468,9 +468,9 @@ namespace SMA.Clientes.CuentasPagar
 
         private void btnEstadoCuenta_Click(object sender, EventArgs e)
         {
-            if (ClienteID.HasValue)
+            if (CodigoCliente.HasValue)
             {
-                Int64 Codigo = Convert.ToInt64(ClienteID);
+                Int32 Codigo = Convert.ToInt32(CodigoCliente);
                 frmParametroEstadoCuentaCliente ParametrosEstadosCuenta = new frmParametroEstadoCuentaCliente(Codigo, "General");
                 ParametrosEstadosCuenta.Text = "Estado de cuenta general";
                 ParametrosEstadosCuenta.ShowDialog(this);
@@ -487,7 +487,7 @@ namespace SMA.Clientes.CuentasPagar
                 {
                     //CANCELACION DE DOCUMENTOS EN CUENTAS POR COBRAR
                     CuentasCobrarBL ObjetoCuenta = new CuentasCobrarBL();
-                    cCuentasCobrar Cuenta = ObjetoCuenta.BuscarPorID(CuentaID);
+                    cCuentasCobrar Cuenta = ObjetoCuenta.BuscarPorID(CodigoCuenta);
                     ObjetoCuenta.CancelarDocumento(Cuenta);
                 }
             }

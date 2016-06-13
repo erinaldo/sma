@@ -15,8 +15,8 @@ namespace SMA.Usuarios
     public partial class frmListaPerfiles : Office2007Form
     {
         frmAgregarEditarUsuario EditarUsuario;
-        Int32 PerfilID;
-        List<cPerfiles> ListaPerfiles;
+        Int16 PerfilCodigo;
+        List<cPerfil> ListaPerfiles;
 
         public frmListaPerfiles()
         {
@@ -48,7 +48,7 @@ namespace SMA.Usuarios
             try
             {
                 //AGREGA EL PERFIL AL USUARIO CONSULTADO
-                EditarUsuario.AgregarPerfil(PerfilID);
+                EditarUsuario.AgregarPerfil(PerfilCodigo);
                 this.Close();
             }
             catch(Exception Ex)
@@ -67,7 +67,7 @@ namespace SMA.Usuarios
                     return;
                 }
                 //Codigo  que se obtiene desde el grid
-                PerfilID = Convert.ToInt32(dgvComponente.Rows[e.RowIndex].Cells[0].Value);
+                PerfilCodigo = Convert.ToInt16(dgvComponente.Rows[e.RowIndex].Cells[0].Value);
             }
             catch (Exception Ex)
             {
@@ -78,13 +78,13 @@ namespace SMA.Usuarios
         private void txtBusqueda_TextChanged(object sender, EventArgs e)
         {
             //REALIZAMOS UNA BUSQUEDA POR LA DESCRIPCION DEL PERFIL Y MOSTRAMOS LOS RESULTADOS
-            List<cPerfiles> Resultado = (from C in ListaPerfiles
+            List<cPerfil> Resultado = (from C in ListaPerfiles
                                           where C.Descripcion.StartsWith(txtBusqueda.Text)
                                           select C).ToList();
             ActualizarGrid(Resultado);
         }
 
-        private void ActualizarGrid(List<cPerfiles> Resultado)
+        private void ActualizarGrid(List<cPerfil> Resultado)
         {
             //ACTUALIZA EL GRID CON LA LISTA QUE SE ENVIA COMO PARAMETRO
             dgvComponente.DataSource = Resultado;

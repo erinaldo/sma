@@ -63,63 +63,63 @@ namespace SMA
             //Gestiona los permisos a los modulos de usuarios 
 
             //Recorremos la lista de modulos para permitir o no el acceso
-            foreach(cRolesModulosUsuarios p in cGlobal.ListaModulosPermisos)
+            foreach (cRolesModulosUsuarios p in cGlobal.ListaModulosPermisos)
             {
                 switch (p.Modulo.ToString())
                 {
-                        //CLIENTES
+                    //CLIENTES
                     case "Clientes":
-                        btnClientes.Enabled=true;
+                        btnClientes.Enabled = true;
                         break;
-                        //FACTURACION
+                    //FACTURACION
                     case "Facturas":
                         btnFacturacion.Enabled = true;
                         break;
-                        //COTIZACIONES
+                    //COTIZACIONES
                     case "Cotizaciones":
-                        btnCotizacion.Enabled=true;
+                        btnCotizacion.Enabled = true;
                         break;
-                        //DEVOLUCIONES EN VENTAS
+                    //DEVOLUCIONES EN VENTAS
                     case "Devoluciones Ventas":
-                        btnDevolucionVentas.Enabled=true;
+                        btnDevolucionVentas.Enabled = true;
                         break;
-                        //INVENTARIOS
+                    //INVENTARIOS
                     case "Inventarios":
                         btnInventario.Enabled = true;
                         break;
-                        //RECEPCION EN COMPRAS
+                    //RECEPCION EN COMPRAS
                     case "Recepcion Compras":
-                        btnRecepcion.Enabled=true;
+                        btnRecepcion.Enabled = true;
                         break;
-                        //ORDENES DE COMPRA
+                    //ORDENES DE COMPRA
                     case "Ordenes Compras":
                         btnOrden.Enabled = true;
                         break;
-                        //DEVOLUCIONES EN COMPRAS
+                    //DEVOLUCIONES EN COMPRAS
                     case "Devoluciones Compras":
-                        btnDevolucionCompras.Enabled=true;
+                        btnDevolucionCompras.Enabled = true;
                         break;
-                        //PROVEEDORES
+                    //PROVEEDORES
                     case "Proveedores":
                         btnProveedores.Enabled = true;
                         break;
-                        //FAMILIA DE INVENTARIOS
+                    //FAMILIA DE INVENTARIOS
                     case "Familia Inventario":
                         btnFamilia.Enabled = true;
                         break;
-                        //MARCA DE INVENTARIOS
+                    //MARCA DE INVENTARIOS
                     case "Marcas Inventario":
                         btnMarcas.Enabled = true;
                         break;
-                        //VENDEDORES
+                    //VENDEDORES
                     case "Vendedores":
                         btnVendedores.Enabled = true;
                         break;
-                        //USUARIOS
+                    //USUARIOS
                     case "Usuarios":
                         btnUsuarios.Enabled = true;
                         break;
-                        //EMPRESA
+                    //EMPRESA
                     case "Empresa":
                         btnEmpresa.Enabled = true;
                         break;
@@ -130,7 +130,7 @@ namespace SMA
                 tssFecha.Text = DateTime.Now.ToShortDateString();
                 tssHora.Text = DateTime.Now.ToShortTimeString();
 
-                
+
             }
         }
         private void tsbSalir_Click(object sender, EventArgs e)
@@ -144,8 +144,8 @@ namespace SMA
             //COMPROBAMOS LA EXISTENCIA DE LA DB, EN CASO QUE NO EXISTA ENTONCES LA CREAMOS
             try
             {
-                ComprobacionDBBL ObjetoComprobacion = new ComprobacionDBBL();
-                ObjetoComprobacion.CrearDB();
+                //ComprobacionDBBL ObjetoComprobacion = new ComprobacionDBBL();
+                //ObjetoComprobacion.CrearDB();
                 GestionAccesos();
             }
             catch (Exception Ex)

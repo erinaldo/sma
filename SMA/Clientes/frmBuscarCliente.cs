@@ -28,12 +28,13 @@ namespace SMA.Clientes
 
         }
 
+
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             GestionCliente.BuscarCliente(cbbBusqueda.Text, txtStringFind.Text);
             DialogResult Resultado = MessageBox.Show("Desea realizar otra busqueda", "Busqueda de clientes", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (Resultado==DialogResult.No)
+            if (Resultado == DialogResult.No)
             {
                 this.Close();
             }

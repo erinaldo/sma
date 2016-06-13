@@ -36,9 +36,9 @@ namespace SMA.BL
                 {
                     //VALIDAMOS EL BALANCE DEL CLIENTE
                     //LIMITE DE CREDITO
-                    decimal LimiteCredito = ClienteDA.BuscarPorID((Int64)Factura.ClienteID).LimiteCredito;
+                    decimal LimiteCredito = ClienteDA.BuscarPorID((Int32)Factura.ClienteID).LimiteCredito;
                 //BALANCE ACTUAL DE CLIENTE
-                    decimal Balance=ClienteDA.BuscarPorID((Int64)Factura.ClienteID).Balance;
+                    decimal Balance=ClienteDA.BuscarPorID((Int32)Factura.ClienteID).Balance;
 
                     if((Factura.TotalGeneral+Balance)<=LimiteCredito)
                     {
@@ -86,7 +86,7 @@ namespace SMA.BL
             }
         }
 
-        public void Cancelar(Int64 FacturaID)
+        public void Cancelar(Int32 FacturaID)
         {
             try
             {
@@ -95,8 +95,8 @@ namespace SMA.BL
                 if (Factura.EstatusID.ToString() == "O")
                 {
                     //Verificamos si la factura contiene movimientos en Cuentas por Cobrar
-                    List<cCuentasCobrar> Cuenta = (from c in CuentaCobrarDA.ListaCargosPagos(Factura.DocumentoID.ToString(), (Int64)Factura.ClienteID)
-                                                   where c.ConceptoID.ToString() != "Factura"
+                    List<cCuentasCobrar> Cuenta = (from c in CuentaCobrarDA.ListaCargosPagos(Factura.DocumentoID.ToString(), (Int32)Factura.ClienteID)
+                                                   where c.CodigoConcepto.ToString() != "Factura"
                                                    select c).ToList();
                     if(Cuenta.Count==0)
                     {

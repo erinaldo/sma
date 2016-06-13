@@ -118,7 +118,7 @@ namespace SMA.Clientes.CuentasPagar
             {
                 if (ProveedorID.HasValue && ProveedorID > 0)
                 {
-                    Int64 Codigo = Convert.ToInt64(ProveedorID);
+                    Int32 Codigo = Convert.ToInt32(ProveedorID);
                     //Informacion de cuentas
                     CuentasPagarBL ObjetoCuenta = new CuentasPagarBL();
                     dgvCargosGenerales.AutoGenerateColumns = false;
@@ -127,7 +127,7 @@ namespace SMA.Clientes.CuentasPagar
                     ProveedorBL ObjetoProveedor = new ProveedorBL();
                     cProveedor Cliente = ObjetoProveedor.BuscarPorID(Codigo);
                     txtNombreProveedor.Text = Cliente.NombreComercial.ToString();
-                    txtCodigo.Text = Cliente.ID.ToString();
+                    txtCodigo.Text = Cliente.Codigo.ToString();
                     txtBalance.Text = Cliente.Balance.ToString("C2");
                 }
                 else
@@ -176,7 +176,7 @@ namespace SMA.Clientes.CuentasPagar
             //Si la variable cliente posee codigo entonces lo pasamos
             if (ProveedorID.HasValue)
             {
-                Int64 Codigo = Convert.ToInt64(ProveedorID);
+                Int32 Codigo = Convert.ToInt32(ProveedorID);
                 frmRealizarPago RecibirPago = new frmRealizarPago(Codigo);
                 RecibirPago.ShowDialog(this);
             }

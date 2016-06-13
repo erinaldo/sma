@@ -16,7 +16,7 @@ namespace SMA.Factura.Cotizacion
     public partial class frmGestionCotizaciones : Form
     {
         FacturaBL ObjetoFactura = new FacturaBL();
-        Int64 FacturaID;
+        Int32 FacturaID;
 
         #region Constructores
         public frmGestionCotizaciones()

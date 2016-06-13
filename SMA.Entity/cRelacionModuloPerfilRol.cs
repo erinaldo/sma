@@ -7,12 +7,12 @@ namespace SMA.Entity
 {
     public class cRelacionModuloPerfilRol
     {
-        private Int32 _ID;
+        private Int32 _Codigo;
 
-        public Int32 ID
+        public Int32 Codigo
         {
-            get { return _ID; }
-            set { _ID = value; }
+            get { return _Codigo; }
+            set { _Codigo = value; }
         }
         private String _DescripcionRol;
 
@@ -21,12 +21,12 @@ namespace SMA.Entity
             get { return _DescripcionRol; }
             set { _DescripcionRol = value; }
         }
-        private Int32 _RolID;
+        private Int16 _CodigoRol;
 
-        public Int32 RolID
+        public Int16 CodigoRol
         {
-            get { return _RolID; }
-            set { _RolID = value; }
+            get { return _CodigoRol; }
+            set { _CodigoRol = value; }
         }
         private Int32 _ModuloPerfilID;
 

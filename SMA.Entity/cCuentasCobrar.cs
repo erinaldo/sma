@@ -7,12 +7,12 @@ namespace SMA.Entity
 {
     public class cCuentasCobrar:cCuenta
     {
-        private Object _ClienteID;
+        private Object _CodigoCliente;
 
-        public Object ClienteID
+        public Object CodigoCliente
         {
-            get { return _ClienteID; }
-            set { _ClienteID = value; }
+            get { return _CodigoCliente; }
+            set { _CodigoCliente = value; }
         }
 
         

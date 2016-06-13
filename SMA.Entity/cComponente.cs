@@ -8,12 +8,12 @@ namespace SMA.Entity
 {
     public abstract class cComponente
     {
-        private int _ID;
+        private int _Codigo;
 
-        public int ID
+        public int Codigo
         {
-            get { return _ID; }
-            set { _ID = value; }
+            get { return _Codigo; }
+            set { _Codigo = value; }
         }
        
         private string _Descripcion;

@@ -19,7 +19,7 @@ namespace SMA.Factura
         ClienteBL ObjetoCliente = new ClienteBL();
         List<cCliente> ListaCliente;
         String Criterio;
-        Int64 ClienteID;
+        Int32 ClienteID;
         Int32 Indicador;
 
         public frmBuscarCliente()
@@ -114,7 +114,7 @@ namespace SMA.Factura
             dgvClientes.DataSource = Listado;
         }
 
-        private void SeleccionarCliente(Int64 _ClienteID)
+        private void SeleccionarCliente(Int32 _ClienteID)
         {
             //Refresca los cambios realizados en la tabla de clientes en el formulario de muestra
             IagregarEditarFacturas FormInterface = this.Owner as IagregarEditarFacturas;

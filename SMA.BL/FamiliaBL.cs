@@ -13,7 +13,7 @@ namespace SMA.BL
         {
             try
             {
-                if (FamiliaDA.Existe(Familia.ID)) //Validamos que el elemento exista
+                if (FamiliaDA.Existe(Familia.Codigo)) //Validamos que el elemento exista
                 {
                     
                     if (Validacion(Familia))

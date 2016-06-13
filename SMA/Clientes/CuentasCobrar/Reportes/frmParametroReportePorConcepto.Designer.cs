@@ -61,7 +61,7 @@
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.cbbClienteHasta);
             this.groupBox2.Controls.Add(this.cbbClienteDesde);
-            this.groupBox2.Location = new System.Drawing.Point(12, 12);
+            this.groupBox2.Location = new System.Drawing.Point(8, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(337, 92);
             this.groupBox2.TabIndex = 126;
@@ -108,7 +108,7 @@
             this.groupBox1.Controls.Add(this.dtpFechaDesde);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(12, 110);
+            this.groupBox1.Location = new System.Drawing.Point(8, 110);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(337, 60);
             this.groupBox1.TabIndex = 125;
@@ -155,7 +155,7 @@
             // 
             this.rbTodosConceptos.AutoSize = true;
             this.rbTodosConceptos.Checked = true;
-            this.rbTodosConceptos.Location = new System.Drawing.Point(355, 20);
+            this.rbTodosConceptos.Location = new System.Drawing.Point(351, 20);
             this.rbTodosConceptos.Name = "rbTodosConceptos";
             this.rbTodosConceptos.Size = new System.Drawing.Size(119, 17);
             this.rbTodosConceptos.TabIndex = 128;
@@ -167,7 +167,7 @@
             // rbSeleccion
             // 
             this.rbSeleccion.AutoSize = true;
-            this.rbSeleccion.Location = new System.Drawing.Point(355, 43);
+            this.rbSeleccion.Location = new System.Drawing.Point(351, 43);
             this.rbSeleccion.Name = "rbSeleccion";
             this.rbSeleccion.Size = new System.Drawing.Size(102, 17);
             this.rbSeleccion.TabIndex = 129;
@@ -180,7 +180,7 @@
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.txtMonto);
             this.groupBox3.Controls.Add(this.cbCriterio);
-            this.groupBox3.Location = new System.Drawing.Point(12, 176);
+            this.groupBox3.Location = new System.Drawing.Point(8, 176);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(337, 65);
             this.groupBox3.TabIndex = 130;
@@ -224,7 +224,7 @@
             // lbConceptos
             // 
             this.lbConceptos.FormattingEnabled = true;
-            this.lbConceptos.Location = new System.Drawing.Point(355, 66);
+            this.lbConceptos.Location = new System.Drawing.Point(351, 66);
             this.lbConceptos.Name = "lbConceptos";
             this.lbConceptos.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.lbConceptos.Size = new System.Drawing.Size(193, 173);
@@ -235,7 +235,7 @@
             this.btnCancelar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnCancelar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
-            this.btnCancelar.Location = new System.Drawing.Point(439, 256);
+            this.btnCancelar.Location = new System.Drawing.Point(435, 256);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(102, 42);
             this.btnCancelar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -248,7 +248,7 @@
             this.btnAceptar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnAceptar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnAceptar.Image = ((System.Drawing.Image)(resources.GetObject("btnAceptar.Image")));
-            this.btnAceptar.Location = new System.Drawing.Point(331, 256);
+            this.btnAceptar.Location = new System.Drawing.Point(327, 256);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(102, 42);
             this.btnAceptar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -269,6 +269,7 @@
             this.Controls.Add(this.rbTodosConceptos);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.DoubleBuffered = true;
             this.EnableGlass = false;
             this.Name = "frmParametroReportePorConcepto";
             this.Text = "Reporte por concepto";

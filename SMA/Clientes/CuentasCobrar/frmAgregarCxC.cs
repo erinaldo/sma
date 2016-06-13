@@ -14,8 +14,8 @@ namespace SMA.Clientes.CuentasPagar
 {
     public partial class frmAgregarCxC : Office2007Form, IAgregarCxC
     {
-        private Int64? ClienteID; //Codigo de cliente
-        private Int64? CuentaID; //Codigo de cuenta
+        private Int32? CodigoCliente; //Codigo de cliente
+        private Int32? CodigoCuenta; //Codigo de cuenta
         private frmGestionCuentasPorCobrar GestionCuentasPorCobrar;
         // private frmGestionClientes GestionClientes;
 
@@ -26,17 +26,17 @@ namespace SMA.Clientes.CuentasPagar
         }
 
         //Parametro de Codigo de Cliente y formulario para refrescar
-        public frmAgregarCxC(Int64 ClienteID, frmGestionCuentasPorCobrar GestionCuentasPorCobrar): this()
+        public frmAgregarCxC(Int32 CodigoCliente, frmGestionCuentasPorCobrar GestionCuentasPorCobrar): this()
         {
-            this.ClienteID = ClienteID;
+            this.CodigoCliente = CodigoCliente;
             this.GestionCuentasPorCobrar = GestionCuentasPorCobrar;
         }
 
 
         //Parametro de movimiento de Cuentas por Cobrar
-        public frmAgregarCxC(Int64 CuentaID): this()
+        public frmAgregarCxC(Int32 CodigoCuenta): this()
         {
-            this.CuentaID = CuentaID;
+            this.CodigoCuenta = CodigoCuenta;
         }
         #endregion
 
@@ -65,13 +65,13 @@ namespace SMA.Clientes.CuentasPagar
             {
                 CargarListaClientes();
 
-                if (CuentaID.HasValue)
+                if (CodigoCuenta.HasValue)
                 {
                     //Cargamos las dependencias
                     CargarListaConceptos();
 
                     //Obtenemos el codigo de cliente proporcionado
-                    Int64 ID = Convert.ToInt64(CuentaID);
+                    Int32 ID = Convert.ToInt32(CodigoCuenta);
                     //Buscamos el movimiento de la cuenta
                     CuentasCobrarBL ObjetoCuenta = new CuentasCobrarBL();
                     CargarMovimiento(ObjetoCuenta.BuscarPorID(ID));
@@ -79,9 +79,9 @@ namespace SMA.Clientes.CuentasPagar
                 }
                 else 
                 {
-                    if(ClienteID.HasValue)
+                    if(CodigoCliente.HasValue)
                     {
-                        Int64 ID = Convert.ToInt64(ClienteID);
+                        Int32 ID = Convert.ToInt32(CodigoCliente);
                         //Cargamos solo los conceptos de cargos manuales 
                         CargarListaConceptosCargos();
                         //Buscamos el cliente seleccionado
@@ -104,7 +104,7 @@ namespace SMA.Clientes.CuentasPagar
             //Lista de Clientes
             ClienteBL ObjetoCliente = new ClienteBL();
             cbbClientes.DataSource = ObjetoCliente.Listar();
-            cbbClientes.ValueMember = "ID";
+            cbbClientes.ValueMember = "Codigo";
             cbbClientes.DisplayMember = "NombreComercial";
         }
 
@@ -112,7 +112,7 @@ namespace SMA.Clientes.CuentasPagar
         {
             ConceptoCxCBL ObjetoConcepto = new ConceptoCxCBL();
             cbbConcepto.DataSource = ObjetoConcepto.Listar();
-            cbbConcepto.ValueMember = "ID";
+            cbbConcepto.ValueMember = "Codigo";
             cbbConcepto.DisplayMember = "Descripcion";
         }
 
@@ -120,42 +120,45 @@ namespace SMA.Clientes.CuentasPagar
         {
             ConceptoCxCBL ObjetoConcepto = new ConceptoCxCBL();
             cbbConcepto.DataSource = ObjetoConcepto.ListarConceptoCargos();
-            cbbConcepto.ValueMember = "ID";
+            cbbConcepto.ValueMember = "Codigo";
             cbbConcepto.DisplayMember = "Descripcion";
         }
 
-
         private void CargarMovimiento(cCuentasCobrar Cuenta)
         {
-            //Cargamos el movimiento que se recibe como parametro para mostrarlo en los controles
-            txtCodigo.Text = Cuenta.ID.ToString();
-            cbbClientes.SelectedValue = Cuenta.ClienteID;
-            cbbConcepto.SelectedValue = Cuenta.ConceptoID;
-            txtFactura.Text = Cuenta.FacturaID.ToString();
-            txtDocumentoPagar.Text = Cuenta.DocumentoID.ToString();
-            txtReferencia.Text = Cuenta.ReferenciaID;
-            txtMonto.Text = Cuenta.Monto.ToString();
-            dtpFecha_Emision.Value = Cuenta.FechaEmision;
-            dtpFecha_Vencimiento.Value = Cuenta.FechaVencimiento;
-            txtNotas.Text = Cuenta.Notas;
-            
+            if (Cuenta != null)
+            {
+                //Cargamos el movimiento que se recibe como parametro para mostrarlo en los controles
+                txtCodigo.Text = Cuenta.Codigo.ToString();
+                cbbClientes.SelectedValue = Cuenta.CodigoCliente;
+                cbbConcepto.SelectedValue = Cuenta.CodigoConcepto;
+                txtFactura.Text = Cuenta.CodigoFactura.ToString();
+                txtDocumentoPagar.Text = Cuenta.CodigoDocumento.ToString();
+                txtReferencia.Text = Cuenta.CodigoReferencia;
+                txtMonto.Text = Cuenta.Monto.ToString();
+                dtpFecha_Emision.Value = Cuenta.FechaEmision;
+                dtpFecha_Vencimiento.Value = Cuenta.FechaVencimiento;
+                txtNotas.Text = Cuenta.Notas;
+            }
+            else
+            {
+                MessageBox.Show("Error al mostrar datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-       
-   
-
-        private void BuscarCliente(Int64 ClienteID)
+        private void BuscarCliente(Int32 ClienteID)
         {
             //Buscamos el cliente seleccionado
             ClienteBL ObjetoCliente=new ClienteBL();
             cbbClientes.DisplayMember = "NombreComercial";
-            cbbClientes.ValueMember = "ID";
-            cbbClientes.DataSource= ObjetoCliente.Filtrar(ClienteID, ClienteID,null,null,null);
+            cbbClientes.ValueMember = "Codigo";
+            cbbClientes.DataSource= ObjetoCliente.Filtrar(ClienteID, ClienteID);
 
             
         }
 
-        private void TipoConcepto(Int32 ConceptoID)
+        //MOSTRAMOS EL TIPO DE CONCEPTO
+        private void TipoConcepto(Int16 ConceptoID)
         {
             //Determinamos el tipo de concepto seleccionado
             ConceptoCxCBL ObjetoConcepto= new ConceptoCxCBL();
@@ -175,10 +178,9 @@ namespace SMA.Clientes.CuentasPagar
             }
         }
 
-       
-
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            //ENVIAMOS LOS CAMBIOS A LA BASE DE DATOS
             try
             {
                 CuentasCobrarBL ObjetoCuenta = new CuentasCobrarBL();
@@ -192,6 +194,7 @@ namespace SMA.Clientes.CuentasPagar
             }
         }
 
+        //MOSTRAMOS ERRORES PREDETERMINADOS
         private void MostrarError(String Mensaje)
         {
             ErrorProvider epReferencia = new ErrorProvider();
@@ -210,6 +213,7 @@ namespace SMA.Clientes.CuentasPagar
             }
            
         }
+
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -220,13 +224,13 @@ namespace SMA.Clientes.CuentasPagar
             try
             {
                 cCuentasCobrar Cuenta = new cCuentasCobrar();
-                Cuenta.ID = Convert.ToInt64(txtCodigo.Text);
-                Cuenta.ClienteID = ObtenerCliente();
-                Cuenta.ConceptoID = ObtenerConcepto();
-                Cuenta.FacturaID = ObtenerFactura();
+                Cuenta.Codigo = Convert.ToInt32(txtCodigo.Text);
+                Cuenta.CodigoCliente = ObtenerCliente();
+                Cuenta.CodigoConcepto = ObtenerConcepto();
+                Cuenta.CodigoFactura = ObtenerFactura();
                 Cuenta.Estatus = true;
-                Cuenta.DocumentoID = txtDocumentoPagar.Text;
-                Cuenta.ReferenciaID = ObtenerReferencia();
+                Cuenta.CodigoDocumento = txtDocumentoPagar.Text;
+                Cuenta.CodigoReferencia = ObtenerReferencia();
                 Cuenta.FechaEmision = dtpFecha_Emision.Value;
                 Cuenta.FechaVencimiento = dtpFecha_Vencimiento.Value;
                 Cuenta.Monto = ObtenerMonto();
@@ -241,6 +245,7 @@ namespace SMA.Clientes.CuentasPagar
 
         }
 
+        //OBTENEMOS LA REFERENCIA DEL CARGO
         private string ObtenerReferencia()
         {
             String Referencia = txtReferencia.Text;
@@ -280,6 +285,7 @@ namespace SMA.Clientes.CuentasPagar
             
         }
 
+        //OBTENEMOS EL NUMERO DE FACTURA
         private Int64 ObtenerFactura()
         {
             Int64 Codigo;
@@ -292,14 +298,16 @@ namespace SMA.Clientes.CuentasPagar
                 return -1;
             }
         }
-        private Int32 ObtenerConcepto()
+
+        //OBTENEMOS EL CONCEPTO PARA EL CARGO
+        private Int16 ObtenerConcepto()
         {
             if (cbbConcepto.Text != String.Empty)
             {
-                Int32 Codigo;
-                if (Int32.TryParse(cbbConcepto.SelectedValue.ToString(), out Codigo))
+                Int16 Codigo;
+                if (Int16.TryParse(cbbConcepto.SelectedValue.ToString(), out Codigo))
                 {
-                    Codigo = Convert.ToInt32(cbbConcepto.SelectedValue);
+                    Codigo = Convert.ToInt16(cbbConcepto.SelectedValue);
                     return Codigo;
                 }
                 else
@@ -315,14 +323,15 @@ namespace SMA.Clientes.CuentasPagar
             
         }
 
-        private Int64 ObtenerCliente()
+        //OBTENEMOS EL CODIGO DEL CLIENTE
+        private Int32 ObtenerCliente()
         {
             if(cbbClientes.Text!=String.Empty)
             {
-                Int64 Codigo;
-                if(Int64.TryParse(cbbClientes.SelectedValue.ToString(), out Codigo))
+                Int32 Codigo;
+                if(Int32.TryParse(cbbClientes.SelectedValue.ToString(), out Codigo))
                 {
-                    Codigo = Convert.ToInt64(cbbClientes.SelectedValue);
+                    Codigo = Convert.ToInt32(cbbClientes.SelectedValue);
                     return Codigo;
                 }
                 else
@@ -338,41 +347,28 @@ namespace SMA.Clientes.CuentasPagar
             
         }
 
-        private void cbbConcepto_SelectedValueChanged(object sender, EventArgs e)
-        {
-            //Obtenemos el codigo del concepto seleccionado
-            try
-            {
-                Int32 C;
-                if (Int32.TryParse(cbbConcepto.SelectedValue.ToString(), out C))
-                {
-                    //Codigo del concepto
-                    C = Convert.ToInt32(cbbConcepto.SelectedValue.ToString());
-                    //Mostramos el tipo de concepto
-                    TipoConcepto(C);
-                }
-            }
-            catch (Exception Ex)
-            {
-                MessageBox.Show(Ex.Message);
-            }
-        }
+       
 
         private void btnVerDocumentos_Click(object sender, EventArgs e)
 
         {
-           
-                Int64 Codigo = Convert.ToInt64(cbbClientes.SelectedValue);
-                frmListaFacturasPorCliente ListaDocumento = new frmListaFacturasPorCliente(Codigo,"Documento");
+            try
+            {
+                Int32 Codigo = Convert.ToInt32(cbbClientes.SelectedValue);
+                frmListaFacturasPorCliente ListaDocumento = new frmListaFacturasPorCliente(Codigo, "Documento");
                 ListaDocumento.ShowDialog(this);
-            
+            }
+            catch(Exception Ex)
+            {
+                MessageBox.Show(Ex.Message);
+            }
             
         }
 
         private void btnVerReferencia_Click(object sender, EventArgs e)
         {
             
-                Int64 Codigo = Convert.ToInt64(cbbClientes.SelectedValue);
+                Int32 Codigo = Convert.ToInt32(cbbClientes.SelectedValue);
                 frmListaFacturasPorCliente ListaDocumento = new frmListaFacturasPorCliente(Codigo,"Referencia");
                 ListaDocumento.ShowDialog(this);
             
@@ -381,8 +377,7 @@ namespace SMA.Clientes.CuentasPagar
 
         private void txtFactura_Validated(object sender, EventArgs e)
         {
-            txtDocumentoPagar.Text = txtFactura.Text;
-            txtReferencia.Text = txtFactura.Text;
+            
         }
 
         private void txtMonto_KeyPress(object sender, KeyPressEventArgs e)
@@ -418,6 +413,32 @@ namespace SMA.Clientes.CuentasPagar
         private void TabPage1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cbbConcepto_SelectedValueChanged(object sender, EventArgs e)
+        {
+            //Obtenemos el codigo del concepto seleccionado
+            try
+            {
+                Int16 C;
+                if (Int16.TryParse(cbbConcepto.SelectedValue.ToString(), out C))
+                {
+                    //Codigo del concepto
+                    C = Convert.ToInt16(cbbConcepto.SelectedValue.ToString());
+                    //Mostramos el tipo de concepto
+                    TipoConcepto(C);
+                }
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message);
+            }
+        }
+
+        private void txtFactura_Validated_1(object sender, EventArgs e)
+        {
+            txtDocumentoPagar.Text = txtFactura.Text;
+            txtReferencia.Text = txtFactura.Text;
         }
     }
 }

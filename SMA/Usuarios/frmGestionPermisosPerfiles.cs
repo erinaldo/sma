@@ -14,7 +14,7 @@ namespace SMA.Usuarios
 {
     public partial class frmGestionPermisosPerfiles : Office2007Form
     {
-        Int32 PerfilID;
+        Int16 PerfilID;
 
         public frmGestionPermisosPerfiles()
         {
@@ -25,16 +25,16 @@ namespace SMA.Usuarios
         {
             CargarPerfiles();
             CargarModulos();
-            CargarRoles();
+            CargarRoles(ObtenerModulo());
 
         }
 
-        private void CargarRoles()
+        private void CargarRoles(Int32 CodigoModulo)
         {
             RolesBL ObjetoRoles = new RolesBL();
-            lbPermisos.DataSource = ObjetoRoles.Listar();
+            lbPermisos.DataSource = ObjetoRoles.Listar(CodigoModulo);
             lbPermisos.DisplayMember = "Descripcion";
-            lbPermisos.ValueMember = "ID";
+            lbPermisos.ValueMember = "Codigo";
         }
 
         private void CargarModulos()
@@ -42,7 +42,7 @@ namespace SMA.Usuarios
             ModuloBL ObjetoModulo = new ModuloBL();
             lbModulos.DataSource = ObjetoModulo.Listar();
             lbModulos.DisplayMember = "Descripcion";
-            lbModulos.ValueMember = "ID";
+            lbModulos.ValueMember = "Codigo";
         }
 
         private void CargarPerfiles()
@@ -52,7 +52,7 @@ namespace SMA.Usuarios
              PerfilBL ObjetoPerfil = new PerfilBL();
              cbbPerfiles.DataSource = ObjetoPerfil.Listar();
              cbbPerfiles.DisplayMember = "Descripcion";
-             cbbPerfiles.ValueMember = "ID";
+             cbbPerfiles.ValueMember = "Codigo";
          }
             catch(Exception Ex)
          {
@@ -65,10 +65,10 @@ namespace SMA.Usuarios
             //OBTENEMOS LOS MODULOS ASIGNADOS A UN PERFIL A PARTIR DE SU CODIGO
             try
             {
-                Int32 Codigo;
-                if (Int32.TryParse(cbbPerfiles.SelectedValue.ToString(), out Codigo))
+                Int16 Codigo;
+                if (Int16.TryParse(cbbPerfiles.SelectedValue.ToString(), out Codigo))
                 {
-                   PerfilID = Convert.ToInt32(cbbPerfiles.SelectedValue.ToString());
+                   PerfilID = Convert.ToInt16(cbbPerfiles.SelectedValue.ToString());
                     ListarModulosAsignados(PerfilID);
                 }
                 else
@@ -83,7 +83,7 @@ namespace SMA.Usuarios
             
         }
 
-        private void ListarModulosAsignados(int PerfilID)
+        private void ListarModulosAsignados(Int16 PerfilID)
         {
             //LISTA DE MODULOS ASIGNADOS
             try
@@ -91,7 +91,7 @@ namespace SMA.Usuarios
                 RelacionModuloPerfilBL ObjetoRelacion = new RelacionModuloPerfilBL();
                 lbModulosAsignados.DataSource = ObjetoRelacion.ListarRelacionPerfilModulo(PerfilID);
                 lbModulosAsignados.DisplayMember = "DescripcionModulo";
-                lbModulosAsignados.ValueMember = "ID";
+                lbModulosAsignados.ValueMember = "Codigo";
             }
             catch(Exception Ex)
             {
@@ -101,7 +101,7 @@ namespace SMA.Usuarios
 
         private void lbModulosAsignados_Click(object sender, EventArgs e)
         {
-            
+            CargarRoles(ObtenerModulo());
         }
 
         private Int32? ObtenerPerfil()
@@ -130,7 +130,7 @@ namespace SMA.Usuarios
                 RelacionModuloPerfilRolBL ObjetoRelacion = new RelacionModuloPerfilRolBL();
                lbPermisosAsignados.DataSource=  ObjetoRelacion.ListarRelacionPerfilRol(RelacionID);
                lbPermisosAsignados.DisplayMember = "DescripcionRol";
-               lbPermisosAsignados.ValueMember = "ID";
+               lbPermisosAsignados.ValueMember = "Codigo";
             }
             catch(Exception Ex)
             {
@@ -140,19 +140,26 @@ namespace SMA.Usuarios
 
         private void lbModulosAsignados_SelectedValueChanged(object sender, EventArgs e)
         {
-            Int32 RelacionID;
-            //Int32? PerfilID = ObtenerPerfil();
-
-            if (Int32.TryParse(lbModulosAsignados.SelectedValue.ToString(), out RelacionID))
+            try
             {
-                
-                ListarRolesAsignadosPorModulo(RelacionID);
-            }
-            else
-            {
-                lbModulosAsignados.DataSource = null;
-            }
+                Int32 RelacionID;
+                //Int32? PerfilID = ObtenerPerfil();
 
+                if ((lbModulosAsignados.SelectedValue!=null ) && (Int32.TryParse(lbModulosAsignados.SelectedValue.ToString(), out RelacionID)))
+                {
+
+                    ListarRolesAsignadosPorModulo(RelacionID);
+                    
+                }
+                else
+                {
+                    lbModulosAsignados.DataSource = null;
+                }
+            }
+            catch(Exception Ex)
+            {
+                MessageBox.Show(Ex.Message);
+            }
         }
 
         private void btnEliminarModulo_Click(object sender, EventArgs e)
@@ -204,13 +211,13 @@ namespace SMA.Usuarios
             }
         }
 
-        private Int32 ObtenerModulo()
+        private Int16 ObtenerModulo()
         {
             //OBTENEMOS EL MODULO SELECCIONADO
-            Int32 Codigo;
-            if(Int32.TryParse(lbModulos.SelectedValue.ToString(),out Codigo))
+            Int16 Codigo;
+            if(Int16.TryParse(lbModulos.SelectedValue.ToString(),out Codigo))
             {
-                return Convert.ToInt32(lbModulos.SelectedValue.ToString());
+                return Convert.ToInt16(lbModulos.SelectedValue.ToString());
             }
             else
             {
@@ -226,7 +233,7 @@ namespace SMA.Usuarios
             //OBJETO DE RELACION
             cRelacionModuloPerfilRol Relacion=new cRelacionModuloPerfilRol();
             Relacion.ModuloPerfilID=ObtenerModuloAsignado();
-            Relacion.RolID=ObtenerRol();
+            Relacion.CodigoRol=ObtenerRol();
 
             //AGREGAMOS LA RELACION
             ObjetoRelacion.CrearRelacionModuloPerfilRol(Relacion);
@@ -238,15 +245,15 @@ namespace SMA.Usuarios
             }
         }
 
-        private int ObtenerRol()
+        private Int16 ObtenerRol()
         {
             //OBTENEMOS EL PERMISO SELECCIONADO
             try
             {
-                Int32 Codigo;
-                if(Int32.TryParse(lbPermisos.SelectedValue.ToString(),out Codigo))
+                Int16 Codigo;
+                if (lbPermisos.SelectedValue!=null && Int16.TryParse(lbPermisos.SelectedValue.ToString(), out Codigo))
                 {
-                    return Convert.ToInt32(lbPermisos.SelectedValue.ToString());
+                    return Convert.ToInt16(lbPermisos.SelectedValue.ToString());
                 }
                 else
                 {
@@ -291,6 +298,11 @@ namespace SMA.Usuarios
             {
                 throw Ex;
             }
+        }
+
+        private void lbModulos_Click(object sender, EventArgs e)
+        {
+            CargarRoles(ObtenerModulo());
         }
     }
 }

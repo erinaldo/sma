@@ -21,6 +21,20 @@ namespace SMA.Entity
         private Int32 _DiasCredito;
         private Decimal _Abonos;
         private DateTime _FechaReferencia;
+        private DateTime _FechaInicio;
+        private DateTime _FechaFin;
+
+        public DateTime FechaInicio
+        {
+            get { return _FechaInicio; }
+            set { _FechaInicio = value; }
+        }
+
+        public DateTime FechaFin
+        {
+            get { return _FechaFin; }
+            set { _FechaFin = value; }
+        }
 
         public String NombreCliente
         {

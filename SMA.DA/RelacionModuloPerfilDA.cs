@@ -4,32 +4,33 @@ using System.Linq;
 using System.Text;
 using SMA.Entity;
 using System.Data;
-using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
+using MySql.Data;
 
 namespace SMA.DA
 {
    public static class RelacionModuloPerfilDA
     {
-       public static List<cRelacionModuloPerfil> ListarRelacionPerfilModulo(Int32 PerfilID)
+       public static List<cRelacionModuloPerfil> ListarRelacionPerfilModulo(Int16 PerfilID)
        {
 
            try
            {
                //Declaramos la conexion hacia la base de datos
-               using (SqlConnection Conn = new SqlConnection(cConexion.CadenaConexion()))
+               using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
                {
                    Conn.Open();
                    //Nombre del procedimiento
-                   string StoreProc = "uspListarRelacionModuloPerfil";
+                   string StoreProc = "uspListarRelPerfMod";
                    //Creamos el command para la insercion
-                   SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
+                   MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                    Cmd.CommandType = CommandType.StoredProcedure;
                    
                    //Parametros
-                   Cmd.Parameters.AddWithValue("PerfilID", PerfilID);
+                   Cmd.Parameters.AddWithValue("p_Codigo", PerfilID);
 
                    //Ejecutamos el lector 
-                   SqlDataReader Reader = Cmd.ExecuteReader();
+                   MySqlDataReader Reader = Cmd.ExecuteReader();
 
 
                    List<cRelacionModuloPerfil> Lista = new List<cRelacionModuloPerfil>();
@@ -37,11 +38,11 @@ namespace SMA.DA
                    {
                        cRelacionModuloPerfil Relacion = new cRelacionModuloPerfil();
                        //Relacion.ID = Reader.GetInt32(Reader.GetOrdinal("ID"));
-                       Relacion.ID = Reader.GetInt32(Reader.GetOrdinal("ID"));
+                       Relacion.Codigo = Reader.GetInt32(Reader.GetOrdinal("Codigo"));
                        Relacion.DescripcionModulo = Reader.GetString(Reader.GetOrdinal("Modulo"));
                        Relacion.DescripcionPerfil = Reader.GetString(Reader.GetOrdinal("Perfil"));
-                       Relacion.PerfilID = Reader.GetInt32(Reader.GetOrdinal("PerfilID"));
-                       Relacion.ModuloID = Reader.GetInt32(Reader.GetOrdinal("ModuloID"));
+                       Relacion.PerfilID = Reader.GetInt16(Reader.GetOrdinal("CodigoPerf"));
+                       Relacion.ModuloID = Reader.GetInt16(Reader.GetOrdinal("CodigoMod"));
 
                        //Agregamos el articulo a la lista
                        Lista.Add(Relacion);
@@ -53,7 +54,7 @@ namespace SMA.DA
                }
            }
 
-           catch (SqlException Ex)
+           catch (MySqlException Ex)
            {
                throw Ex;
 
@@ -67,25 +68,25 @@ namespace SMA.DA
            {
 
                //Declaramos la conexion hacia la base de datos
-               using (SqlConnection Conn = new SqlConnection(cConexion.CadenaConexion()))
+               using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
                {
                    Conn.Open();
                    //Nombre del procedimiento
-                   string StoreProc = "uspInsertarRelacionModuloPerfil";
+                   string StoreProc = "uspInsertarRelPerfMod";
                    //Creamos el command para la insercion
-                   SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
+                   MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                    Cmd.CommandType = CommandType.StoredProcedure;
 
                    //Parametros
-                   Cmd.Parameters.AddWithValue("ModuloID", Relacion.ModuloID);
-                   Cmd.Parameters.AddWithValue("PerfilID", Relacion.PerfilID);
+                   Cmd.Parameters.AddWithValue("p_CodigoMod", Relacion.ModuloID);
+                   Cmd.Parameters.AddWithValue("p_CodigoPerf", Relacion.PerfilID);
                    
                    Cmd.ExecuteNonQuery();
                }
 
 
            }
-           catch (SqlException Ex)
+           catch (MySqlException Ex)
            {
                throw Ex;
            }
@@ -98,34 +99,34 @@ namespace SMA.DA
             {
 
                 //Declaramos la conexion hacia la base de datos
-                using (SqlConnection Conn = new SqlConnection(cConexion.CadenaConexion()))
+                using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
                 {
                     Conn.Open();
                     //Nombre del procedimiento
                     string StoreProc = "uspEliminarRelacionModuloPerfil";
                     //Creamos el command para la insercion
-                    SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
+                    MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
 
                     //Parametros
-                    Cmd.Parameters.AddWithValue("ID", RelacionID);
+                    Cmd.Parameters.AddWithValue("p_Codigo", RelacionID);
 
                     Cmd.ExecuteNonQuery();
                 }
 
 
             }
-            catch (SqlException Ex)
+            catch (MySqlException Ex)
             {
                 throw Ex;
             }
         }
 
-       public static Boolean Existe(Int32 PerfilID, Int32 ModuloID)
+       public static Boolean Existe(Int16 PerfilID, Int16 ModuloID)
        {
            //COMPROBAMOS LA EXISTENCIA DE LA RELACION
            List<cRelacionModuloPerfil> Lista = (from C in RelacionModuloPerfilDA.ListarRelacionPerfilModulo(PerfilID)
-                                                where (Int32)C.ModuloID == ModuloID
+                                                where (Int16)C.ModuloID == ModuloID
                                                 select C).ToList();
 
            //SI EL VALOR ES IGUAL A 0 ENTONCES NO EXISTE RELACION

@@ -80,10 +80,11 @@
             this.dgvConcepto.Size = new System.Drawing.Size(722, 246);
             this.dgvConcepto.TabIndex = 14;
             this.dgvConcepto.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConcepto_CellClick);
+            this.dgvConcepto.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConcepto_CellDoubleClick);
             // 
             // cID
             // 
-            this.cID.DataPropertyName = "ID";
+            this.cID.DataPropertyName = "Codigo";
             this.cID.HeaderText = "Codigo";
             this.cID.Name = "cID";
             this.cID.ReadOnly = true;

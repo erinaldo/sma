@@ -7,7 +7,7 @@ namespace SMA.Entity
 {
   public abstract class cColaborador
     {
-        private Int64 _ID;
+        private Int32 _Codigo;
         private String _NombreComercial;
         private String _RNC;
         private Object _EstatusID;
@@ -27,10 +27,10 @@ namespace SMA.Entity
         private Decimal _Balance;
         private string _PaginaWeb;
 
-        public Int64 ID
+        public Int32 Codigo
         {
-            get { return _ID; }
-            set { _ID = value; }
+            get { return _Codigo; }
+            set { _Codigo = value; }
         }
        
         public String NombreComercial

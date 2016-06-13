@@ -32,7 +32,7 @@ namespace SMA.DA
                     while (Reader.Read())
                     {
                         cTipoTarjeta Tipo = new cTipoTarjeta();
-                        Tipo.ID = Reader.GetInt32(Reader.GetOrdinal("ID"));
+                        Tipo.Codigo = Reader.GetInt32(Reader.GetOrdinal("ID"));
                         Tipo.Descripcion = Reader.GetString(Reader.GetOrdinal("Descripcion"));
                         //Tipo.Notas = Reader.GetString(Reader.GetOrdinal("Notas"));
 

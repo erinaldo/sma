@@ -14,7 +14,7 @@ namespace SMA.Clientes.CuentasCobrar.Reportes
 {
     public partial class frmParametroAbonosCuentaCobrar : Office2007Form
     {
-        private Int64? ClienteID;
+        private Int32? ClienteID;
         DateTime FechaDesde;
         DateTime FechaHasta;
 
@@ -23,7 +23,7 @@ namespace SMA.Clientes.CuentasCobrar.Reportes
             InitializeComponent();
         }
 
-        public frmParametroAbonosCuentaCobrar(Int64 ClienteID):this()
+        public frmParametroAbonosCuentaCobrar(Int32 ClienteID):this()
         {
             this.ClienteID = ClienteID;
         }
@@ -32,12 +32,12 @@ namespace SMA.Clientes.CuentasCobrar.Reportes
         {
             ClienteBL ObjetoCliente = new ClienteBL();
             
-            Int64 Codigo = Convert.ToInt64(ClienteID);
+            Int32 Codigo = Convert.ToInt32(ClienteID);
             cbbClienteDesde.DataSource = ObjetoCliente.Listar();
             cbbClienteHasta.DataSource = ObjetoCliente.Listar();
 
-            cbbClienteDesde.ValueMember = "ID";
-            cbbClienteHasta.ValueMember = "ID";
+            cbbClienteDesde.ValueMember = "Codigo";
+            cbbClienteHasta.ValueMember = "Codigo";
             cbbClienteDesde.DisplayMember = "NombreComercial";
             cbbClienteHasta.DisplayMember = "NombreComercial";
 
@@ -57,16 +57,17 @@ namespace SMA.Clientes.CuentasCobrar.Reportes
         {
             try
             {
-                Int64 ClienteDesde = ObtenerCodigoCliente(cbbClienteDesde.SelectedValue.ToString());
-                Int64 ClienteHasta = ObtenerCodigoCliente(cbbClienteHasta.SelectedValue.ToString());
+                Int32 ClienteDesde = ObtenerCodigoCliente(cbbClienteDesde.SelectedValue.ToString());
+                Int32 ClienteHasta = ObtenerCodigoCliente(cbbClienteHasta.SelectedValue.ToString());
 
                 FechaDesde = dtpFechaDesde.Value;
                 FechaHasta = dtpFechaHasta.Value;
 
-                DateTime? FechaCorte = ObtenerFechaCorte();
+                DateTime FechaCorte = ObtenerFechaCorte();
+                Int16 IndicadorCorte = ObtenerIndicadorCorte();
 
                 CuentasCobrarBL ObjetoCuenta = new CuentasCobrarBL();
-                List<cReporteEstadoCuenta> Lista = ObjetoCuenta.ReporteAbonoPorPeriodo(FechaDesde, FechaHasta, FechaCorte, ClienteDesde, ClienteHasta);
+                List<cReporteEstadoCuenta> Lista = ObjetoCuenta.ReporteAbonoPorPeriodo(FechaDesde, FechaHasta, FechaCorte, ClienteDesde, ClienteHasta,IndicadorCorte);
 
                 frmrptAbonosPorPeriodoCuentaCobrar ReporteAbonos = new frmrptAbonosPorPeriodoCuentaCobrar(Lista);
                 ReporteAbonos.ShowDialog(this);
@@ -77,12 +78,25 @@ namespace SMA.Clientes.CuentasCobrar.Reportes
             }
         }
 
-        private Int64 ObtenerCodigoCliente(String Valor)
+        //Obtenemos 
+        private short ObtenerIndicadorCorte()
+        {
+           if(rbFechaCorte.Checked)
+           {
+               return 1;
+           }
+           else
+           {
+               return -1;
+           }
+        }
+
+        private Int32 ObtenerCodigoCliente(String Valor)
         {
             //Obtenemos el codigo del cliente seleccionado
             if(Valor!=null)
             {
-                return Convert.ToInt64(Valor);
+                return Convert.ToInt32(Valor);
             }
             else
             {
@@ -91,16 +105,11 @@ namespace SMA.Clientes.CuentasCobrar.Reportes
             
         }
 
-        private DateTime? ObtenerFechaCorte()
+        private DateTime ObtenerFechaCorte()
         {
-            if(rbFechaCorte.Checked)
-            {
+            
                 return dtpFechaCorte.Value;
-            }
-            else
-            {
-                return null;
-            }
+            
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

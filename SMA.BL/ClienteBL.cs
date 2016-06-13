@@ -14,7 +14,7 @@ namespace SMA.BL
             try
             {
                 //Si el almacen existe entonces actualizamos 
-                if (ClienteDA.Existe(Cliente.ID))
+                if (ClienteDA.Existe(Cliente.Codigo))
                 {
                         ClienteDA.Actualizar(Cliente);
                 }
@@ -43,12 +43,12 @@ namespace SMA.BL
             }
         }
 
-        public cCliente BuscarPorID(Int64 ID)
+        public cCliente BuscarPorID(Int32 ID)
         {
             return ClienteDA.BuscarPorID(ID);
         }
 
-        public void Eliminar(Int64 ID)
+        public void Eliminar(Int32 ID)
         {
             
             if (ValidacionDocumentos(ID)) //Validamos si el cliente posee movimientos
@@ -73,16 +73,13 @@ namespace SMA.BL
                 return false;
             }
         }
-        public List<cCliente> Filtrar(Int64? CodigoDesde,
-                                            Int64? CodigoHasta,
-                                            Int32? VendedorID,
-                                            String Nombre,
-                                            Boolean? EstatusID)
+        public List<cCliente> Filtrar(Int32 CodigoDesde,
+                                            Int32 CodigoHasta)
         {
             //Filtro de Clientes
             try
             {
-                return ClienteDA.Filtrar(CodigoDesde,CodigoHasta,VendedorID,Nombre,EstatusID);
+                return ClienteDA.Filtrar(CodigoDesde,CodigoHasta);
             }
             catch (Exception Ex)
             {

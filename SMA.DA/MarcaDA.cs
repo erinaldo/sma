@@ -57,7 +57,7 @@ namespace SMA.DA
                     Cmd.CommandType = CommandType.StoredProcedure;
 
                     //Parametros
-                    Cmd.Parameters.AddWithValue("MarcaID", Marca.ID);
+                    Cmd.Parameters.AddWithValue("MarcaID", Marca.Codigo);
                     Cmd.Parameters.AddWithValue("Descripcion", Marca.Descripcion);
                     Cmd.Parameters.AddWithValue("Notas", Marca.Notas);
 
@@ -121,7 +121,7 @@ namespace SMA.DA
                     cMarca Marca = new cMarca();
                     while (Reader.Read())
                     {
-                        Marca.ID = Reader.GetInt32(Reader.GetOrdinal("ID"));
+                        Marca.Codigo = Reader.GetInt32(Reader.GetOrdinal("ID"));
                         Marca.Notas = Reader.GetString(Reader.GetOrdinal("Notas"));
                         Marca.Descripcion = Reader.IsDBNull(Reader.GetOrdinal("Notas"))?null:Reader.GetString(Reader.GetOrdinal("Descripcion"));
 
@@ -160,7 +160,7 @@ namespace SMA.DA
                     while (Reader.Read())
                     {
                         cMarca Marca = new cMarca();
-                        Marca.ID = Reader.GetInt32(Reader.GetOrdinal("ID"));
+                        Marca.Codigo = Reader.GetInt32(Reader.GetOrdinal("ID"));
                         Marca.Descripcion = Reader.GetString(Reader.GetOrdinal("Descripcion"));
                         Marca.Notas = Reader.IsDBNull(Reader.GetOrdinal("Notas"))?null:Reader.GetString(Reader.GetOrdinal("Notas"));
 
@@ -186,7 +186,7 @@ namespace SMA.DA
         {
             //Buscamos si un Articulo existe en la base de datos
             int result;
-            string Valor = BuscarPorID(ID).ID.ToString();
+            string Valor = BuscarPorID(ID).Codigo.ToString();
             if (Valor != "0")
             {
                 return int.TryParse(Valor, out result);

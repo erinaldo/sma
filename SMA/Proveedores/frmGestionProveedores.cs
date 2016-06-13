@@ -17,7 +17,7 @@ namespace SMA.Clientes
 {
     public partial class frmGestionProveedores : Office2007Form, IGestionProveedores
     {
-        private Int64 ProveedorID;
+        private Int32 ProveedorID;
 
         public frmGestionProveedores()
         {
@@ -143,14 +143,28 @@ namespace SMA.Clientes
 
         private void btnRefrescar_Click(object sender, EventArgs e)
         {
-            ActualizarGrid();
+            try
+            {
+                ActualizarGrid();
+            }
+            catch(Exception  Ex)
+            {
+                MessageBox.Show(Ex.Message);
+            }
         }
 
         public void ActualizarGrid()
         {
-            ProveedorBL ObjetoProveedor = new ProveedorBL();
-            dgvProveedor.AutoGenerateColumns = false;
-            dgvProveedor.DataSource = ObjetoProveedor.Listar();
+            try
+            {
+                ProveedorBL ObjetoProveedor = new ProveedorBL();
+                dgvProveedor.AutoGenerateColumns = false;
+                dgvProveedor.DataSource = ObjetoProveedor.Listar();
+            }
+            catch(Exception Ex)
+            {
+                throw Ex;
+            }
         }
 
         private void btnImprimir_Click(object sender, EventArgs e)
@@ -175,7 +189,7 @@ namespace SMA.Clientes
                     return;
                 }
                 //Codigo  que se obtiene desde el grid
-               ProveedorID = Convert.ToInt64(dgvProveedor.Rows[e.RowIndex].Cells[0].Value);
+               ProveedorID = Convert.ToInt32(dgvProveedor.Rows[e.RowIndex].Cells[0].Value);
             }   
             catch (Exception Ex)
             {
@@ -203,7 +217,7 @@ namespace SMA.Clientes
             {
                 //Busqueda por codigo
                 Int32 Codigo = Convert.ToInt32(Busqueda);
-                var obj = DbProveedor.List.OfType<cProveedor>().ToList().Find(f => f.ID == Codigo);
+                var obj = DbProveedor.List.OfType<cProveedor>().ToList().Find(f => f.Codigo == Codigo);
                 var pos = DbProveedor.IndexOf(obj);
                 DbProveedor.Position = pos;
             }

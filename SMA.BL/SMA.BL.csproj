@@ -48,6 +48,7 @@
     <Compile Include="ConceptoCxCBL.cs" />
     <Compile Include="ConceptoCxPBL.cs" />
     <Compile Include="ConcMovInvenBL.cs" />
+    <Compile Include="ContactosClientesBL.cs" />
     <Compile Include="CuentasCobrarBL.cs" />
     <Compile Include="CuentasPagarBL.cs" />
     <Compile Include="DetalleCompraBL.cs" />

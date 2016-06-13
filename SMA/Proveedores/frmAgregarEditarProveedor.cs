@@ -40,7 +40,7 @@ namespace SMA.Clientes
             {
                 if (ProveedorID.HasValue)
                 {
-                    Int64 Codigo = (Int64)ProveedorID;
+                    Int32 Codigo = (Int32)ProveedorID;
                     ProveedorBL ObjetoProveedor = new ProveedorBL();
                     MostrarDatos(ObjetoProveedor.BuscarPorID(Codigo));
                     txtBalance.ReadOnly = true;
@@ -84,7 +84,7 @@ namespace SMA.Clientes
         private void MostrarDatos(cProveedor Proveedor)
         {
             //Mostramos la informacion del Proveedor buscado
-            txtCodigoProveedor.Text = Convert.ToString(Proveedor.ID);
+            txtCodigoProveedor.Text = Convert.ToString(Proveedor.Codigo);
             txtNombreProveedor.Text = Proveedor.NombreComercial;
             txtDireccion.Text = Proveedor.Direccion;
             txtCiudad.Text = Proveedor.Ciudad;
@@ -94,13 +94,13 @@ namespace SMA.Clientes
             txtTelefono.Text = Proveedor.Telefono;
             txtFax.Text = Proveedor.Fax;
             txtObservacion.Text = Proveedor.Observaciones;
-            txtTelefono2.Text = Proveedor.Telefono2;
+            //txtTelefono2.Text = Proveedor.Telefono2;
             txtWeb.Text = Proveedor.PaginaWeb;
             cbEstatus.Checked = (Boolean)Proveedor.EstatusID;
             txtLimiteCredito.Text = Proveedor.LimiteCredito.ToString();
             nudDiasCredito.Value = Proveedor.DiasCredito;
-            txtContactoVenta.Text = Proveedor.ContactoPagos;
-            txtContactoCobro.Text = Proveedor.ContactoCompras;
+            //txtContactoVenta.Text = Proveedor.ContactoPagos;
+            //txtContactoCobro.Text = Proveedor.ContactoCompras;
             txtFechaCreacion.Text = Proveedor.FechaCreacion.ToShortDateString();
             txtFechaModificacion.Text = Proveedor.FechaModificacion.ToShortDateString();
             txtFechaUltVenta.Text = Proveedor.UltFechaCompra.ToString();
@@ -117,7 +117,7 @@ namespace SMA.Clientes
         {
             cProveedor Proveedor = new cProveedor();
 
-            Proveedor.ID = Convert.ToInt64(txtCodigoProveedor.Text);
+            Proveedor.Codigo = Convert.ToInt32(txtCodigoProveedor.Text);
             Proveedor.NombreComercial = txtNombreProveedor.Text;
             Proveedor.EstatusID = cbEstatus.Checked;
             Proveedor.Direccion = txtDireccion.Text;
@@ -126,14 +126,14 @@ namespace SMA.Clientes
             Proveedor.Correo = txtEmail.Text;
             Proveedor.RNC = txtRNC_Cedula.Text;
             Proveedor.Telefono = txtTelefono.Text;
-            Proveedor.Telefono2 = txtTelefono2.Text;
+            //Proveedor.Telefono2 = txtTelefono2.Text;
             Proveedor.Fax = txtFax.Text;
             Proveedor.Observaciones = txtObservacion.Text;
             Proveedor.Correo = txtEmail.Text;
             Proveedor.LimiteCredito = ObtenerLimite(txtLimiteCredito.Text);
             Proveedor.DiasCredito = ObtenerDiasCredito(nudDiasCredito.Value.ToString());
-            Proveedor.ContactoCompras = txtContactoVenta.Text;
-            Proveedor.ContactoPagos = txtContactoCobro.Text;
+            //Proveedor.ContactoCompras = txtContactoVenta.Text;
+            //Proveedor.ContactoPagos = txtContactoCobro.Text;
             Proveedor.PaginaWeb = txtWeb.Text;
             Proveedor.Balance =ObtenerBalance();
             return Proveedor;
@@ -201,6 +201,20 @@ namespace SMA.Clientes
             }
         }
 
+
+        
+
+       
+
+        private void ButtonX4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonX5_Click(object sender, EventArgs e)
+        {
+
+        }
 
         private void txtRNC_Cedula_Validated(object sender, EventArgs e)
         {

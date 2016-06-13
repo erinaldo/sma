@@ -15,16 +15,16 @@ namespace SMA.Clientes.CuentasCobrar.Reportes
 {
     public partial class frmParametroCobranzaGeneral : Office2007Form
     {
-        private Int64? ClienteID;
+        private Int32? CodigoCliente;
 
         public frmParametroCobranzaGeneral()
         {
             InitializeComponent();
         }
 
-        public frmParametroCobranzaGeneral(Int64 ClienteID):this()
+        public frmParametroCobranzaGeneral(Int32 CodigoCliente):this()
         {
-            this.ClienteID = ClienteID;
+            this.CodigoCliente = CodigoCliente;
         }
 
         private void frmParametroCobranzaGeneral_Load(object sender, EventArgs e)
@@ -33,19 +33,19 @@ namespace SMA.Clientes.CuentasCobrar.Reportes
             ClienteBL ObjetoCliente = new ClienteBL();
             //Si el parametro de Proveedor tiene algun valor entonces filtramos al Proveedor seleccionado para que
             //solo muestre informacion de este
-            Int64 Codigo = Convert.ToInt64(ClienteID);
+            Int32 Codigo = Convert.ToInt32(CodigoCliente);
             cbbClienteDesde.DataSource = ObjetoCliente.Listar();
             cbbClienteHasta.DataSource = ObjetoCliente.Listar();
 
-            cbbClienteDesde.ValueMember = "ID";
-            cbbClienteHasta.ValueMember = "ID";
+            cbbClienteDesde.ValueMember = "Codigo";
+            cbbClienteHasta.ValueMember = "Codigo";
             cbbClienteDesde.DisplayMember = "NombreComercial";
             cbbClienteHasta.DisplayMember = "NombreComercial";
 
-            if (ClienteID.HasValue)
+            if (CodigoCliente.HasValue)
             {
-                cbbClienteDesde.SelectedValue = ClienteID;
-                cbbClienteHasta.SelectedValue = ClienteID;
+                cbbClienteDesde.SelectedValue = CodigoCliente;
+                cbbClienteHasta.SelectedValue = CodigoCliente;
             }
         }
 
@@ -53,8 +53,8 @@ namespace SMA.Clientes.CuentasCobrar.Reportes
         {
             try
             {
-                Int64 ClienteDesde = Convert.ToInt64(cbbClienteDesde.SelectedValue.ToString());
-                Int64 ClienteHasta = Convert.ToInt64(cbbClienteHasta.SelectedValue.ToString());
+                Int32 ClienteDesde = ObtenerCliente(cbbClienteDesde.SelectedValue);
+                Int32 ClienteHasta = ObtenerCliente(cbbClienteHasta.SelectedValue);
                 DateTime FechaCorte = dtpFechaCorte.Value;
 
                 CuentasCobrarBL ObjetoCuenta = new CuentasCobrarBL();
@@ -67,6 +67,20 @@ namespace SMA.Clientes.CuentasCobrar.Reportes
                 MessageBox.Show(Ex.Message);
             }
            
+        }
+
+        //Obtenemos el codigo de cliente
+        private int ObtenerCliente(Object p)
+        {
+            Int32 Valor;
+            if(p!=null && Int32.TryParse(p.ToString(),out Valor))
+            {
+                return Convert.ToInt32(p.ToString());
+            }
+            else
+            {
+                return -1;
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

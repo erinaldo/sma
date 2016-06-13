@@ -68,7 +68,7 @@ namespace SMA.BL
                 {
                     //Verificamos si la factura contiene movimientos en Cuentas por Cobrar
                     List<cCuentasPagar> Cuenta = (from c in CuentaPagarDA.ListaCargosPagos(Factura.DocumentoID.ToString(), (Int64)Factura.ProveedorID)
-                                                   where c.ConceptoID.ToString() != "Compras"
+                                                   where c.CodigoConcepto.ToString() != "Compras"
                                                    select c).ToList();
                     if (Cuenta.Count == 0)
                     {

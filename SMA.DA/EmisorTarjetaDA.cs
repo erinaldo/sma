@@ -33,7 +33,7 @@ namespace SMA.DA
                    while (Reader.Read())
                    {
                        cEmisorTarjeta Emisor = new cEmisorTarjeta();
-                       Emisor.ID = Reader.GetInt32(Reader.GetOrdinal("ID"));
+                       Emisor.Codigo = Reader.GetInt32(Reader.GetOrdinal("ID"));
                        Emisor.Descripcion = Reader.GetString(Reader.GetOrdinal("Descripcion"));
                        //Emisor.Notas = Reader.GetString(Reader.GetOrdinal("Notas"));
 

@@ -8,7 +8,7 @@ namespace SMA.Entity
    public class cCliente: cColaborador
     {
         private String _ContactoVentas;
-        private int _TipoComprobanteID;
+        private SByte _TipoComprobanteID;
         private String _ContactoCobros;
         private Object _VendedorID;
         private Object _UltFechaPago;
@@ -18,7 +18,7 @@ namespace SMA.Entity
         private Object _UltDocVenta;
         private Decimal _UltMontoVenta;
 
-        public int TipoComprobanteID
+        public SByte TipoComprobanteID
         {
             get { return _TipoComprobanteID; }
             set { _TipoComprobanteID = value; }

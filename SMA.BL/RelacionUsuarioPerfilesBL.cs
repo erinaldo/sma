@@ -9,11 +9,11 @@ namespace SMA.BL
 {
     public class RelacionUsuarioPerfilesBL
     {
-        public List<cRelacionUsuarioPerfil> Listar(Int32 UsuarioID)
+        public List<cRelacionUsuarioPerfil> Listar(Int32 UsuarioCodigo)
         {
             try
             {
-                return RelacionUsuarioPerfilesDA.Listar(UsuarioID);
+                return RelacionUsuarioPerfilesDA.Listar(UsuarioCodigo);
             }
             catch(Exception Ex)
             {
@@ -25,7 +25,7 @@ namespace SMA.BL
         {
             try
             {
-                if (RelacionUsuarioPerfilesDA.Existe((Int32)Relacion.PerfilID, (Int32)Relacion.UsuarioID))
+                if (RelacionUsuarioPerfilesDA.Existe((Int16)Relacion.PerfilCodigo, (Int32)Relacion.UsuarioCodigo))
                 {
                     RelacionUsuarioPerfilesDA.Crear(Relacion);
                 }
@@ -33,6 +33,19 @@ namespace SMA.BL
                 {
                     throw new Exception("El perfil ya se encuentra registrado para el usuario seleccionado");
                 }
+            }
+            catch(Exception Ex)
+            {
+                throw Ex;
+            }
+        }
+
+        public void Eliminar(Int32 Codigo)
+        {
+            //ELIMINA LA RELACION ENTRE UN PERFIL Y UN USUARIO
+            try
+            {
+                RelacionUsuarioPerfilesDA.Eliminar(Codigo);
             }
             catch(Exception Ex)
             {

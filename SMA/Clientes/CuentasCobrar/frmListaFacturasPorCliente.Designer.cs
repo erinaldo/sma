@@ -80,7 +80,7 @@
             // 
             // cID
             // 
-            this.cID.DataPropertyName = "ID";
+            this.cID.DataPropertyName = "Codigo";
             this.cID.HeaderText = "ID";
             this.cID.Name = "cID";
             this.cID.ReadOnly = true;
@@ -89,7 +89,7 @@
             // cConcepto
             // 
             this.cConcepto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.cConcepto.DataPropertyName = "ConceptoID";
+            this.cConcepto.DataPropertyName = "CodigoConcepto";
             this.cConcepto.HeaderText = "Concepto";
             this.cConcepto.Name = "cConcepto";
             this.cConcepto.ReadOnly = true;
@@ -98,7 +98,7 @@
             // cDocumento
             // 
             this.cDocumento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cDocumento.DataPropertyName = "DocumentoID";
+            this.cDocumento.DataPropertyName = "CodigoDocumento";
             this.cDocumento.HeaderText = "Documento";
             this.cDocumento.Name = "cDocumento";
             this.cDocumento.ReadOnly = true;
@@ -145,6 +145,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(599, 322);
             this.Controls.Add(this.dgvDocumentos);
+            this.DoubleBuffered = true;
             this.MaximumSize = new System.Drawing.Size(615, 360);
             this.MinimumSize = new System.Drawing.Size(615, 360);
             this.Name = "frmListaFacturasPorCliente";

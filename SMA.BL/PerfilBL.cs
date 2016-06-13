@@ -9,7 +9,7 @@ namespace SMA.BL
 {
    public class PerfilBL
     {
-       public List<cPerfiles> Listar()
+       public List<cPerfil> Listar()
        {
            //LISTA DE PERFILES
            try
@@ -22,7 +22,7 @@ namespace SMA.BL
            }
        }
 
-       public cPerfiles BuscarPorID(int ID)
+       public cPerfil BuscarPorID(int ID)
        {
            try
            {
@@ -34,10 +34,10 @@ namespace SMA.BL
            }
        }
 
-       public void GuardarCambios(cPerfiles Perfil)
+       public void GuardarCambios(cPerfil Perfil)
        {
            //Si el almacen existe entonces actualizamos 
-           if (PerfilesDA.Existe(Perfil.ID))
+           if (PerfilesDA.Existe(Perfil.Codigo))
            {
                PerfilesDA.Actualizar(Perfil);
            }
@@ -48,7 +48,7 @@ namespace SMA.BL
            }
        }
 
-       public void Eliminar(Int32 ID)
+       public void Eliminar(Int16 ID)
        {
            try
            {

@@ -10,7 +10,7 @@ namespace SMA.BL
     public class RelacionModuloPerfilBL
 
     {
-        public List<cRelacionModuloPerfil> ListarRelacionPerfilModulo(Int32 PerfilID)
+        public List<cRelacionModuloPerfil> ListarRelacionPerfilModulo(Int16 PerfilID)
         {
             try
             {
@@ -28,7 +28,7 @@ namespace SMA.BL
             try
             {
                 //COMPROBAMOS LA EXISTENCIA DE LA RELACION
-                if (Existe((Int32)Relacion.PerfilID, (Int32)Relacion.ModuloID) == false)
+                if (Existe((Int16)Relacion.PerfilID, (Int16)Relacion.ModuloID) == false)
                 {
                     RelacionModuloPerfilDA.CrearRelacionModuloPerfil(Relacion);
                 }
@@ -52,7 +52,7 @@ namespace SMA.BL
             }
         }
 
-        private Boolean Existe(Int32 PerfilID, Int32 ModuloID)
+        private Boolean Existe(Int16 PerfilID, Int16 ModuloID)
         {
             //COMPROBAMOS LA EXISTENCIA DE LA RELACION
             try

@@ -26,13 +26,13 @@ namespace SMA.DA
                     Cmd.CommandType = CommandType.StoredProcedure;
 
                     //Parametros
-                    Cmd.Parameters.AddWithValue("ConceptoID", Cuenta.ConceptoID);
+                    Cmd.Parameters.AddWithValue("ConceptoID", Cuenta.CodigoConcepto);
                     Cmd.Parameters.AddWithValue("ProveedorID", Cuenta.ProveedorID);
-                    Cmd.Parameters.AddWithValue("FacturaID", Cuenta.FacturaID);
-                    Cmd.Parameters.AddWithValue("DocumentoID", Cuenta.DocumentoID);
+                    Cmd.Parameters.AddWithValue("FacturaID", Cuenta.CodigoFactura);
+                    Cmd.Parameters.AddWithValue("DocumentoID", Cuenta.CodigoDocumento);
                     Cmd.Parameters.AddWithValue("FechaEmision", Cuenta.FechaEmision);
                     Cmd.Parameters.AddWithValue("FechaVencimiento", Cuenta.FechaVencimiento);
-                    Cmd.Parameters.AddWithValue("ReferenciaID", Cuenta.ReferenciaID);
+                    Cmd.Parameters.AddWithValue("ReferenciaID", Cuenta.CodigoReferencia);
                     Cmd.Parameters.AddWithValue("Estatus", Cuenta.Estatus);
                     Cmd.Parameters.AddWithValue("Monto", Cuenta.Monto);
                     Cmd.Parameters.AddWithValue("Notas", Cuenta.Notas);
@@ -63,7 +63,7 @@ namespace SMA.DA
                     Cmd.CommandType = CommandType.StoredProcedure;
 
                     //Parametros
-                    Cmd.Parameters.AddWithValue("CuentaID", Cuenta.ID);
+                    Cmd.Parameters.AddWithValue("CuentaID", Cuenta.Codigo);
                     Cmd.Parameters.AddWithValue("Notas", Cuenta.Notas);
                     Cmd.Parameters.AddWithValue("Estatus", Cuenta.Estatus);
                     Cmd.ExecuteNonQuery();
@@ -101,10 +101,10 @@ namespace SMA.DA
                     while (Reader.Read())
                     {
                         cCuentasPagar Cuenta = new cCuentasPagar();
-                        Cuenta.ID = Reader.GetInt64(Reader.GetOrdinal("ID"));
-                        Cuenta.ConceptoID = Reader.GetString(Reader.GetOrdinal("Concepto"));
+                        Cuenta.Codigo = Reader.GetInt32(Reader.GetOrdinal("Codigo"));
+                        Cuenta.CodigoConcepto = Reader.GetString(Reader.GetOrdinal("Concepto"));
                         Cuenta.ProveedorID = Reader.GetString(Reader.GetOrdinal("NombreComercial"));
-                        Cuenta.DocumentoID = Reader.IsDBNull(Reader.GetOrdinal("DocumentoID")) ? null : Reader.GetString(Reader.GetOrdinal("DocumentoID"));
+                        Cuenta.CodigoDocumento = Reader.IsDBNull(Reader.GetOrdinal("DocumentoID")) ? null : Reader.GetString(Reader.GetOrdinal("DocumentoID"));
                         Cuenta.FechaEmision = Reader.GetDateTime(Reader.GetOrdinal("FechaEmision"));
                         Cuenta.FechaVencimiento = Reader.GetDateTime(Reader.GetOrdinal("FechaVencimiento"));
                         Cuenta.Monto = Reader.GetDecimal(Reader.GetOrdinal("Monto"));
@@ -151,11 +151,11 @@ namespace SMA.DA
                     while (Reader.Read())
                     {
                         cCuentasPagar Cuenta = new cCuentasPagar();
-                        Cuenta.ID = Reader.GetInt64(Reader.GetOrdinal("ID"));
-                        Cuenta.ConceptoID = Reader.GetString(Reader.GetOrdinal("Concepto"));
+                        Cuenta.Codigo = Reader.GetInt32(Reader.GetOrdinal("Codigo"));
+                        Cuenta.CodigoConcepto = Reader.GetString(Reader.GetOrdinal("Concepto"));
                         Cuenta.ProveedorID = Reader.GetString(Reader.GetOrdinal("NombreComercial"));
-                        Cuenta.DocumentoID = Reader.IsDBNull(Reader.GetOrdinal("DocumentoID")) ? null : Reader.GetString(Reader.GetOrdinal("DocumentoID"));
-                        Cuenta.FacturaID = Reader.IsDBNull(Reader.GetOrdinal("FacturaID")) ? -1 : Reader.GetInt64(Reader.GetOrdinal("FacturaID"));
+                        Cuenta.CodigoDocumento = Reader.IsDBNull(Reader.GetOrdinal("DocumentoID")) ? null : Reader.GetString(Reader.GetOrdinal("DocumentoID"));
+                        Cuenta.CodigoFactura = Reader.IsDBNull(Reader.GetOrdinal("FacturaID")) ? -1 : Reader.GetInt64(Reader.GetOrdinal("FacturaID"));
                         Cuenta.FechaEmision = Reader.GetDateTime(Reader.GetOrdinal("fechaEmision"));
                         Cuenta.FechaVencimiento = Reader.GetDateTime(Reader.GetOrdinal("FechaVencimiento"));
                         Cuenta.Monto = Reader.GetDecimal(Reader.GetOrdinal("Monto"));
@@ -199,12 +199,12 @@ namespace SMA.DA
                     cCuentasPagar Cuenta = new cCuentasPagar();
                     while (Reader.Read())
                     {
-                        Cuenta.ID = Reader.GetInt64(Reader.GetOrdinal("ID"));
-                        Cuenta.ConceptoID = Reader.GetInt32(Reader.GetOrdinal("ConceptoID"));
+                        Cuenta.Codigo = Reader.GetInt32(Reader.GetOrdinal("Codigo"));
+                        Cuenta.CodigoConcepto = Reader.GetInt32(Reader.GetOrdinal("ConceptoID"));
                         Cuenta.ProveedorID = Reader.GetInt64(Reader.GetOrdinal("ProveedorID"));
-                        Cuenta.FacturaID = Reader.IsDBNull(Reader.GetOrdinal("FacturaID")) ? -1 : Reader.GetInt64(Reader.GetOrdinal("FacturaID"));
-                        Cuenta.DocumentoID = Reader.IsDBNull(Reader.GetOrdinal("DocumentoID")) ? null : Reader.GetString(Reader.GetOrdinal("DocumentoID"));
-                        Cuenta.ReferenciaID = Reader.IsDBNull(Reader.GetOrdinal("ReferenciaID")) ? null : Reader.GetString(Reader.GetOrdinal("ReferenciaID"));
+                        Cuenta.CodigoFactura = Reader.IsDBNull(Reader.GetOrdinal("FacturaID")) ? -1 : Reader.GetInt64(Reader.GetOrdinal("FacturaID"));
+                        Cuenta.CodigoDocumento = Reader.IsDBNull(Reader.GetOrdinal("DocumentoID")) ? null : Reader.GetString(Reader.GetOrdinal("DocumentoID"));
+                        Cuenta.CodigoReferencia = Reader.IsDBNull(Reader.GetOrdinal("ReferenciaID")) ? null : Reader.GetString(Reader.GetOrdinal("ReferenciaID"));
                         Cuenta.Estatus = Reader.GetBoolean(Reader.GetOrdinal("Estatus"));
                         Cuenta.FechaEmision = Reader.GetDateTime(Reader.GetOrdinal("fechaEmision"));
                         Cuenta.FechaVencimiento = Reader.GetDateTime(Reader.GetOrdinal("FechaVencimiento"));
@@ -247,12 +247,12 @@ namespace SMA.DA
                     cCuentasPagar Cuenta = new cCuentasPagar();
                     while (Reader.Read())
                     {
-                        Cuenta.ID = Reader.GetInt64(Reader.GetOrdinal("ID"));
-                        Cuenta.ConceptoID = Reader.GetInt32(Reader.GetOrdinal("ConceptoID"));
+                        Cuenta.Codigo = Reader.GetInt32(Reader.GetOrdinal("Codigo"));
+                        Cuenta.CodigoConcepto = Reader.GetInt32(Reader.GetOrdinal("ConceptoID"));
                         Cuenta.ProveedorID = Reader.GetInt64(Reader.GetOrdinal("ProveedorID"));
-                        Cuenta.FacturaID = Reader.IsDBNull(Reader.GetOrdinal("FacturaID")) ? -1 : Reader.GetInt64(Reader.GetOrdinal("FacturaID"));
-                        Cuenta.DocumentoID = Reader.IsDBNull(Reader.GetOrdinal("DocumentoID")) ? null : Reader.GetString(Reader.GetOrdinal("DocumentoID"));
-                        Cuenta.ReferenciaID = Reader.IsDBNull(Reader.GetOrdinal("ReferenciaID")) ? null : Reader.GetString(Reader.GetOrdinal("ReferenciaID"));
+                        Cuenta.CodigoFactura = Reader.IsDBNull(Reader.GetOrdinal("FacturaID")) ? -1 : Reader.GetInt64(Reader.GetOrdinal("FacturaID"));
+                        Cuenta.CodigoDocumento = Reader.IsDBNull(Reader.GetOrdinal("DocumentoID")) ? null : Reader.GetString(Reader.GetOrdinal("DocumentoID"));
+                        Cuenta.CodigoReferencia = Reader.IsDBNull(Reader.GetOrdinal("ReferenciaID")) ? null : Reader.GetString(Reader.GetOrdinal("ReferenciaID"));
                         Cuenta.Estatus = Reader.GetBoolean(Reader.GetOrdinal("Estatus"));
                         Cuenta.FechaEmision = Reader.GetDateTime(Reader.GetOrdinal("fechaEmision"));
                         Cuenta.FechaVencimiento = Reader.GetDateTime(Reader.GetOrdinal("FechaVencimiento"));
@@ -295,10 +295,10 @@ namespace SMA.DA
                     while (Reader.Read())
                     {
                         cCuentasPagar Cuenta = new cCuentasPagar();
-                        Cuenta.ID = Reader.GetInt64(Reader.GetOrdinal("ID"));
-                        Cuenta.ConceptoID = Reader.GetString(Reader.GetOrdinal("Concepto"));
+                        Cuenta.Codigo = Reader.GetInt32(Reader.GetOrdinal("Codigo"));
+                        Cuenta.CodigoConcepto = Reader.GetString(Reader.GetOrdinal("Concepto"));
                         Cuenta.ProveedorID = Reader.GetString(Reader.GetOrdinal("NombreComercial"));
-                        Cuenta.DocumentoID = Reader.GetString(Reader.GetOrdinal("DocumentoID"));
+                        Cuenta.CodigoDocumento = Reader.GetString(Reader.GetOrdinal("DocumentoID"));
                         Cuenta.FechaEmision = Reader.GetDateTime(Reader.GetOrdinal("fechaEmision"));
                         Cuenta.FechaVencimiento = Reader.GetDateTime(Reader.GetOrdinal("FechaVencimiento"));
                         Cuenta.Monto = Reader.GetDecimal(Reader.GetOrdinal("Monto"));
@@ -324,7 +324,7 @@ namespace SMA.DA
         {
             //Buscamos si un Articulo existe en la base de datos
             int result;
-            string Valor = BuscarPorID(ID).ID.ToString();
+            string Valor = BuscarPorID(ID).Codigo.ToString();
             if (Valor != "0")
             {
                 return int.TryParse(Valor, out result);
@@ -339,7 +339,7 @@ namespace SMA.DA
         {
             //Buscamos si un documento existe en la base de datos
             List<cCuentasPagar> Cuenta = (from C in ListaCargosGenerales(ProveedorID)
-                                           where C.DocumentoID.ToString() == Documento
+                                           where C.CodigoDocumento.ToString() == Documento
                                            select C).ToList();
             if (Cuenta.Count > 0)
             {
@@ -396,10 +396,10 @@ namespace SMA.DA
                     while (Reader.Read())
                     {
                         cCuentasPagar Cuenta = new cCuentasPagar();
-                        Cuenta.ID = Reader.GetInt64(Reader.GetOrdinal("ID"));
-                        Cuenta.ConceptoID = Reader.GetString(Reader.GetOrdinal("Concepto"));
+                        Cuenta.Codigo = Reader.GetInt32(Reader.GetOrdinal("Codigo"));
+                        Cuenta.CodigoConcepto = Reader.GetString(Reader.GetOrdinal("Concepto"));
                         Cuenta.ProveedorID = Reader.GetString(Reader.GetOrdinal("NombreComercial"));
-                        Cuenta.DocumentoID = Reader.IsDBNull(Reader.GetOrdinal("DocumentoID")) ? null : Reader.GetString(Reader.GetOrdinal("DocumentoID"));
+                        Cuenta.CodigoDocumento = Reader.IsDBNull(Reader.GetOrdinal("DocumentoID")) ? null : Reader.GetString(Reader.GetOrdinal("DocumentoID"));
                         Cuenta.FechaEmision = Reader.GetDateTime(Reader.GetOrdinal("FechaEmision"));
                         Cuenta.FechaVencimiento = Reader.GetDateTime(Reader.GetOrdinal("FechaVencimiento"));
                         Cuenta.Monto = Reader.GetDecimal(Reader.GetOrdinal("Monto"));
@@ -455,7 +455,7 @@ namespace SMA.DA
                     while (Reader.Read())
                     {
                         cReporteEstadoCuenta Cuenta = new cReporteEstadoCuenta();
-                        Cuenta.ClienteID = Reader.GetInt64(Reader.GetOrdinal("ProveedorID"));
+                        Cuenta.CodigoCliente = Reader.GetInt64(Reader.GetOrdinal("ProveedorID"));
                         Cuenta.NombreCliente = Reader.GetString(Reader.GetOrdinal("NombreComercial"));
                         Cuenta.Direccion = Reader.IsDBNull(Reader.GetOrdinal("Direccion")) ? null : Reader.GetString(Reader.GetOrdinal("Direccion"));
                         Cuenta.Provincia = Reader.IsDBNull(Reader.GetOrdinal("Provincia"))? null:  Reader.GetString(Reader.GetOrdinal("Provincia"));
@@ -467,9 +467,9 @@ namespace SMA.DA
                         Cuenta.LimiteCredito = Reader.GetDecimal(Reader.GetOrdinal("LimiteCredito"));
                         Cuenta.DiasCredito = Reader.GetInt32(Reader.GetOrdinal("DiasCredito"));
                         Cuenta.BalanceDisponible = Reader.GetDecimal(Reader.GetOrdinal("BalanceDisponible"));
-                        Cuenta.ConceptoID = Reader.GetString(Reader.GetOrdinal("Concepto"));
-                        Cuenta.DocumentoID = Reader.GetString(Reader.GetOrdinal("DocumentoID"));
-                        Cuenta.ReferenciaID = Reader.IsDBNull(Reader.GetOrdinal("ReferenciaID")) ? null : Reader.GetString(Reader.GetOrdinal("ReferenciaID"));
+                        Cuenta.CodigoConcepto = Reader.GetString(Reader.GetOrdinal("Concepto"));
+                        Cuenta.CodigoDocumento = Reader.GetString(Reader.GetOrdinal("DocumentoID"));
+                        Cuenta.CodigoReferencia = Reader.IsDBNull(Reader.GetOrdinal("ReferenciaID")) ? null : Reader.GetString(Reader.GetOrdinal("ReferenciaID"));
                         Cuenta.FechaEmision = Reader.GetDateTime(Reader.GetOrdinal("FechaEmision"));
                         Cuenta.FechaVencimiento = Reader.GetDateTime(Reader.GetOrdinal("FechaVencimiento"));
                         Cuenta.Monto = Reader.GetDecimal(Reader.GetOrdinal("Cargos"));
@@ -526,7 +526,7 @@ namespace SMA.DA
                     while (Reader.Read())
                     {
                         cReporteEstadoCuenta Cuenta = new cReporteEstadoCuenta();
-                        Cuenta.ClienteID = Reader.GetInt64(Reader.GetOrdinal("ProveedorID"));
+                        Cuenta.CodigoCliente = Reader.GetInt64(Reader.GetOrdinal("ProveedorID"));
                         Cuenta.NombreCliente = Reader.GetString(Reader.GetOrdinal("NombreComercial"));
                         Cuenta.Direccion = Reader.IsDBNull(Reader.GetOrdinal("Direccion")) ? null : Reader.GetString(Reader.GetOrdinal("Direccion"));
                         Cuenta.Provincia = Reader.IsDBNull(Reader.GetOrdinal("Provincia")) ? null : Reader.GetString(Reader.GetOrdinal("Provincia"));
@@ -538,9 +538,9 @@ namespace SMA.DA
                         Cuenta.LimiteCredito = Reader.GetDecimal(Reader.GetOrdinal("LimiteCredito"));
                         Cuenta.DiasCredito = Reader.GetInt32(Reader.GetOrdinal("DiasCredito"));
                         Cuenta.BalanceDisponible = Reader.GetDecimal(Reader.GetOrdinal("BalanceDisponible"));
-                        Cuenta.ConceptoID = Reader.GetString(Reader.GetOrdinal("Concepto"));
-                        Cuenta.DocumentoID = Reader.GetString(Reader.GetOrdinal("DocumentoID"));
-                        Cuenta.ReferenciaID = Reader.IsDBNull(Reader.GetOrdinal("ReferenciaID")) ? null : Reader.GetString(Reader.GetOrdinal("ReferenciaID"));
+                        Cuenta.CodigoConcepto = Reader.GetString(Reader.GetOrdinal("Concepto"));
+                        Cuenta.CodigoDocumento = Reader.GetString(Reader.GetOrdinal("DocumentoID"));
+                        Cuenta.CodigoReferencia = Reader.IsDBNull(Reader.GetOrdinal("ReferenciaID")) ? null : Reader.GetString(Reader.GetOrdinal("ReferenciaID"));
                         Cuenta.FechaEmision = Reader.GetDateTime(Reader.GetOrdinal("FechaEmision"));
                         Cuenta.FechaVencimiento = Reader.GetDateTime(Reader.GetOrdinal("FechaVencimiento"));
                         Cuenta.Monto = Reader.GetDecimal(Reader.GetOrdinal("Cargos"));
@@ -599,13 +599,13 @@ namespace SMA.DA
                     while (Reader.Read())
                     {
                         cCuentasPagar Cuenta = new cCuentasPagar();
-                        Cuenta.ID = Reader.GetInt64(Reader.GetOrdinal("ID"));
-                        Cuenta.ConceptoID = Reader.GetString(Reader.GetOrdinal("Concepto"));
+                        Cuenta.Codigo = Reader.GetInt32(Reader.GetOrdinal("Codigo"));
+                        Cuenta.CodigoConcepto = Reader.GetString(Reader.GetOrdinal("Concepto"));
                         Cuenta.ProveedorID = Reader.GetString(Reader.GetOrdinal("NombreComercial"));
-                        Cuenta.DocumentoID = Reader.IsDBNull(Reader.GetOrdinal("DocumentoID")) ? null : Reader.GetString(Reader.GetOrdinal("DocumentoID"));
+                        Cuenta.CodigoDocumento = Reader.IsDBNull(Reader.GetOrdinal("DocumentoID")) ? null : Reader.GetString(Reader.GetOrdinal("DocumentoID"));
                         Cuenta.FechaEmision = Reader.GetDateTime(Reader.GetOrdinal("FechaEmision"));
                         Cuenta.FechaVencimiento = Reader.GetDateTime(Reader.GetOrdinal("FechaVencimiento"));
-                        Cuenta.ReferenciaID = Reader.IsDBNull(Reader.GetOrdinal("ReferenciaID")) ? null : Reader.GetString(Reader.GetOrdinal("ReferenciaID"));
+                        Cuenta.CodigoReferencia = Reader.IsDBNull(Reader.GetOrdinal("ReferenciaID")) ? null : Reader.GetString(Reader.GetOrdinal("ReferenciaID"));
                         Cuenta.Monto = Reader.GetDecimal(Reader.GetOrdinal("Monto"));
                         //Agregamos el articulo a la lista
                         Lista.Add(Cuenta);
@@ -654,7 +654,7 @@ namespace SMA.DA
                     {
                         cReporteResumenCuentaPagar Cuenta = new cReporteResumenCuentaPagar();
                         Cuenta.Tipo = Reader.IsDBNull(Reader.GetOrdinal("Tipo")) ? null : Reader.GetString(Reader.GetOrdinal("Tipo"));
-                        Cuenta.ConceptoID = Reader.GetString(Reader.GetOrdinal("Concepto"));
+                        Cuenta.CodigoConcepto = Reader.GetString(Reader.GetOrdinal("Concepto"));
                         Cuenta.Monto = Reader.GetDecimal(Reader.GetOrdinal("Monto"));
                         //Agregamos el articulo a la lista
                         Lista.Add(Cuenta);
@@ -713,9 +713,9 @@ namespace SMA.DA
                         Cuenta.LimiteCredito = Reader.GetDecimal(Reader.GetOrdinal("LimiteCredito"));
                         Cuenta.DiasCredito = Reader.GetInt32(Reader.GetOrdinal("DiasCredito"));
                         Cuenta.BalanceDisponible = Reader.GetDecimal(Reader.GetOrdinal("BalanceDisponible"));
-                        Cuenta.ConceptoID = Reader.GetString(Reader.GetOrdinal("Concepto"));
-                        Cuenta.DocumentoID = Reader.GetString(Reader.GetOrdinal("DocumentoID"));
-                        Cuenta.ReferenciaID = Reader.IsDBNull(Reader.GetOrdinal("ReferenciaID")) ? null : Reader.GetString(Reader.GetOrdinal("ReferenciaID"));
+                        Cuenta.CodigoConcepto = Reader.GetString(Reader.GetOrdinal("Concepto"));
+                        Cuenta.CodigoDocumento = Reader.GetString(Reader.GetOrdinal("DocumentoID"));
+                        Cuenta.CodigoReferencia = Reader.IsDBNull(Reader.GetOrdinal("ReferenciaID")) ? null : Reader.GetString(Reader.GetOrdinal("ReferenciaID"));
                         Cuenta.FechaEmision = Reader.GetDateTime(Reader.GetOrdinal("FechaEmision"));
                         Cuenta.FechaVencimiento = Reader.GetDateTime(Reader.GetOrdinal("FechaVencimiento"));
                         Cuenta.Monto = Reader.GetDecimal(Reader.GetOrdinal("Cargos"));
@@ -782,9 +782,9 @@ namespace SMA.DA
                         Cuenta.LimiteCredito = Reader.GetDecimal(Reader.GetOrdinal("LimiteCredito"));
                         Cuenta.DiasCredito = Reader.GetInt32(Reader.GetOrdinal("DiasCredito"));
                         Cuenta.BalanceDisponible = Reader.GetDecimal(Reader.GetOrdinal("BalanceDisponible"));
-                        Cuenta.ConceptoID = Reader.GetString(Reader.GetOrdinal("Concepto"));
-                        Cuenta.DocumentoID = Reader.GetString(Reader.GetOrdinal("DocumentoID"));
-                        Cuenta.ReferenciaID = Reader.IsDBNull(Reader.GetOrdinal("ReferenciaID")) ? null : Reader.GetString(Reader.GetOrdinal("ReferenciaID"));
+                        Cuenta.CodigoConcepto = Reader.GetString(Reader.GetOrdinal("Concepto"));
+                        Cuenta.CodigoDocumento = Reader.GetString(Reader.GetOrdinal("DocumentoID"));
+                        Cuenta.CodigoReferencia = Reader.IsDBNull(Reader.GetOrdinal("ReferenciaID")) ? null : Reader.GetString(Reader.GetOrdinal("ReferenciaID"));
                         Cuenta.FechaEmision = Reader.GetDateTime(Reader.GetOrdinal("FechaEmision"));
                         Cuenta.FechaVencimiento = Reader.GetDateTime(Reader.GetOrdinal("FechaVencimiento"));
                         Cuenta.Monto = Reader.GetDecimal(Reader.GetOrdinal("Cargos"));
@@ -839,7 +839,7 @@ namespace SMA.DA
                     while (Reader.Read())
                     {
                         cAntiguedadSaldo Cuenta = new cAntiguedadSaldo();
-                        Cuenta.ID = Reader.GetInt64(Reader.GetOrdinal("ID"));
+                        Cuenta.Codigo = Reader.GetInt64(Reader.GetOrdinal("Codigo"));
                         Cuenta.NombreComercial = Reader.GetString(Reader.GetOrdinal("NombreComercial"));
                         Cuenta.Corriente = Reader.GetDecimal(Reader.GetOrdinal("Corriente"));
                         Cuenta.Dias0a30 = Reader.GetDecimal(Reader.GetOrdinal("1-30"));
@@ -897,9 +897,9 @@ namespace SMA.DA
                     while (Reader.Read())
                     {
                         cAntiguedadSaldoDetalle Cuenta = new cAntiguedadSaldoDetalle();
-                        Cuenta.ID = Reader.GetInt64(Reader.GetOrdinal("ID"));
+                        Cuenta.Codigo = Reader.GetInt64(Reader.GetOrdinal("Codigo"));
                         Cuenta.NombreComercial = Reader.GetString(Reader.GetOrdinal("NombreComercial"));
-                        Cuenta.DocumentoID = Reader.GetString(Reader.GetOrdinal("DocumentoID"));
+                        Cuenta.CodigoDocumento = Reader.GetString(Reader.GetOrdinal("DocumentoID"));
                         Cuenta.Concepto = Reader.GetString(Reader.GetOrdinal("Concepto"));
                         Cuenta.FechaEmision = Reader.GetDateTime(Reader.GetOrdinal("FechaEmision"));
                         Cuenta.FechaVencimiento = Reader.GetDateTime(Reader.GetOrdinal("FechaVencimiento"));

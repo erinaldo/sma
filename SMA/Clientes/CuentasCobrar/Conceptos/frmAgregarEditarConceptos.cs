@@ -41,7 +41,7 @@ namespace SMA.Clientes.CuentasPagar.Conceptos
         {
             if(ConceptoID.HasValue)
             {
-                Int32 ID = Convert.ToInt32(ConceptoID);
+                Int16 ID = Convert.ToInt16(ConceptoID);
                 ConceptoCxCBL ObjetoConcepto = new ConceptoCxCBL();
                 MostrarDatos(ObjetoConcepto.BuscarPorID(ID));
             }
@@ -84,7 +84,7 @@ namespace SMA.Clientes.CuentasPagar.Conceptos
 
         private void MostrarDatos(cConcepto Concepto)
         {
-            txtCodigo.Text = Concepto.ID.ToString();
+            txtCodigo.Text = Concepto.Codigo.ToString();
             txtDescripcion.Text = Concepto.Descripcion;
             
             //Referencia
@@ -115,7 +115,7 @@ namespace SMA.Clientes.CuentasPagar.Conceptos
         private cConcepto ObtenerDatos()
         {
             cConcepto Concepto = new cConcepto();
-            Concepto.ID = Convert.ToInt32(txtCodigo.Text);
+            Concepto.Codigo = Convert.ToInt16(txtCodigo.Text);
             Concepto.Descripcion = txtDescripcion.Text;
             Concepto.Tipo=ObtenerTipo();
             Concepto.Referencia = ObtenerReferencia();

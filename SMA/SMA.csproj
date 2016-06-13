@@ -268,6 +268,18 @@
     <Compile Include="Clientes\frmAgregarEditarCliente.Designer.cs">
       <DependentUpon>frmAgregarEditarCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Clientes\frmAgregarEditarContacto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clientes\frmAgregarEditarContacto.Designer.cs">
+      <DependentUpon>frmAgregarEditarContacto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clientes\frmAgregarEditarDireccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clientes\frmAgregarEditarDireccion.Designer.cs">
+      <DependentUpon>frmAgregarEditarDireccion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Clientes\frmBuscarCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1105,17 +1117,23 @@
     <Compile Include="Proveedores\Reportes\frmRptListadoProveedores.Designer.cs">
       <DependentUpon>frmRptListadoProveedores.cs</DependentUpon>
     </Compile>
+    <Compile Include="Usuarios\frmAgregarEditarPerfil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Usuarios\frmAgregarEditarPerfil.Designer.cs">
+      <DependentUpon>frmAgregarEditarPerfil.cs</DependentUpon>
+    </Compile>
     <Compile Include="Usuarios\frmAgregarEditarUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Usuarios\frmAgregarEditarUsuario.Designer.cs">
       <DependentUpon>frmAgregarEditarUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Usuarios\frmGestionPefilees.cs">
+    <Compile Include="Usuarios\frmGestionPerfilesUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Usuarios\frmGestionPefilees.Designer.cs">
-      <DependentUpon>frmGestionPefilees.cs</DependentUpon>
+    <Compile Include="Usuarios\frmGestionPerfilesUsuarios.Designer.cs">
+      <DependentUpon>frmGestionPerfilesUsuarios.cs</DependentUpon>
     </Compile>
     <Compile Include="Usuarios\frmGestionPermisosPerfiles.cs">
       <SubType>Form</SubType>
@@ -1251,6 +1269,12 @@
     <EmbeddedResource Include="Clientes\CuentasCobrar\Reportes\rptResumenMovCuentaCobrar.rdlc" />
     <EmbeddedResource Include="Clientes\frmAgregarEditarCliente.resx">
       <DependentUpon>frmAgregarEditarCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Clientes\frmAgregarEditarContacto.resx">
+      <DependentUpon>frmAgregarEditarContacto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Clientes\frmAgregarEditarDireccion.resx">
+      <DependentUpon>frmAgregarEditarDireccion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Clientes\frmBuscarCliente.resx">
       <DependentUpon>frmBuscarCliente.cs</DependentUpon>
@@ -1725,11 +1749,14 @@
       <DependentUpon>frmRptListadoProveedores.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Proveedores\Reportes\rptListaProveedores.rdlc" />
+    <EmbeddedResource Include="Usuarios\frmAgregarEditarPerfil.resx">
+      <DependentUpon>frmAgregarEditarPerfil.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Usuarios\frmAgregarEditarUsuario.resx">
       <DependentUpon>frmAgregarEditarUsuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Usuarios\frmGestionPefilees.resx">
-      <DependentUpon>frmGestionPefilees.cs</DependentUpon>
+    <EmbeddedResource Include="Usuarios\frmGestionPerfilesUsuarios.resx">
+      <DependentUpon>frmGestionPerfilesUsuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Usuarios\frmGestionPermisosPerfiles.resx">
       <DependentUpon>frmGestionPermisosPerfiles.cs</DependentUpon>
@@ -1765,6 +1792,7 @@
     <None Include="Properties\DataSources\SMA.Entity.cReporteArticulosDevueltos.datasource" />
     <None Include="Properties\DataSources\SMA.Entity.cReporteComisionVentaDetalle.datasource" />
     <None Include="Properties\DataSources\SMA.Entity.cReporteDetalladoDocumento.datasource" />
+    <None Include="Properties\DataSources\SMA.Entity.cReporteEstadoCuenta.datasource" />
     <None Include="Properties\DataSources\SMA.Entity.cReporteEstadoCuentaPagar.datasource" />
     <None Include="Properties\DataSources\SMA.Entity.cReporteFactura.datasource" />
     <None Include="Properties\DataSources\SMA.Entity.cReporteFactura1.datasource" />

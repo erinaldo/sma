@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using SMA.Entity;
 using System.Data;
-using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
+using MySql.Data;
+
 
 namespace SMA.DA
 {
@@ -17,31 +19,31 @@ namespace SMA.DA
             {
 
                 //Declaramos la conexion hacia la base de datos
-                using (SqlConnection Conn = new SqlConnection(cConexion.CadenaConexion()))
+                using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
                 {
                     Conn.Open();
                     //Nombre del procedimiento
                     string StoreProc = "uspInsertarCuentaCobrar";
                     //Creamos el command para la insercion
-                    SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
+                    MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
 
                     //Parametros
-                    Cmd.Parameters.AddWithValue("ConceptoID", Cuenta.ConceptoID);
-                    Cmd.Parameters.AddWithValue("ClienteID", Cuenta.ClienteID);
-                    Cmd.Parameters.AddWithValue("FacturaID", Cuenta.FacturaID);
-                    Cmd.Parameters.AddWithValue("DocumentoID", Cuenta.DocumentoID);
-                    Cmd.Parameters.AddWithValue("FechaEmision", Cuenta.FechaEmision);
-                    Cmd.Parameters.AddWithValue("FechaVencimiento", Cuenta.FechaVencimiento);
-                    Cmd.Parameters.AddWithValue("ReferenciaID", Cuenta.ReferenciaID);
-                    Cmd.Parameters.AddWithValue("Monto", Cuenta.Monto);
-                    Cmd.Parameters.AddWithValue("Notas", Cuenta.Notas);
+                    Cmd.Parameters.AddWithValue("p_CodigoConcepto", Cuenta.CodigoConcepto);
+                    Cmd.Parameters.AddWithValue("p_CodigoCliente", Cuenta.CodigoCliente);
+                    Cmd.Parameters.AddWithValue("p_CodigoFactura", Cuenta.CodigoFactura);
+                    Cmd.Parameters.AddWithValue("p_CodigoDocumento", Cuenta.CodigoDocumento);
+                    Cmd.Parameters.AddWithValue("p_FechaEmision", Cuenta.FechaEmision);
+                    Cmd.Parameters.AddWithValue("p_FechaVencimiento", Cuenta.FechaVencimiento);
+                    Cmd.Parameters.AddWithValue("p_CodigoReferencia", Cuenta.CodigoReferencia);
+                    Cmd.Parameters.AddWithValue("p_Monto", Cuenta.Monto);
+                    Cmd.Parameters.AddWithValue("p_Notas", Cuenta.Notas);
                     Cmd.ExecuteNonQuery();
                 }
 
 
             }
-            catch (SqlException Ex)
+            catch (MySqlException Ex)
             {
                 throw Ex;
             }
@@ -53,59 +55,60 @@ namespace SMA.DA
             {
 
                 //Declaramos la conexion hacia la base de datos
-                using (SqlConnection Conn = new SqlConnection(cConexion.CadenaConexion()))
+                using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
                 {
                     Conn.Open();
                     //Nombre del procedimiento
-                    string StoreProc = "uspActualizarCuentaCobrar";
+                    string StoreProc = "uspActualizarCuenCobrar";
                     //Creamos el command para la insercion
-                    SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
+                    MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
 
                     //Parametros
-                    Cmd.Parameters.AddWithValue("CuentaID", Cuenta.ID);
-                    Cmd.Parameters.AddWithValue("Notas", Cuenta.Notas);
-                    Cmd.Parameters.AddWithValue("Estatus", Cuenta.Estatus);
+                    Cmd.Parameters.AddWithValue("p_Codigo", Cuenta.Codigo);
+                    Cmd.Parameters.AddWithValue("p_Notas", Cuenta.Notas);
+                    Cmd.Parameters.AddWithValue("p_Estatus", Cuenta.Estatus);
                     Cmd.ExecuteNonQuery();
                 }
 
 
             }
-            catch (SqlException Ex)
+            catch (MySqlException Ex)
             {
                 throw Ex;
             }
         }
 
         public static List<cCuentasCobrar> ListaCargosGenerales(Int64 ID)
-    {
+    
+        {
             //Lista los cargos generales(Documentos) de los clientes 
         try
         {
             //Declaramos la conexion hacia la base de datos
-            using (SqlConnection Conn = new SqlConnection(cConexion.CadenaConexion()))
+            using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
             {
                 Conn.Open();
                 //Nombre del procedimiento
                 string StoreProc = "uspListarCargosGeneralesCxC";
                 //Creamos el command para la insercion
-                SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
+                MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                 Cmd.CommandType = CommandType.StoredProcedure;
                 //Variable
-                Cmd.Parameters.AddWithValue("ClienteID", ID);
+                Cmd.Parameters.AddWithValue("p_Codigo", ID);
                 //Ejecutamos el lector
  
-                SqlDataReader Reader = Cmd.ExecuteReader();
+                MySqlDataReader Reader = Cmd.ExecuteReader();
 
 
                 List<cCuentasCobrar> Lista = new List<cCuentasCobrar>();
                 while (Reader.Read())
                 {
                     cCuentasCobrar Cuenta = new cCuentasCobrar();
-                    Cuenta.ID = Reader.GetInt64(Reader.GetOrdinal("ID"));
-                    Cuenta.ConceptoID = Reader.GetString(Reader.GetOrdinal("Concepto"));
-                    Cuenta.ClienteID = Reader.GetString(Reader.GetOrdinal("NombreComercial"));
-                    Cuenta.DocumentoID = Reader.IsDBNull(Reader.GetOrdinal("DocumentoID"))? null:Reader.GetString(Reader.GetOrdinal("DocumentoID"));
+                    Cuenta.Codigo = Reader.GetInt32(Reader.GetOrdinal("Codigo"));
+                    Cuenta.CodigoConcepto = Reader.GetString(Reader.GetOrdinal("Concepto"));
+                    Cuenta.CodigoCliente = Reader.GetString(Reader.GetOrdinal("NombreComercial"));
+                    Cuenta.CodigoDocumento = Reader.IsDBNull(Reader.GetOrdinal("CodigoDocumento"))? null:Reader.GetString(Reader.GetOrdinal("CodigoDocumento"));
                     Cuenta.FechaEmision = Reader.GetDateTime(Reader.GetOrdinal("FechaEmision"));
                     Cuenta.FechaVencimiento = Reader.GetDateTime(Reader.GetOrdinal("FechaVencimiento"));
                     Cuenta.Monto = Reader.GetDecimal(Reader.GetOrdinal("Monto"));
@@ -119,7 +122,7 @@ namespace SMA.DA
                 return Lista;
             }
         }
-        catch (SqlException Ex)
+        catch (MySqlException Ex)
         {
             throw Ex;
 
@@ -127,36 +130,36 @@ namespace SMA.DA
 
     }
 
-        public static List<cCuentasCobrar> ListaCargosPagos(String Referencia, Int64 ClienteID)
+        public static List<cCuentasCobrar> ListaCargosPagos(String CodigoReferencia, Int32 CodigoCliente)
         {
             try
             {
                 //Declaramos la conexion hacia la base de datos
-                using (SqlConnection Conn = new SqlConnection(cConexion.CadenaConexion()))
+                using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
                 {
                     Conn.Open();
                     //Nombre del procedimiento
                     string StoreProc = "uspListarCargosPagosCxC";
                     //Creamos el command para la insercion
-                    SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
+                    MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
                     //Variable
-                    Cmd.Parameters.AddWithValue("Referencia", Referencia);
-                    Cmd.Parameters.AddWithValue("ClienteID", ClienteID);
+                    Cmd.Parameters.AddWithValue("p_CodigoReferencia", CodigoReferencia);
+                    Cmd.Parameters.AddWithValue("p_CodigoCliente", CodigoCliente);
                     //Ejecutamos el lector
 
-                    SqlDataReader Reader = Cmd.ExecuteReader();
+                    MySqlDataReader Reader = Cmd.ExecuteReader();
 
 
                     List<cCuentasCobrar> Lista = new List<cCuentasCobrar>();
                     while (Reader.Read())
                     {
                         cCuentasCobrar Cuenta = new cCuentasCobrar();
-                        Cuenta.ID = Reader.GetInt64(Reader.GetOrdinal("ID"));
-                        Cuenta.ConceptoID = Reader.GetString(Reader.GetOrdinal("Concepto"));
-                        Cuenta.ClienteID = Reader.GetString(Reader.GetOrdinal("NombreComercial"));
-                        Cuenta.DocumentoID = Reader.IsDBNull(Reader.GetOrdinal("DocumentoID"))?null:Reader.GetString(Reader.GetOrdinal("DocumentoID"));
-                        Cuenta.FacturaID = Reader.IsDBNull(Reader.GetOrdinal("FacturaID"))?-1:Reader.GetInt64(Reader.GetOrdinal("FacturaID"));
+                        Cuenta.Codigo = Reader.GetInt32(Reader.GetOrdinal("Codigo"));
+                        Cuenta.CodigoConcepto = Reader.GetString(Reader.GetOrdinal("Concepto"));
+                        Cuenta.CodigoCliente = Reader.GetString(Reader.GetOrdinal("NombreComercial"));
+                        Cuenta.CodigoDocumento = Reader.IsDBNull(Reader.GetOrdinal("CodigoDocumento"))?null:Reader.GetString(Reader.GetOrdinal("CodigoDocumento"));
+                        Cuenta.CodigoFactura = Reader.IsDBNull(Reader.GetOrdinal("CodigoFactura")) ? -1 : Reader.GetInt64(Reader.GetOrdinal("CodigoFactura"));
                         Cuenta.FechaEmision = Reader.GetDateTime(Reader.GetOrdinal("fechaEmision"));
                         Cuenta.FechaVencimiento = Reader.GetDateTime(Reader.GetOrdinal("FechaVencimiento"));
                         Cuenta.Monto = Reader.GetDecimal(Reader.GetOrdinal("Monto"));
@@ -169,7 +172,7 @@ namespace SMA.DA
                     return Lista;
                 }
             }
-            catch (SqlException Ex)
+            catch (MySqlException Ex)
             {
                 throw Ex;
 
@@ -177,35 +180,35 @@ namespace SMA.DA
 
         }
 
-        public static cCuentasCobrar BuscarPorID(Int64 ID)
+        public static cCuentasCobrar BuscarPorID(Int32 ID)
         {
             //Buscamos un movimiento especifico por el codigo unico de la base de datos
             try
             {
                 //Declaramos la conexion hacia la base de datos
-                using (SqlConnection Conn = new SqlConnection(cConexion.CadenaConexion()))
+                using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
                 {
                     Conn.Open();
                     //Nombre del procedimiento
-                    string StoreProc = "uspBuscarMovCxCporID";
+                    string StoreProc = "uspBuscarMovCuenCobrar";
                     //Creamos el command para la insercion
-                    SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
+                    MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
                     //Variable
-                    Cmd.Parameters.AddWithValue("CuentaID", ID);
+                    Cmd.Parameters.AddWithValue("p_Codigo", ID);
                     //Ejecutamos el lector
 
-                    SqlDataReader Reader = Cmd.ExecuteReader();
+                    MySqlDataReader Reader = Cmd.ExecuteReader();
 
                     cCuentasCobrar Cuenta = new cCuentasCobrar();
                     while (Reader.Read())
                     {
-                        Cuenta.ID = Reader.GetInt64(Reader.GetOrdinal("ID"));
-                        Cuenta.ConceptoID = Reader.GetInt32(Reader.GetOrdinal("ConceptoID"));
-                        Cuenta.ClienteID = Reader.GetInt64(Reader.GetOrdinal("ClienteID"));
-                        Cuenta.FacturaID = Reader.IsDBNull(Reader.GetOrdinal("FacturaID")) ? -1 : Reader.GetInt64(Reader.GetOrdinal("FacturaID"));
-                        Cuenta.DocumentoID = Reader.IsDBNull(Reader.GetOrdinal("DocumentoID")) ? null : Reader.GetString(Reader.GetOrdinal("DocumentoID"));
-                        Cuenta.ReferenciaID = Reader.IsDBNull(Reader.GetOrdinal("ReferenciaID")) ? null : Reader.GetString(Reader.GetOrdinal("ReferenciaID"));
+                        Cuenta.Codigo = Reader.GetInt32(Reader.GetOrdinal("Codigo"));
+                        Cuenta.CodigoConcepto = Reader.GetInt16(Reader.GetOrdinal("CodigoConcepto"));
+                        Cuenta.CodigoCliente = Reader.GetInt32(Reader.GetOrdinal("CodigoCliente"));
+                        Cuenta.CodigoFactura = Reader.IsDBNull(Reader.GetOrdinal("CodigoFactura")) ? -1 : Reader.GetInt32(Reader.GetOrdinal("CodigoFactura"));
+                        Cuenta.CodigoDocumento = Reader.IsDBNull(Reader.GetOrdinal("CodigoDocumento")) ? null : Reader.GetString(Reader.GetOrdinal("CodigoDocumento"));
+                        Cuenta.CodigoReferencia = Reader.IsDBNull(Reader.GetOrdinal("CodigoReferencia")) ? null : Reader.GetString(Reader.GetOrdinal("CodigoReferencia"));
                         Cuenta.Estatus = Reader.GetBoolean(Reader.GetOrdinal("Estatus"));
                         Cuenta.FechaEmision = Reader.GetDateTime(Reader.GetOrdinal("fechaEmision"));
                         Cuenta.FechaVencimiento = Reader.GetDateTime(Reader.GetOrdinal("FechaVencimiento"));
@@ -216,7 +219,7 @@ namespace SMA.DA
                     return Cuenta;
                 }
             }
-            catch (SqlException Ex)
+            catch (MySqlException Ex)
             {
                 throw Ex;
 
@@ -231,29 +234,29 @@ namespace SMA.DA
             try
             {
                 //Declaramos la conexion hacia la base de datos
-                using (SqlConnection Conn = new SqlConnection(cConexion.CadenaConexion()))
+                using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
                 {
                     Conn.Open();
                     //Nombre del procedimiento
-                    string StoreProc = "uspBuscarCargosGeneralesporDocID";
+                    string StoreProc = "uspBuscarCargosGralporCodDoc";
                     //Creamos el command para la insercion
-                    SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
+                    MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
                     //Variable
-                    Cmd.Parameters.AddWithValue("DocumentoID", Documento);
+                    Cmd.Parameters.AddWithValue("p_CodigoDocumento", Documento);
                     //Ejecutamos el lector
 
-                    SqlDataReader Reader = Cmd.ExecuteReader();
+                    MySqlDataReader Reader = Cmd.ExecuteReader();
 
                     cCuentasCobrar Cuenta = new cCuentasCobrar();
                     while (Reader.Read())
                     {
-                        Cuenta.ID = Reader.GetInt64(Reader.GetOrdinal("ID"));
-                        Cuenta.ConceptoID = Reader.GetInt32(Reader.GetOrdinal("ConceptoID"));
-                        Cuenta.ClienteID = Reader.GetInt64(Reader.GetOrdinal("ClienteID"));
-                        Cuenta.FacturaID = Reader.IsDBNull(Reader.GetOrdinal("FacturaID")) ? -1 : Reader.GetInt64(Reader.GetOrdinal("FacturaID"));
-                        Cuenta.DocumentoID = Reader.IsDBNull(Reader.GetOrdinal("DocumentoID")) ? null : Reader.GetString(Reader.GetOrdinal("DocumentoID"));
-                        Cuenta.ReferenciaID = Reader.IsDBNull(Reader.GetOrdinal("ReferenciaID")) ? null : Reader.GetString(Reader.GetOrdinal("ReferenciaID"));
+                        Cuenta.Codigo = Reader.GetInt32(Reader.GetOrdinal("Codigo"));
+                        Cuenta.CodigoConcepto = Reader.GetInt16(Reader.GetOrdinal("CodigoConcepto"));
+                        Cuenta.CodigoCliente = Reader.GetInt32(Reader.GetOrdinal("CodigoCliente"));
+                        Cuenta.CodigoFactura = Reader.IsDBNull(Reader.GetOrdinal("CodigoFactura")) ? -1 : Reader.GetInt32(Reader.GetOrdinal("CodigoFactura"));
+                        Cuenta.CodigoDocumento = Reader.IsDBNull(Reader.GetOrdinal("CodigoDocumento")) ? null : Reader.GetString(Reader.GetOrdinal("CodigoDocumento"));
+                        Cuenta.CodigoReferencia = Reader.IsDBNull(Reader.GetOrdinal("CodigoReferencia")) ? null : Reader.GetString(Reader.GetOrdinal("CodigoReferencia"));
                         Cuenta.Estatus = Reader.GetBoolean(Reader.GetOrdinal("Estatus"));
                         Cuenta.FechaEmision = Reader.GetDateTime(Reader.GetOrdinal("fechaEmision"));
                         Cuenta.FechaVencimiento = Reader.GetDateTime(Reader.GetOrdinal("FechaVencimiento"));
@@ -264,7 +267,7 @@ namespace SMA.DA
                     return Cuenta;
                 }
             }
-            catch (SqlException Ex)
+            catch (MySqlException Ex)
             {
                 throw Ex;
 
@@ -272,34 +275,35 @@ namespace SMA.DA
 
         }
 
-        public static List<cCuentasCobrar> ListaDocumentosCxC(Int64 ID)
+        public static List<cCuentasCobrar> ListaDocumentosCxC(Int32 ID)
         {
+            //CARGAMOS LOS DOCUMENTOS DE CUENTAS POR COBRAR CON BALANCE MAYOR A 0
             try
             {
                 //Declaramos la conexion hacia la base de datos
-                using (SqlConnection Conn = new SqlConnection(cConexion.CadenaConexion()))
+                using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
                 {
                     Conn.Open();
                     //Nombre del procedimiento
-                    string StoreProc = "uspListaDocumentosCxC";
+                    string StoreProc = "uspListarDocCxC";
                     //Creamos el command para la insercion
-                    SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
+                    MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
                     //Variable
-                    Cmd.Parameters.AddWithValue("ClienteID", ID);
+                    Cmd.Parameters.AddWithValue("p_Codigo", ID);
                     //Ejecutamos el lector
 
-                    SqlDataReader Reader = Cmd.ExecuteReader();
+                    MySqlDataReader Reader = Cmd.ExecuteReader();
 
 
                     List<cCuentasCobrar> Lista = new List<cCuentasCobrar>();
                     while (Reader.Read())
                     {
                         cCuentasCobrar Cuenta = new cCuentasCobrar();
-                        Cuenta.ID = Reader.GetInt64(Reader.GetOrdinal("ID"));
-                        Cuenta.ConceptoID = Reader.GetString(Reader.GetOrdinal("Concepto"));
-                        Cuenta.ClienteID = Reader.GetString(Reader.GetOrdinal("NombreComercial"));
-                        Cuenta.DocumentoID = Reader.GetString(Reader.GetOrdinal("DocumentoID"));
+                        Cuenta.Codigo = Reader.GetInt32(Reader.GetOrdinal("Codigo"));
+                        Cuenta.CodigoConcepto = Reader.GetString(Reader.GetOrdinal("Concepto"));
+                        Cuenta.CodigoCliente = Reader.GetString(Reader.GetOrdinal("NombreComercial"));
+                        Cuenta.CodigoDocumento = Reader.GetString(Reader.GetOrdinal("CodigoDocumento"));
                         Cuenta.FechaEmision = Reader.GetDateTime(Reader.GetOrdinal("fechaEmision"));
                         Cuenta.FechaVencimiento = Reader.GetDateTime(Reader.GetOrdinal("FechaVencimiento"));
                         Cuenta.Monto = Reader.GetDecimal(Reader.GetOrdinal("Monto"));
@@ -313,7 +317,7 @@ namespace SMA.DA
                     return Lista;
                 }
             }
-            catch (SqlException Ex)
+            catch (MySqlException Ex)
             {
                 throw Ex;
 
@@ -321,11 +325,11 @@ namespace SMA.DA
 
         }
 
-        public static Boolean Existe(Int64 ID)
+        public static Boolean Existe(Int32 ID)
         {
             //Buscamos si un Articulo existe en la base de datos
             int result;
-            string Valor = BuscarPorID(ID).ID.ToString();
+            string Valor = BuscarPorID(ID).Codigo.ToString();
             if (Valor != "0")
             {
                 return int.TryParse(Valor, out result);
@@ -336,11 +340,11 @@ namespace SMA.DA
             }
         }
 
-        public static Boolean Existe(String Documento, Int64 ClienteID)
+        public static Boolean Existe(String Documento, Int32 CodigoCliente)
         {
             //Buscamos si un documento existe en la base de datos
-            List<cCuentasCobrar> Cuenta=(from C in ListaCargosGenerales(ClienteID)
-                                             where C.DocumentoID.ToString()==Documento
+            List<cCuentasCobrar> Cuenta=(from C in ListaCargosGenerales(CodigoCliente)
+                                             where C.CodigoDocumento.ToString()==Documento
                                              select C).ToList();
             if(Cuenta.Count>0)
             {
@@ -359,19 +363,19 @@ namespace SMA.DA
             try
             {
                 //Declaramos la conexion hacia la base de datos
-                using (SqlConnection Conn = new SqlConnection(cConexion.CadenaConexion()))
+                using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
                 {
                     Conn.Open();
                     //Nombre del procedimiento
                     string StoreProc = "uspImpresionReciboCuentaCobrar";
                     //Creamos el command para la insercion
-                    SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
+                    MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
                     //Variable
-                    Cmd.Parameters.AddWithValue("ID", ID);
+                    Cmd.Parameters.AddWithValue("Codigo", ID);
                     //Ejecutamos el lector
 
-                    SqlDataReader Reader = Cmd.ExecuteReader();
+                    MySqlDataReader Reader = Cmd.ExecuteReader();
 
                     List<cCuentasCobrar> Lista=new List<cCuentasCobrar>();
 
@@ -379,12 +383,12 @@ namespace SMA.DA
                     {
 
                         cCuentasCobrar Cuenta = new cCuentasCobrar();
-                        Cuenta.ID = Reader.GetInt64(Reader.GetOrdinal("ID"));
-                        Cuenta.ConceptoID = Reader.GetString(Reader.GetOrdinal("Concepto"));
-                        Cuenta.ClienteID = Reader.GetString(Reader.GetOrdinal("NombreComercial"));
-                        //Cuenta.FacturaID = Reader.IsDBNull(Reader.GetOrdinal("FacturaID")) ? -1 : Reader.GetInt64(Reader.GetOrdinal("FacturaID"));
-                        Cuenta.DocumentoID = Reader.IsDBNull(Reader.GetOrdinal("DocumentoID")) ? null : Reader.GetString(Reader.GetOrdinal("DocumentoID"));
-                        Cuenta.ReferenciaID = Reader.IsDBNull(Reader.GetOrdinal("ReferenciaID")) ? null : Reader.GetString(Reader.GetOrdinal("ReferenciaID"));
+                        Cuenta.Codigo = Reader.GetInt32(Reader.GetOrdinal("Codigo"));
+                        Cuenta.CodigoConcepto = Reader.GetString(Reader.GetOrdinal("Concepto"));
+                        Cuenta.CodigoCliente = Reader.GetString(Reader.GetOrdinal("NombreComercial"));
+                        //Cuenta.FacturaID = Reader.IsDBNull(Reader.GetOrdinal("CodigoFactura")) ? -1 : Reader.GetInt64(Reader.GetOrdinal("CodigoFactura"));
+                        Cuenta.CodigoDocumento = Reader.IsDBNull(Reader.GetOrdinal("CodigoDocumento")) ? null : Reader.GetString(Reader.GetOrdinal("CodigoDocumento"));
+                        Cuenta.CodigoReferencia = Reader.IsDBNull(Reader.GetOrdinal("CodigoReferencia")) ? null : Reader.GetString(Reader.GetOrdinal("CodigoReferencia"));
                         //Cuenta.Estatus = Reader.GetBoolean(Reader.GetOrdinal("Estatus"));
                         Cuenta.FechaEmision = Reader.GetDateTime(Reader.GetOrdinal("fechaEmision"));
                         //Cuenta.FechaVencimiento = Reader.GetDateTime(Reader.GetOrdinal("FechaVencimiento"));
@@ -397,7 +401,7 @@ namespace SMA.DA
                     return Lista;
                 }
             }
-            catch (SqlException Ex)
+            catch (MySqlException Ex)
             {
                 throw Ex;
 
@@ -406,54 +410,54 @@ namespace SMA.DA
         }
 
 
-        public static List<cCuentasCobrar> FiltrarCuentas(  Int32 IndicadorFechaEmision,
-                                                            Int32 IndicadorFechaVencimiento,
-                                                            Int32 IndicadorConcepto,
+        public static List<cCuentasCobrar> FiltrarCuentas(  Int16 IndicadorFechaEmision,
+                                                            Int16 IndicadorFechaVencimiento,
+                                                            Int16 IndicadorConcepto,
                                                             String CriterioMonto,
                                                             String CriterioBalance,
                                                             Decimal Monto,
                                                             Decimal Balance,
-                                                            Int32 ConceptoID,
-                                                            Int64 ClienteID,
+                                                            Int16 ConceptoID,
+                                                            Int32 ClienteID,
                                                             DateTime FechaDesde,
                                                             DateTime FechaHasta)
         {
             try
             {
                 //Declaramos la conexion hacia la base de datos
-                using (SqlConnection Conn = new SqlConnection(cConexion.CadenaConexion()))
+                using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
                 {
                     Conn.Open();
                     //Nombre del procedimiento
                     string StoreProc = "uspFiltroCuentaCobrar";
                     //Creamos el command para la insercion
-                    SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
+                    MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
                     //Variable
-                    Cmd.Parameters.AddWithValue("ClienteID", ClienteID);
-                    Cmd.Parameters.AddWithValue("IndicadorFechaEmision", IndicadorFechaEmision);
-                    Cmd.Parameters.AddWithValue("IndicadorFechaVencimiento", IndicadorFechaVencimiento);
-                    Cmd.Parameters.AddWithValue("IndicadorConcepto", IndicadorConcepto);
-                    Cmd.Parameters.AddWithValue("CriterioMonto", CriterioMonto);
-                    Cmd.Parameters.AddWithValue("CriterioBalance", CriterioBalance);
-                    Cmd.Parameters.AddWithValue("Monto", Monto);
-                    Cmd.Parameters.AddWithValue("Balance", Balance);
-                    Cmd.Parameters.AddWithValue("ConceptoID", ConceptoID);
-                    Cmd.Parameters.AddWithValue("FechaDesde", FechaDesde);
-                    Cmd.Parameters.AddWithValue("FechaHasta", FechaHasta);
+                    Cmd.Parameters.AddWithValue("p_CodigoCliente", ClienteID);
+                    Cmd.Parameters.AddWithValue("p_IndicadorFechaEmision", IndicadorFechaEmision);
+                    Cmd.Parameters.AddWithValue("p_IndicadorFechaVencimiento", IndicadorFechaVencimiento);
+                    Cmd.Parameters.AddWithValue("p_IndicadorConcepto", IndicadorConcepto);
+                    Cmd.Parameters.AddWithValue("p_CriterioMonto", CriterioMonto);
+                    Cmd.Parameters.AddWithValue("p_CriterioBalance", CriterioBalance);
+                    Cmd.Parameters.AddWithValue("p_Monto", Monto);
+                    Cmd.Parameters.AddWithValue("p_Balance", Balance);
+                    Cmd.Parameters.AddWithValue("p_CodigoConcepto", ConceptoID);
+                    Cmd.Parameters.AddWithValue("p_FechaDesde", FechaDesde);
+                    Cmd.Parameters.AddWithValue("p_FechaHasta", FechaHasta);
                     //Ejecutamos el lector
 
-                    SqlDataReader Reader = Cmd.ExecuteReader();
+                    MySqlDataReader Reader = Cmd.ExecuteReader();
 
 
                     List<cCuentasCobrar> Lista = new List<cCuentasCobrar>();
                     while (Reader.Read())
                     {
                         cCuentasCobrar Cuenta = new cCuentasCobrar();
-                        Cuenta.ID = Reader.GetInt64(Reader.GetOrdinal("ID"));
-                        Cuenta.ConceptoID = Reader.GetString(Reader.GetOrdinal("Concepto"));
-                        Cuenta.ClienteID = Reader.GetString(Reader.GetOrdinal("NombreComercial"));
-                        Cuenta.DocumentoID = Reader.IsDBNull(Reader.GetOrdinal("DocumentoID")) ? null : Reader.GetString(Reader.GetOrdinal("DocumentoID"));
+                        Cuenta.Codigo = Reader.GetInt32(Reader.GetOrdinal("Codigo"));
+                        Cuenta.CodigoConcepto = Reader.GetString(Reader.GetOrdinal("Concepto"));
+                        Cuenta.CodigoCliente = Reader.GetString(Reader.GetOrdinal("NombreComercial"));
+                        Cuenta.CodigoDocumento = Reader.IsDBNull(Reader.GetOrdinal("CodigoDocumento")) ? null : Reader.GetString(Reader.GetOrdinal("CodigoDocumento"));
                         Cuenta.FechaEmision = Reader.GetDateTime(Reader.GetOrdinal("FechaEmision"));
                         Cuenta.FechaVencimiento = Reader.GetDateTime(Reader.GetOrdinal("FechaVencimiento"));
                         Cuenta.Monto = Reader.GetDecimal(Reader.GetOrdinal("Monto"));
@@ -467,7 +471,7 @@ namespace SMA.DA
                     return Lista;
                 }
             }
-            catch (SqlException Ex)
+            catch (MySqlException Ex)
             {
                 throw Ex;
 
@@ -479,37 +483,37 @@ namespace SMA.DA
                                                                     DateTime FechaHasta,
                                                                     DateTime FechaCorte,
                                                                     Int32 IndicadorCorte,
-                                                                    Int64 ClienteDesde,
-                                                                    Int64 ClienteHasta)
+                                                                    Int32 ClienteDesde,
+                                                                    Int32 ClienteHasta)
         {
             try
             {
                 //Declaramos la conexion hacia la base de datos
-                using (SqlConnection Conn = new SqlConnection(cConexion.CadenaConexion()))
+                using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
                 {
                     Conn.Open();
                     //Nombre del procedimiento
-                    string StoreProc = "uspReporteEstadoCuentaGeneralCliente";
+                    string StoreProc = "uspRptEstadoCtaGralClte";
                     //Creamos el command para la insercion
-                    SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
+                    MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
                     //Variable
-                    Cmd.Parameters.AddWithValue("FechaCorte", FechaCorte);
-                    Cmd.Parameters.AddWithValue("ClienteDesde", ClienteDesde);
-                    Cmd.Parameters.AddWithValue("ClienteHasta", ClienteHasta);
-                    Cmd.Parameters.AddWithValue("IndicadorCorte", IndicadorCorte);
-                    Cmd.Parameters.AddWithValue("FechaDesde", FechaDesde);
-                    Cmd.Parameters.AddWithValue("FechaHasta", FechaHasta);
+                    Cmd.Parameters.AddWithValue("p_FechaCorte", FechaCorte);
+                    Cmd.Parameters.AddWithValue("p_ClienteDesde", ClienteDesde);
+                    Cmd.Parameters.AddWithValue("p_ClienteHasta", ClienteHasta);
+                    Cmd.Parameters.AddWithValue("p_IndicadorCorte", IndicadorCorte);
+                    Cmd.Parameters.AddWithValue("p_FechaDesde", FechaDesde);
+                    Cmd.Parameters.AddWithValue("p_FechaHasta", FechaHasta);
                     //Ejecutamos el lector
 
-                    SqlDataReader Reader = Cmd.ExecuteReader();
+                    MySqlDataReader Reader = Cmd.ExecuteReader();
 
 
                     List<cReporteEstadoCuenta> Lista = new List<cReporteEstadoCuenta>();
                     while (Reader.Read())
                     {
                         cReporteEstadoCuenta Cuenta = new cReporteEstadoCuenta();
-                        Cuenta.ClienteID = Reader.GetInt64(Reader.GetOrdinal("ClienteID"));
+                        Cuenta.CodigoCliente = Reader.GetInt64(Reader.GetOrdinal("CodigoCliente"));
                         Cuenta.NombreCliente = Reader.GetString(Reader.GetOrdinal("NombreComercial"));
                         Cuenta.Direccion = Reader.IsDBNull(Reader.GetOrdinal("Direccion")) ? null : Reader.GetString(Reader.GetOrdinal("Direccion"));
                         Cuenta.Provincia = Reader.IsDBNull(Reader.GetOrdinal("Provincia"))? null:  Reader.GetString(Reader.GetOrdinal("Provincia"));
@@ -517,13 +521,13 @@ namespace SMA.DA
                         Cuenta.RNC = Reader.GetString(Reader.GetOrdinal("RNC"));
                         Cuenta.Telefono = Reader.GetString(Reader.GetOrdinal("Telefono"));
                         Cuenta.Fax = Reader.GetString(Reader.GetOrdinal("Fax"));
-                        Cuenta.ContactoCobros = Reader.GetString(Reader.GetOrdinal("ContactoCobros"));
+                        //Cuenta.ContactoCobros = Reader.GetString(Reader.GetOrdinal("ContactoCobros"));
                         Cuenta.LimiteCredito = Reader.GetDecimal(Reader.GetOrdinal("LimiteCredito"));
                         Cuenta.DiasCredito = Reader.GetInt32(Reader.GetOrdinal("DiasCredito"));
                         Cuenta.BalanceDisponible = Reader.GetDecimal(Reader.GetOrdinal("BalanceDisponible"));
-                        Cuenta.ConceptoID = Reader.GetString(Reader.GetOrdinal("Concepto"));
-                        Cuenta.DocumentoID = Reader.GetString(Reader.GetOrdinal("DocumentoID"));
-                        Cuenta.ReferenciaID = Reader.IsDBNull(Reader.GetOrdinal("ReferenciaID")) ? null : Reader.GetString(Reader.GetOrdinal("ReferenciaID"));
+                        Cuenta.CodigoConcepto = Reader.GetString(Reader.GetOrdinal("Concepto"));
+                        Cuenta.CodigoDocumento = Reader.GetString(Reader.GetOrdinal("CodigoDocumento"));
+                        Cuenta.CodigoReferencia = Reader.IsDBNull(Reader.GetOrdinal("CodigoReferencia")) ? null : Reader.GetString(Reader.GetOrdinal("CodigoReferencia"));
                         Cuenta.FechaEmision = Reader.GetDateTime(Reader.GetOrdinal("FechaEmision"));
                         Cuenta.FechaVencimiento = Reader.GetDateTime(Reader.GetOrdinal("FechaVencimiento"));
                         Cuenta.Monto = Reader.GetDecimal(Reader.GetOrdinal("Cargos"));
@@ -538,7 +542,7 @@ namespace SMA.DA
                     return Lista;
                 }
             }
-            catch (SqlException Ex)
+            catch (MySqlException Ex)
             {
                 throw Ex;
 
@@ -556,13 +560,13 @@ namespace SMA.DA
             try
             {
                 //Declaramos la conexion hacia la base de datos
-                using (SqlConnection Conn = new SqlConnection(cConexion.CadenaConexion()))
+                using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
                 {
                     Conn.Open();
                     //Nombre del procedimiento
                     string StoreProc = "uspReporteEstadoCuentaDetalladoCliente";
                     //Creamos el command para la insercion
-                    SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
+                    MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
                     //Variable
                     Cmd.Parameters.AddWithValue("FechaCorte", FechaCorte);
@@ -573,14 +577,14 @@ namespace SMA.DA
                     Cmd.Parameters.AddWithValue("FechaHasta", FechaHasta);
                     //Ejecutamos el lector
 
-                    SqlDataReader Reader = Cmd.ExecuteReader();
+                    MySqlDataReader Reader = Cmd.ExecuteReader();
 
 
                     List<cReporteEstadoCuenta> Lista = new List<cReporteEstadoCuenta>();
                     while (Reader.Read())
                     {
                         cReporteEstadoCuenta Cuenta = new cReporteEstadoCuenta();
-                        Cuenta.ClienteID = Reader.GetInt64(Reader.GetOrdinal("ClienteID"));
+                        Cuenta.CodigoCliente = Reader.GetInt64(Reader.GetOrdinal("CodigoCliente"));
                         Cuenta.NombreCliente = Reader.GetString(Reader.GetOrdinal("NombreComercial"));
                         Cuenta.Direccion = Reader.IsDBNull(Reader.GetOrdinal("Direccion")) ? null : Reader.GetString(Reader.GetOrdinal("Direccion"));
                         Cuenta.Provincia = Reader.IsDBNull(Reader.GetOrdinal("Provincia")) ? null : Reader.GetString(Reader.GetOrdinal("Provincia"));
@@ -592,9 +596,9 @@ namespace SMA.DA
                         Cuenta.LimiteCredito = Reader.GetDecimal(Reader.GetOrdinal("LimiteCredito"));
                         Cuenta.DiasCredito = Reader.GetInt32(Reader.GetOrdinal("DiasCredito"));
                         Cuenta.BalanceDisponible = Reader.GetDecimal(Reader.GetOrdinal("BalanceDisponible"));
-                        Cuenta.ConceptoID = Reader.GetString(Reader.GetOrdinal("Concepto"));
-                        Cuenta.DocumentoID = Reader.GetString(Reader.GetOrdinal("DocumentoID"));
-                        Cuenta.ReferenciaID = Reader.IsDBNull(Reader.GetOrdinal("ReferenciaID")) ? null : Reader.GetString(Reader.GetOrdinal("ReferenciaID"));
+                        Cuenta.CodigoConcepto = Reader.GetString(Reader.GetOrdinal("Concepto"));
+                        Cuenta.CodigoDocumento = Reader.GetString(Reader.GetOrdinal("CodigoDocumento"));
+                        Cuenta.CodigoReferencia = Reader.IsDBNull(Reader.GetOrdinal("CodigoReferencia")) ? null : Reader.GetString(Reader.GetOrdinal("CodigoReferencia"));
                         Cuenta.FechaEmision = Reader.GetDateTime(Reader.GetOrdinal("FechaEmision"));
                         Cuenta.FechaVencimiento = Reader.GetDateTime(Reader.GetOrdinal("FechaVencimiento"));
                         Cuenta.Monto = Reader.GetDecimal(Reader.GetOrdinal("Cargos"));
@@ -609,7 +613,7 @@ namespace SMA.DA
                     return Lista;
                 }
             }
-            catch (SqlException Ex)
+            catch (MySqlException Ex)
             {
                 throw Ex;
 
@@ -627,13 +631,13 @@ namespace SMA.DA
             try
             {
                 //Declaramos la conexion hacia la base de datos
-                using (SqlConnection Conn = new SqlConnection(cConexion.CadenaConexion()))
+                using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
                 {
                     Conn.Open();
                     //Nombre del procedimiento
                     string StoreProc = "uspCobranzaGeneral";
                     //Creamos el command para la insercion
-                    SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
+                    MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
                     //Variable
                     Cmd.Parameters.AddWithValue("FechaCorte", FechaCorte);
@@ -644,19 +648,19 @@ namespace SMA.DA
                     Cmd.Parameters.AddWithValue("FechaHasta", FechaHasta);
                     //Ejecutamos el lector
 
-                    SqlDataReader Reader = Cmd.ExecuteReader();
+                    MySqlDataReader Reader = Cmd.ExecuteReader();
 
 
                     List<cReporteEstadoCuenta> Lista = new List<cReporteEstadoCuenta>();
                     while (Reader.Read())
                     {
                         cReporteEstadoCuenta Cuenta = new cReporteEstadoCuenta();
-                        Cuenta.ClienteID = Reader.GetInt64(Reader.GetOrdinal("ClienteID"));
+                        Cuenta.CodigoCliente = Reader.GetInt64(Reader.GetOrdinal("CodigoCliente"));
                         Cuenta.NombreCliente = Reader.GetString(Reader.GetOrdinal("NombreComercial"));
                         Cuenta.Telefono = Reader.GetString(Reader.GetOrdinal("Telefono"));
                         Cuenta.ContactoCobros = Reader.GetString(Reader.GetOrdinal("ContactoCobros"));
-                        Cuenta.ConceptoID = Reader.GetString(Reader.GetOrdinal("Concepto"));
-                        Cuenta.DocumentoID = Reader.GetString(Reader.GetOrdinal("DocumentoID"));
+                        Cuenta.CodigoConcepto = Reader.GetString(Reader.GetOrdinal("Concepto"));
+                        Cuenta.CodigoDocumento = Reader.GetString(Reader.GetOrdinal("CodigoDocumento"));
                         Cuenta.FechaEmision = Reader.GetDateTime(Reader.GetOrdinal("FechaEmision"));
                         Cuenta.FechaVencimiento = Reader.GetDateTime(Reader.GetOrdinal("FechaVencimiento"));
                         Cuenta.Monto = Reader.GetDecimal(Reader.GetOrdinal("Cargos"));
@@ -671,7 +675,7 @@ namespace SMA.DA
                     return Lista;
                 }
             }
-            catch (SqlException Ex)
+            catch (MySqlException Ex)
             {
                 throw Ex;
 
@@ -682,36 +686,36 @@ namespace SMA.DA
         public static List<cAntiguedadSaldo> AntiguedadSaldo(String IndicadorFecha,
                                                              DateTime FechaReferencia,
                                                              DateTime? FechaCorte,
-                                                             Int64 ClienteDesde,
-                                                             Int64 ClienteHasta)
+                                                             Int32 ClienteDesde,
+                                                             Int32 ClienteHasta)
         {
             try
             {
                 //Declaramos la conexion hacia la base de datos
-                using (SqlConnection Conn = new SqlConnection(cConexion.CadenaConexion()))
+                using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
                 {
                     Conn.Open();
                     //Nombre del procedimiento
                     string StoreProc = "uspAntiguedadSaldoCuenCobrar";
                     //Creamos el command para la insercion
-                    SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
+                    MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
                     //Variable
-                    Cmd.Parameters.AddWithValue("FechaCorte", FechaCorte);
-                    Cmd.Parameters.AddWithValue("ClienteDesde", ClienteDesde);
-                    Cmd.Parameters.AddWithValue("ClienteHasta", ClienteHasta);
-                    Cmd.Parameters.AddWithValue("FechaReferencia", FechaReferencia);
-                    Cmd.Parameters.AddWithValue("IndicadorFecha",IndicadorFecha);
+                    Cmd.Parameters.AddWithValue("p_FechaCorte", FechaCorte);
+                    Cmd.Parameters.AddWithValue("p_ClienteDesde", ClienteDesde);
+                    Cmd.Parameters.AddWithValue("p_ClienteHasta", ClienteHasta);
+                    Cmd.Parameters.AddWithValue("p_FechaReferencia", FechaReferencia);
+                    Cmd.Parameters.AddWithValue("p_IndicadorFecha",IndicadorFecha);
                     //Ejecutamos el lector
 
-                    SqlDataReader Reader = Cmd.ExecuteReader();
+                    MySqlDataReader Reader = Cmd.ExecuteReader();
 
 
                     List<cAntiguedadSaldo> Lista = new List<cAntiguedadSaldo>();
                     while (Reader.Read())
                     {
                         cAntiguedadSaldo Cuenta = new cAntiguedadSaldo();
-                        Cuenta.ID=Reader.GetInt64(Reader.GetOrdinal("ID"));
+                        Cuenta.Codigo=Reader.GetInt64(Reader.GetOrdinal("Codigo"));
                         Cuenta.NombreComercial=Reader.GetString(Reader.GetOrdinal("NombreComercial"));
                         Cuenta.Corriente=Reader.GetDecimal(Reader.GetOrdinal("Corriente"));
                         Cuenta.Dias0a30 = Reader.GetDecimal(Reader.GetOrdinal("1-30"));
@@ -729,7 +733,7 @@ namespace SMA.DA
                     return Lista;
                 }
             }
-            catch (SqlException Ex)
+            catch (MySqlException Ex)
             {
                 throw Ex;
 
@@ -740,38 +744,38 @@ namespace SMA.DA
         public static List<cAntiguedadSaldoDetalle> AntiguedadSaldoDetalle(String IndicadorFecha,
                                                             DateTime FechaReferencia,
                                                             DateTime? FechaCorte,
-                                                            Int64 ClienteDesde,
-                                                            Int64 ClienteHasta)
+                                                            Int32 ClienteDesde,
+                                                            Int32 ClienteHasta)
         {
             try
             {
                 //Declaramos la conexion hacia la base de datos
-                using (SqlConnection Conn = new SqlConnection(cConexion.CadenaConexion()))
+                using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
                 {
                     Conn.Open();
                     //Nombre del procedimiento
                     string StoreProc = "uspAntiguedadSaldoCuenCobrarDetalle";
                     //Creamos el command para la insercion
-                    SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
+                    MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
                     //Variable
-                    Cmd.Parameters.AddWithValue("FechaCorte", FechaCorte);
-                    Cmd.Parameters.AddWithValue("ClienteDesde", ClienteDesde);
-                    Cmd.Parameters.AddWithValue("ClienteHasta", ClienteHasta);
-                    Cmd.Parameters.AddWithValue("FechaReferencia", FechaReferencia);
-                    Cmd.Parameters.AddWithValue("IndicadorFecha", IndicadorFecha);
+                    Cmd.Parameters.AddWithValue("p_FechaCorte", FechaCorte);
+                    Cmd.Parameters.AddWithValue("p_ClienteDesde", ClienteDesde);
+                    Cmd.Parameters.AddWithValue("p_ClienteHasta", ClienteHasta);
+                    Cmd.Parameters.AddWithValue("p_FechaReferencia", FechaReferencia);
+                    Cmd.Parameters.AddWithValue("p_IndicadorFecha", IndicadorFecha);
                     //Ejecutamos el lector
 
-                    SqlDataReader Reader = Cmd.ExecuteReader();
+                    MySqlDataReader Reader = Cmd.ExecuteReader();
 
 
                     List<cAntiguedadSaldoDetalle> Lista = new List<cAntiguedadSaldoDetalle>();
                     while (Reader.Read())
                     {
                         cAntiguedadSaldoDetalle Cuenta = new cAntiguedadSaldoDetalle();
-                        Cuenta.ID = Reader.GetInt64(Reader.GetOrdinal("ID"));
+                        Cuenta.Codigo = Reader.GetInt64(Reader.GetOrdinal("Codigo"));
                         Cuenta.NombreComercial = Reader.GetString(Reader.GetOrdinal("NombreComercial"));
-                        Cuenta.DocumentoID = Reader.GetString(Reader.GetOrdinal("DocumentoID"));
+                        Cuenta.CodigoDocumento = Reader.GetString(Reader.GetOrdinal("CodigoDocumento"));
                         Cuenta.Concepto = Reader.GetString(Reader.GetOrdinal("Concepto"));
                         Cuenta.FechaEmision = Reader.GetDateTime(Reader.GetOrdinal("FechaEmision"));
                         Cuenta.FechaVencimiento = Reader.GetDateTime(Reader.GetOrdinal("FechaVencimiento"));
@@ -791,7 +795,7 @@ namespace SMA.DA
                     return Lista;
                 }
             }
-            catch (SqlException Ex)
+            catch (MySqlException Ex)
             {
                 throw Ex;
 
@@ -810,38 +814,38 @@ namespace SMA.DA
             try
             {
                 //Declaramos la conexion hacia la base de datos
-                using (SqlConnection Conn = new SqlConnection(cConexion.CadenaConexion()))
+                using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
                 {
                     Conn.Open();
                     //Nombre del procedimiento
-                    string StoreProc = "uspReportePorConceptoCuenCobrar";
+                    string StoreProc = "uspRptPorCptoCuenCobrar";
                     //Creamos el command para la insercion
-                    SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
+                    MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
                     //Variable
-                    Cmd.Parameters.AddWithValue("ClienteDesde", ClienteDesde);
-                    Cmd.Parameters.AddWithValue("ClienteHasta", ClienteHasta);
-                    Cmd.Parameters.AddWithValue("FechaInicial", FechaDesde);
-                    Cmd.Parameters.AddWithValue("FechaFinal", FechaHasta);
-                    Cmd.Parameters.AddWithValue("CriterioCantidad", CriterioCantidad);
-                    Cmd.Parameters.AddWithValue("Conceptos", Conceptos);
-                    Cmd.Parameters.AddWithValue("ValorMonto", ValorMonto);
+                    Cmd.Parameters.AddWithValue("p_ClienteDesde", ClienteDesde);
+                    Cmd.Parameters.AddWithValue("p_ClienteHasta", ClienteHasta);
+                    Cmd.Parameters.AddWithValue("p_FechaInicial", FechaDesde);
+                    Cmd.Parameters.AddWithValue("p_FechaFinal", FechaHasta);
+                    Cmd.Parameters.AddWithValue("p_CriterioCantidad", CriterioCantidad);
+                    Cmd.Parameters.AddWithValue("p_Conceptos", Conceptos);
+                    Cmd.Parameters.AddWithValue("p_ValorMonto", ValorMonto);
                     //Ejecutamos el lector
 
-                    SqlDataReader Reader = Cmd.ExecuteReader();
+                    MySqlDataReader Reader = Cmd.ExecuteReader();
 
 
                     List<cCuentasCobrar> Lista = new List<cCuentasCobrar>();
                     while (Reader.Read())
                     {
                         cCuentasCobrar Cuenta = new cCuentasCobrar();
-                        Cuenta.ID = Reader.GetInt64(Reader.GetOrdinal("ID"));
-                        Cuenta.ConceptoID = Reader.GetString(Reader.GetOrdinal("Concepto"));
-                        Cuenta.ClienteID = Reader.GetString(Reader.GetOrdinal("NombreComercial"));
-                        Cuenta.DocumentoID = Reader.IsDBNull(Reader.GetOrdinal("DocumentoID")) ? null : Reader.GetString(Reader.GetOrdinal("DocumentoID"));
+                        Cuenta.Codigo = Reader.GetInt32(Reader.GetOrdinal("Codigo"));
+                        Cuenta.CodigoConcepto = Reader.GetString(Reader.GetOrdinal("Concepto"));
+                        Cuenta.CodigoCliente = Reader.GetString(Reader.GetOrdinal("NombreComercial"));
+                        Cuenta.CodigoDocumento = Reader.IsDBNull(Reader.GetOrdinal("CodigoDocumento")) ? null : Reader.GetString(Reader.GetOrdinal("CodigoDocumento"));
                         Cuenta.FechaEmision = Reader.GetDateTime(Reader.GetOrdinal("FechaEmision"));
                         Cuenta.FechaVencimiento = Reader.GetDateTime(Reader.GetOrdinal("FechaVencimiento"));
-                        Cuenta.ReferenciaID = Reader.IsDBNull(Reader.GetOrdinal("ReferenciaID")) ? null : Reader.GetString(Reader.GetOrdinal("ReferenciaID"));
+                        Cuenta.CodigoReferencia = Reader.IsDBNull(Reader.GetOrdinal("CodigoReferencia")) ? null : Reader.GetString(Reader.GetOrdinal("CodigoReferencia"));
                         Cuenta.Monto = Reader.GetDecimal(Reader.GetOrdinal("Monto"));
                         //Agregamos el articulo a la lista
                         Lista.Add(Cuenta);
@@ -852,7 +856,7 @@ namespace SMA.DA
                     return Lista;
                 }
             }
-            catch (SqlException Ex)
+            catch (MySqlException Ex)
             {
                 throw Ex;
 
@@ -867,22 +871,22 @@ namespace SMA.DA
             try
             {
                 //Declaramos la conexion hacia la base de datos
-                using (SqlConnection Conn = new SqlConnection(cConexion.CadenaConexion()))
+                using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
                 {
                     Conn.Open();
                     //Nombre del procedimiento
                     string StoreProc = "uspResumenMovCuentaCobrar";
                     //Creamos el command para la insercion
-                    SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
+                    MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
                     //Variable
-                    Cmd.Parameters.AddWithValue("ClienteID", ClienteID);
+                    Cmd.Parameters.AddWithValue("CodigoCliente", ClienteID);
                     Cmd.Parameters.AddWithValue("FechaDesde", FechaDesde);
                     Cmd.Parameters.AddWithValue("FechaHasta", FechaHasta);
   
                     //Ejecutamos el lector
 
-                    SqlDataReader Reader = Cmd.ExecuteReader();
+                    MySqlDataReader Reader = Cmd.ExecuteReader();
 
 
                     List<cReporteResumenCuentaCobrar> Lista = new List<cReporteResumenCuentaCobrar>();
@@ -890,7 +894,7 @@ namespace SMA.DA
                     {
                         cReporteResumenCuentaCobrar Cuenta = new cReporteResumenCuentaCobrar();
                         Cuenta.Tipo = Reader.IsDBNull(Reader.GetOrdinal("Tipo")) ? null : Reader.GetString(Reader.GetOrdinal("Tipo"));
-                        Cuenta.ConceptoID = Reader.GetString(Reader.GetOrdinal("Concepto"));
+                        Cuenta.CodigoConcepto = Reader.GetString(Reader.GetOrdinal("Concepto"));
                         Cuenta.Monto = Reader.GetDecimal(Reader.GetOrdinal("Monto"));
                         //Agregamos el articulo a la lista
                         Lista.Add(Cuenta);
@@ -901,7 +905,7 @@ namespace SMA.DA
                     return Lista;
                 }
             }
-            catch (SqlException Ex)
+            catch (MySqlException Ex)
             {
                 throw Ex;
 
@@ -916,28 +920,28 @@ namespace SMA.DA
             try
             {
                 //Declaramos la conexion hacia la base de datos
-                using (SqlConnection Conn = new SqlConnection(cConexion.CadenaConexion()))
+                using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
                 {
                     Conn.Open();
                     //Nombre del procedimiento
                     string StoreProc = "uspResumenMovCuentasCobrarDetalle";
                     //Creamos el command para la insercion
-                    SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
+                    MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
                     //Variable
-                    Cmd.Parameters.AddWithValue("ClienteID", ClienteID);
+                    Cmd.Parameters.AddWithValue("CodigoCliente", ClienteID);
                     Cmd.Parameters.AddWithValue("FechaDesde", FechaDesde);
                     Cmd.Parameters.AddWithValue("FechaHasta", FechaHasta);
                     //Ejecutamos el lector
 
-                    SqlDataReader Reader = Cmd.ExecuteReader();
+                    MySqlDataReader Reader = Cmd.ExecuteReader();
 
 
                     List<cReporteEstadoCuenta> Lista = new List<cReporteEstadoCuenta>();
                     while (Reader.Read())
                     {
                         cReporteEstadoCuenta Cuenta = new cReporteEstadoCuenta();
-                        Cuenta.ClienteID = Reader.GetInt64(Reader.GetOrdinal("ClienteID"));
+                        Cuenta.CodigoCliente = Reader.GetInt64(Reader.GetOrdinal("CodigoCliente"));
                         Cuenta.NombreCliente = Reader.GetString(Reader.GetOrdinal("NombreComercial"));
                         Cuenta.Direccion = Reader.IsDBNull(Reader.GetOrdinal("Direccion")) ? null : Reader.GetString(Reader.GetOrdinal("Direccion"));
                         Cuenta.Provincia = Reader.IsDBNull(Reader.GetOrdinal("Provincia")) ? null : Reader.GetString(Reader.GetOrdinal("Provincia"));
@@ -949,9 +953,9 @@ namespace SMA.DA
                         Cuenta.LimiteCredito = Reader.GetDecimal(Reader.GetOrdinal("LimiteCredito"));
                         Cuenta.DiasCredito = Reader.GetInt32(Reader.GetOrdinal("DiasCredito"));
                         Cuenta.BalanceDisponible = Reader.GetDecimal(Reader.GetOrdinal("BalanceDisponible"));
-                        Cuenta.ConceptoID = Reader.GetString(Reader.GetOrdinal("Concepto"));
-                        Cuenta.DocumentoID = Reader.GetString(Reader.GetOrdinal("DocumentoID"));
-                        Cuenta.ReferenciaID = Reader.IsDBNull(Reader.GetOrdinal("ReferenciaID")) ? null : Reader.GetString(Reader.GetOrdinal("ReferenciaID"));
+                        Cuenta.CodigoConcepto = Reader.GetString(Reader.GetOrdinal("Concepto"));
+                        Cuenta.CodigoDocumento = Reader.GetString(Reader.GetOrdinal("CodigoDocumento"));
+                        Cuenta.CodigoReferencia = Reader.IsDBNull(Reader.GetOrdinal("CodigoReferencia")) ? null : Reader.GetString(Reader.GetOrdinal("CodigoReferencia"));
                         Cuenta.FechaEmision = Reader.GetDateTime(Reader.GetOrdinal("FechaEmision"));
                         Cuenta.FechaVencimiento = Reader.GetDateTime(Reader.GetOrdinal("FechaVencimiento"));
                         Cuenta.Monto = Reader.GetDecimal(Reader.GetOrdinal("Cargos"));
@@ -966,7 +970,7 @@ namespace SMA.DA
                     return Lista;
                 }
             }
-            catch (SqlException Ex)
+            catch (MySqlException Ex)
             {
                 throw Ex;
 
@@ -974,37 +978,37 @@ namespace SMA.DA
 
         }
 
-        public static List<cReporteEstadoCuenta> ReporteDocumentosPorCobrar(Int64? ClienteDesde, Int64? ClienteHasta, DateTime FechaCorte)
+        public static List<cReporteEstadoCuenta> ReporteDocumentosPorCobrar(Int32? ClienteDesde, Int32? ClienteHasta, DateTime FechaCorte)
         {
             try
             {
                 //Declaramos la conexion hacia la base de datos
-                using (SqlConnection Conn = new SqlConnection(cConexion.CadenaConexion()))
+                using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
                 {
                     Conn.Open();
                     //Nombre del procedimiento
-                    string StoreProc = "uspReporteDocumentoPorCobrar";
+                    string StoreProc = "uspRptDocPorCobrar";
                     //Creamos el command para la insercion
-                    SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
+                    MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
                     //Variable
-                    Cmd.Parameters.AddWithValue("ClienteDesde", ClienteDesde);
-                    Cmd.Parameters.AddWithValue("ClienteHasta", ClienteHasta);
-                    Cmd.Parameters.AddWithValue("FechaCorte", FechaCorte);
+                    Cmd.Parameters.AddWithValue("p_ClienteDesde", ClienteDesde);
+                    Cmd.Parameters.AddWithValue("p_ClienteHasta", ClienteHasta);
+                    Cmd.Parameters.AddWithValue("p_FechaCorte", FechaCorte);
                     //Ejecutamos el lector
 
-                    SqlDataReader Reader = Cmd.ExecuteReader();
+                    MySqlDataReader Reader = Cmd.ExecuteReader();
 
 
                     List<cReporteEstadoCuenta> Lista = new List<cReporteEstadoCuenta>();
                     while (Reader.Read())
                     {
                         cReporteEstadoCuenta Cuenta = new cReporteEstadoCuenta();
-                        Cuenta.ClienteID = Reader.GetInt64(Reader.GetOrdinal("ID"));
+                        Cuenta.CodigoCliente = Reader.GetInt64(Reader.GetOrdinal("Codigo"));
                         Cuenta.NombreCliente = Reader.GetString(Reader.GetOrdinal("NombreComercial"));
-                        Cuenta.ContactoCobros = Reader.IsDBNull(Reader.GetOrdinal("ContactoCobros")) ? null : Reader.GetString(Reader.GetOrdinal("ContactoCobros"));
-                        Cuenta.ConceptoID = Reader.GetString(Reader.GetOrdinal("Concepto"));
-                        Cuenta.DocumentoID = Reader.GetString(Reader.GetOrdinal("DocumentoID"));
+                        //Cuenta.ContactoCobros = Reader.IsDBNull(Reader.GetOrdinal("ContactoCobros")) ? null : Reader.GetString(Reader.GetOrdinal("ContactoCobros"));
+                        Cuenta.CodigoConcepto = Reader.GetString(Reader.GetOrdinal("Concepto"));
+                        Cuenta.CodigoDocumento = Reader.GetString(Reader.GetOrdinal("CodigoDocumento"));
                         Cuenta.FechaReferencia = Reader.IsDBNull(Reader.GetOrdinal("FechaCorte"))? DateTime.Now :Reader.GetDateTime(Reader.GetOrdinal("FechaCorte"));
                         Cuenta.FechaEmision = Reader.GetDateTime(Reader.GetOrdinal("FechaEmision"));
                         Cuenta.FechaVencimiento = Reader.GetDateTime(Reader.GetOrdinal("FechaVencimiento"));
@@ -1018,7 +1022,7 @@ namespace SMA.DA
                     return Lista;
                 }
             }
-            catch (SqlException Ex)
+            catch (MySqlException Ex)
             {
                 throw Ex;
 
@@ -1029,36 +1033,38 @@ namespace SMA.DA
         public static List<cReporteEstadoCuenta> ReporteAbonoPorPeriodo(DateTime FechaDesde,
                                                                     DateTime FechaHasta,
                                                                     DateTime? FechaCorte,
-                                                                    Int64 ClienteDesde,
-                                                                    Int64 ClienteHasta)
+                                                                    Int32 ClienteDesde,
+                                                                    Int32 ClienteHasta,
+                                                                    Int16 IndicadorCorte)
         {
             try
             {
                 //Declaramos la conexion hacia la base de datos
-                using (SqlConnection Conn = new SqlConnection(cConexion.CadenaConexion()))
+                using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
                 {
                     Conn.Open();
                     //Nombre del procedimiento
                     string StoreProc = "uspAbonoPorPeriodoCuentaCobrar";
                     //Creamos el command para la insercion
-                    SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
+                    MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
                     //Variable
-                    Cmd.Parameters.AddWithValue("FechaCorte", FechaCorte);
-                    Cmd.Parameters.AddWithValue("ClienteDesde", ClienteDesde);
-                    Cmd.Parameters.AddWithValue("ClienteHasta", ClienteHasta);
-                    Cmd.Parameters.AddWithValue("FechaDesde", FechaDesde);
-                    Cmd.Parameters.AddWithValue("FechaHasta", FechaHasta);
+                    Cmd.Parameters.AddWithValue("p_FechaCorte", FechaCorte);
+                    Cmd.Parameters.AddWithValue("p_ClienteDesde", ClienteDesde);
+                    Cmd.Parameters.AddWithValue("p_ClienteHasta", ClienteHasta);
+                    Cmd.Parameters.AddWithValue("p_FechaDesde", FechaDesde);
+                    Cmd.Parameters.AddWithValue("p_FechaHasta", FechaHasta);
+                    Cmd.Parameters.AddWithValue("p_IndicadorCorte", IndicadorCorte);
                     //Ejecutamos el lector
 
-                    SqlDataReader Reader = Cmd.ExecuteReader();
+                    MySqlDataReader Reader = Cmd.ExecuteReader();
 
 
                     List<cReporteEstadoCuenta> Lista = new List<cReporteEstadoCuenta>();
                     while (Reader.Read())
                     {
                         cReporteEstadoCuenta Cuenta = new cReporteEstadoCuenta();
-                        Cuenta.ClienteID = Reader.GetInt64(Reader.GetOrdinal("ClienteID"));
+                        Cuenta.CodigoCliente = Reader.GetInt32(Reader.GetOrdinal("CodigoCliente"));
                         Cuenta.NombreCliente = Reader.GetString(Reader.GetOrdinal("NombreComercial"));
                         Cuenta.Direccion = Reader.IsDBNull(Reader.GetOrdinal("Direccion")) ? null : Reader.GetString(Reader.GetOrdinal("Direccion"));
                         Cuenta.Provincia = Reader.IsDBNull(Reader.GetOrdinal("Provincia")) ? null : Reader.GetString(Reader.GetOrdinal("Provincia"));
@@ -1066,18 +1072,20 @@ namespace SMA.DA
                         Cuenta.RNC = Reader.GetString(Reader.GetOrdinal("RNC"));
                         Cuenta.Telefono = Reader.GetString(Reader.GetOrdinal("Telefono"));
                         Cuenta.Fax = Reader.GetString(Reader.GetOrdinal("Fax"));
-                        Cuenta.ContactoCobros = Reader.GetString(Reader.GetOrdinal("ContactoCobros"));
+                        //Cuenta.ContactoCobros = Reader.GetString(Reader.GetOrdinal("ContactoCobros"));
                         Cuenta.LimiteCredito = Reader.GetDecimal(Reader.GetOrdinal("LimiteCredito"));
                         Cuenta.DiasCredito = Reader.GetInt32(Reader.GetOrdinal("DiasCredito"));
                         Cuenta.BalanceDisponible = Reader.GetDecimal(Reader.GetOrdinal("BalanceDisponible"));
-                        Cuenta.ConceptoID = Reader.GetString(Reader.GetOrdinal("Concepto"));
-                        Cuenta.DocumentoID = Reader.GetString(Reader.GetOrdinal("DocumentoID"));
-                        Cuenta.ReferenciaID = Reader.IsDBNull(Reader.GetOrdinal("ReferenciaID")) ? null : Reader.GetString(Reader.GetOrdinal("ReferenciaID"));
+                        Cuenta.CodigoConcepto = Reader.GetString(Reader.GetOrdinal("Concepto"));
+                        Cuenta.CodigoDocumento = Reader.GetString(Reader.GetOrdinal("CodigoDocumento"));
+                        Cuenta.CodigoReferencia = Reader.IsDBNull(Reader.GetOrdinal("CodigoReferencia")) ? null : Reader.GetString(Reader.GetOrdinal("CodigoReferencia"));
                         Cuenta.FechaEmision = Reader.GetDateTime(Reader.GetOrdinal("FechaEmision"));
                         Cuenta.FechaVencimiento = Reader.GetDateTime(Reader.GetOrdinal("FechaVencimiento"));
                         Cuenta.Monto = Reader.GetDecimal(Reader.GetOrdinal("Cargos"));
                         Cuenta.Abonos = Reader.GetDecimal(Reader.GetOrdinal("Abono"));
                         Cuenta.Balance = Reader.GetDecimal(Reader.GetOrdinal("BalanceDocumento"));
+                        Cuenta.FechaInicio = Reader.GetDateTime(Reader.GetOrdinal("p_FechaDesde"));
+                        Cuenta.FechaFin = Reader.GetDateTime(Reader.GetOrdinal("p_FechaHasta"));
                         //Agregamos el articulo a la lista
                         Lista.Add(Cuenta);
                     }
@@ -1087,7 +1095,7 @@ namespace SMA.DA
                     return Lista;
                 }
             }
-            catch (SqlException Ex)
+            catch (MySqlException Ex)
             {
                 throw Ex;
 

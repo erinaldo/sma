@@ -74,7 +74,7 @@ namespace SMA.Factura
             txtCantidad.Focus();
         }
 
-        public void BusquedaCliente(Int64 Codigo)
+        public void BusquedaCliente(Int32 Codigo)
         {
             try
             {
@@ -95,7 +95,7 @@ namespace SMA.Factura
         {
             lblDireccion.Text = Cliente.Direccion.ToString();
             lblRNC.Text = Cliente.RNC.ToString();
-            cbbCliente.SelectedValue = Cliente.ID;
+            cbbCliente.SelectedValue = Cliente.Codigo;
             cbbTipoComprobante.SelectedValue = Cliente.TipoComprobanteID;
             cbVendedor.SelectedValue = Cliente.VendedorID;
 
@@ -130,7 +130,7 @@ namespace SMA.Factura
                 {
                     //Guardamos el ID de la FacturA
                     Int64 FacturaID = Factura.ID;
-                    Int64 ClienteID = Convert.ToInt32(Factura.ClienteID);
+                    Int32 ClienteID = Convert.ToInt32(Factura.ClienteID);
 
                     //Asignamos los datos del cliente que se encuentra en la cotizacion
                     AsignarDatosCliente(ObjetoCliente.BuscarPorID(ClienteID));

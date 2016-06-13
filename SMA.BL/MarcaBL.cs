@@ -12,7 +12,7 @@ namespace SMA.BL
 
         public void GuardarCambios(cMarca Marca)
         {
-            if (MarcaDA.Existe(Marca.ID))
+            if (MarcaDA.Existe(Marca.Codigo))
             {
                 if (Validacion(Marca))
                 {

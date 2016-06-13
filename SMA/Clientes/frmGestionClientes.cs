@@ -17,7 +17,7 @@ namespace SMA.Clientes
     public partial class frmGestionClientes : Office2007Form, IGestionClientes
     {
         //private List<cRolesModulosUsuarios> Permisos;  //LISTA DE PERMISOS
-        private Int64 ClienteID;                       //CODIGO DE CLIENTE
+        private Int32 ClienteID;                       //CODIGO DE CLIENTE
 
         #region Constructores
         public frmGestionClientes()
@@ -192,10 +192,17 @@ namespace SMA.Clientes
 
         private void frmGestionClientes_Load(object sender, EventArgs e)
         {
-            //CARGAMOS LA INFORMACION DE LOS CLIENTES
-            ActualizarGrid();
-            //GESTIONAMOS LOS ACCESOS DE LOS USUARIOS
-            GestionAccesos();
+            try
+            {
+                //CARGAMOS LA INFORMACION DE LOS CLIENTES
+                ActualizarGrid();
+                //GESTIONAMOS LOS ACCESOS DE LOS USUARIOS
+                GestionAccesos();
+            }
+            catch(Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Error al obtener lista de clientes", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void dgvClientes_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -208,7 +215,7 @@ namespace SMA.Clientes
                     return;
                 }
                 //Codigo  que se obtiene desde el grid
-                ClienteID = Convert.ToInt64(dgvClientes.Rows[e.RowIndex].Cells[0].Value);
+                ClienteID = Convert.ToInt32(dgvClientes.Rows[e.RowIndex].Cells[0].Value);
             }
             catch (Exception Ex)
             {
@@ -219,41 +226,43 @@ namespace SMA.Clientes
         public void BuscarCliente(string Criterio, string Busqueda)
         {
             ClienteBL ObjetoCliente = new ClienteBL();
-            BindingSource DbCliente = new BindingSource();
-            DbCliente.DataSource = ObjetoCliente.Listar();
+            List<cCliente> Lista = ObjetoCliente.Listar();
 
             //Realizamos la busqueda deendiendo del critrio
             dgvClientes.AutoGenerateColumns = false;
-            dgvClientes.DataSource = DbCliente;
+            
 
             if (Criterio == "Código")
             {
-                //Busqueda por codigo
                 Int32 Codigo = Convert.ToInt32(Busqueda);
-                var obj = DbCliente.List.OfType<cCliente>().ToList().Find(f => f.ID == Codigo);
-                var pos = DbCliente.IndexOf(obj);
-                DbCliente.Position = pos;
+                var Resultado=(from r in Lista
+                                   where r.Codigo==Codigo
+                                   select r).ToList();
+                dgvClientes.DataSource = Resultado;
             }
             else if(Criterio=="Nombre")
             {
-                //Busqueda por codigo
-                var obj = DbCliente.List.OfType<cCliente>().ToList().Find(f => f.NombreComercial == Busqueda);
-                var pos = DbCliente.IndexOf(obj);
-                DbCliente.Position = pos;
+                var Resultado = (from r in Lista
+                                 where r.NombreComercial.StartsWith(Busqueda)
+                                 select r).ToList();
+                dgvClientes.DataSource = Resultado;
+               
             }
             else if (Criterio == "Teléfono")
             {
-                //Busqueda por codigo
-                var obj = DbCliente.List.OfType<cCliente>().ToList().Find(f => f.Telefono == Busqueda);
-                var pos = DbCliente.IndexOf(obj);
-                DbCliente.Position = pos;
+
+                var Resultado = (from r in Lista
+                                 where r.Telefono.StartsWith(Busqueda)
+                                 select r).ToList();
+                dgvClientes.DataSource = Resultado;
             }
             else if (Criterio == "RNC / Cedula")
             {
-                //Busqueda por codigo
-                var obj = DbCliente.List.OfType<cCliente>().ToList().Find(f => f.RNC == Busqueda);
-                var pos = DbCliente.IndexOf(obj);
-                DbCliente.Position = pos;
+
+                var Resultado = (from r in Lista
+                                 where r.RNC.StartsWith(Busqueda)
+                                 select r).ToList();
+                dgvClientes.DataSource = Resultado;
             }
         }
 

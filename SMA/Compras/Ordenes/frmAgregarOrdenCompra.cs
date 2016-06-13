@@ -53,7 +53,7 @@ namespace SMA.Compras.Ordenes
            //NO IMPLEMENTADA
         }
 
-        public void BusquedaProveedor(Int64 Codigo)
+        public void BusquedaProveedor(Int32 Codigo)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace SMA.Compras.Ordenes
                 cProveedor Proveedor = ObjetoProveedor.BuscarPorID(Codigo);
                 lblDireccion.Text = Proveedor.Direccion.ToString();
                 lblRNC.Text = Proveedor.RNC.ToString();
-                cbProveedor.SelectedValue = Proveedor.ID;
+                cbProveedor.SelectedValue = Proveedor.Codigo;
             }
 
             catch (Exception Ex)
@@ -204,7 +204,7 @@ namespace SMA.Compras.Ordenes
                 cProveedor Proveedor = ObjetoProveedor.BuscarPorID(Codigo);
                 lblDireccion.Text = Proveedor.Direccion.ToString();
                 lblRNC.Text = Proveedor.RNC.ToString();
-                cbProveedor.SelectedValue = Proveedor.ID;
+                cbProveedor.SelectedValue = Proveedor.Codigo;
             }
 
             catch (Exception Ex)

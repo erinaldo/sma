@@ -50,13 +50,16 @@
     <Compile Include="cComponente.cs" />
     <Compile Include="cCompras.cs" />
     <Compile Include="cConcepto.cs" />
+    <Compile Include="cContactos.cs" />
     <Compile Include="cCuenta.cs" />
     <Compile Include="cCuentasCobrar.cs" />
     <Compile Include="cCuentasPagar.cs" />
+    <Compile Include="cDepartamentos.cs" />
     <Compile Include="cDetalleCompra.cs" />
+    <Compile Include="cDireccionCliente.cs" />
     <Compile Include="cEmpresa.cs" />
     <Compile Include="cModulo.cs" />
-    <Compile Include="cPerfiles.cs" />
+    <Compile Include="cPerfil.cs" />
     <Compile Include="cRelacionModuloPerfil.cs" />
     <Compile Include="cRelacionModuloPerfilRol.cs" />
     <Compile Include="cRelacionPerfilModuloRol.cs" />

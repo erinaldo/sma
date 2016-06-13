@@ -32,7 +32,7 @@ namespace SMA.DA
                     while (Reader.Read())
                     {
                         cEstatus Estatus = new cEstatus();
-                        Estatus.ID = Reader.GetInt32(Reader.GetOrdinal("ID"));
+                        Estatus.Codigo = Reader.GetInt32(Reader.GetOrdinal("ID"));
                         Estatus.Descripcion = Reader.GetString(Reader.GetOrdinal("Descripcion"));
                         Estatus.Notas = Reader.GetString(Reader.GetOrdinal("Notas"));
 

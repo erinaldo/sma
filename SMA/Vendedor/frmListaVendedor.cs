@@ -52,7 +52,7 @@ namespace SMA.Vendedor
             if (Criterio == "Codigo")
             {
                 List<cVendedor> Resultado = (from C in ListaVendores
-                                               where C.ID==Convert.ToInt32(txtBusqueda.Text)
+                                               where C.Codigo==Convert.ToInt32(txtBusqueda.Text)
                                                select C).ToList();
                 ActualizarGrid(Resultado);
 

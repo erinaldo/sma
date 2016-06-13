@@ -12,9 +12,9 @@ namespace SMA.DA
         public static String CadenaConexion()
         {
             //Cadena de conexion para la base de datos
-            //return "Data Source=MANYLAPTOP-PC\\MANYLAPTOP;Initial Catalog=GymDB;Integrated Security=True";
+            return "Server=127.0.0.1;Database=smadb;Uid=root;Pwd=eduardo170983;";
             //return "Data Source=.\\SQLEXPRESS;Initial Catalog=SMADB;Integrated Security=True";
-            return "Data Source=LAGUARIDA-PC;Initial Catalog=SMADB;Integrated Security=True";
+            //return "Data Source=LAGUARIDA-PC;Initial Catalog=SMADB;Integrated Security=True";
         }
     }
 }

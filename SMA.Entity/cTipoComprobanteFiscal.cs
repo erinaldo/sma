@@ -7,12 +7,12 @@ namespace SMA.Entity
 {
     public class cTipoComprobanteFiscal
     {
-        private Int32 _ID;
+        private SByte _Codigo;
 
-        public Int32 ID
+        public SByte Codigo
         {
-            get { return _ID; }
-            set { _ID = value; }
+            get { return _Codigo; }
+            set { _Codigo = value; }
         }
         private String _Descripcion;
 
@@ -28,20 +28,7 @@ namespace SMA.Entity
             get { return _Notas; }
             set { _Notas = value; }
         }
-        private DateTime _FechaCreacion;
 
-        public DateTime FechaCreacion
-        {
-            get { return _FechaCreacion; }
-            set { _FechaCreacion = value; }
-        }
-        private DateTime _FechaModificacion;
-
-        public DateTime FechaModificacion
-        {
-            get { return _FechaModificacion; }
-            set { _FechaModificacion = value; }
-        }
 
     }
 }

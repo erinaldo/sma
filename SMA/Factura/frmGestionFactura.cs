@@ -15,7 +15,7 @@ namespace SMA.Factura
 {
     public partial class frmGestionFactura : Form
     {
-        private Int64 FacturaID;
+        private Int32 FacturaID;
 
         public frmGestionFactura()
         {

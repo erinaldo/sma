@@ -33,7 +33,7 @@ namespace SMA
                 {
                     UsuarioBL ObjetoUsuario = new UsuarioBL();
                     //ACTUALIZAMOS LA CLAVE Y RESETEAMOS EL INDICADOR
-                    Usuario.PassUsuario = txtNuevaContrasena.Text;
+                    Usuario.Pass = txtNuevaContrasena.Text;
                     Usuario.ResetPassOnLogin = false;
                     //GUARDAMOS LOS CAMBIOS
                     ObjetoUsuario.GuardarCambios(Usuario);

@@ -113,7 +113,7 @@ namespace SMA.Marca
         private void MostarDatos(cMarca Marca)
         {
             //Mostramos los datos seleccionados en el grid
-            txtCodigo.Text = Marca.ID.ToString();
+            txtCodigo.Text = Marca.Codigo.ToString();
             txtDescripcion.Text = Marca.Descripcion;
             txtNotas.Text = Marca.Notas;
         }
@@ -124,7 +124,7 @@ namespace SMA.Marca
             {
                 //Obtenemos los datos referentes a la familia de articulos
                 cMarca Marca = new cMarca();
-                Marca.ID = Convert.ToInt32(txtCodigo.Text);
+                Marca.Codigo = Convert.ToInt32(txtCodigo.Text);
                 Marca.Descripcion = txtDescripcion.Text;
                 Marca.Notas = txtNotas.Text;
 
@@ -219,7 +219,7 @@ namespace SMA.Marca
             if (cbCriterio.SelectedItem.ToString()== "Codigo")
             {
                 int Codigo = Convert.ToInt32(txtBusqueda.Text);
-                var obj = BDMarca.List.OfType<cMarca>().ToList().Find(f => f.ID == Codigo);
+                var obj = BDMarca.List.OfType<cMarca>().ToList().Find(f => f.Codigo == Codigo);
                 var pos = BDMarca.IndexOf(obj);
                 BDMarca.Position = pos;
             }

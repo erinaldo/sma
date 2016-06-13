@@ -15,7 +15,7 @@ namespace SMA.Usuarios
     public partial class frmGestionUsuarios : Office2007Form
     {
         Int32 UsuarioID;
-
+        List<cUsuario> ListaUsuario = new List<cUsuario>();
         public frmGestionUsuarios()
         {
             InitializeComponent();
@@ -143,7 +143,8 @@ namespace SMA.Usuarios
             {
                 UsuarioBL ObjetoUsuario = new UsuarioBL();
                 dgvUsuarios.AutoGenerateColumns = false;
-                dgvUsuarios.DataSource = ObjetoUsuario.Listar();
+                ListaUsuario = ObjetoUsuario.Listar();
+                dgvUsuarios.DataSource = ListaUsuario;
             }
             catch (Exception Ex)
             {
@@ -175,13 +176,13 @@ namespace SMA.Usuarios
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            txtBuscar.Visible = true;
-            btnBuscar.Visible = true;
+            ribbonBar4.Visible = true;
         }
 
         private void btnPerfiles_Click(object sender, EventArgs e)
         {
-            frmGestionPefiles GestionPerfiles = new frmGestionPefiles();
+            //MUESTRA LA GESTION DE PERFILES DE USUARIO
+            frmGestionPerfilesUsuarios GestionPerfiles = new frmGestionPerfilesUsuarios();
             GestionPerfiles.ShowDialog(this);
         }
 
@@ -189,6 +190,26 @@ namespace SMA.Usuarios
         {
             frmGestionPermisosPerfiles GestionPermisos = new frmGestionPermisosPerfiles();
             GestionPermisos.ShowDialog();
+        }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEjecutarBusqueda_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBusqueda_TextChanged(object sender, EventArgs e)
+        {
+            dgvUsuarios.AutoGenerateColumns = false;
+            //Busqueda por Telefono
+            var Resultado = (from c in ListaUsuario
+                             where c.Nombre.StartsWith(txtBusqueda.Text)
+                             select c).ToList();
+            dgvUsuarios.DataSource = Resultado;
         }
     }
 }

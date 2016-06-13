@@ -71,7 +71,7 @@ namespace SMA.Compras
 
         }
 
-        public void BusquedaProveedor(Int64 Codigo)
+        public void BusquedaProveedor(Int32 Codigo)
         {
             try
             {
@@ -80,7 +80,7 @@ namespace SMA.Compras
                 cProveedor Proveedor = ObjetoProveedor.BuscarPorID(Codigo);
                 lblDireccion.Text = Proveedor.Direccion.ToString();
                 lblRNC.Text = Proveedor.RNC.ToString();
-                cbProveedor.SelectedValue = Proveedor.ID;
+                cbProveedor.SelectedValue = Proveedor.Codigo;
             }
 
             catch (Exception Ex)
@@ -136,7 +136,7 @@ namespace SMA.Compras
             //Clientes
             ProveedorBL ObjetoProveedor = new ProveedorBL();
             cbProveedor.DataSource = ObjetoProveedor.Listar();
-            cbProveedor.ValueMember = "ID";
+            cbProveedor.ValueMember = "Codigo";
             cbProveedor.DisplayMember = "NombreComercial";
 
 
@@ -298,7 +298,7 @@ namespace SMA.Compras
                 txtCodigo.Clear();
             }
         }
-        public void BuscarProveedor(Int64 Codigo)
+        public void BuscarProveedor(Int32 Codigo)
         {
             try
             {
@@ -307,7 +307,7 @@ namespace SMA.Compras
                 cProveedor Proveedor = ObjetoProveedor.BuscarPorID(Codigo);
                 lblDireccion.Text = Proveedor.Direccion.ToString();
                 lblRNC.Text = Proveedor.RNC.ToString();
-                cbProveedor.SelectedValue = Proveedor.ID;
+                cbProveedor.SelectedValue = Proveedor.Codigo;
                 dtpFechaVencimiento.Value = dtpFechaEnvio.Value.AddDays(Proveedor.DiasCredito);
             }
 

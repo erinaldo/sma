@@ -33,24 +33,19 @@
             this.TabControl1 = new System.Windows.Forms.TabControl();
             this.TabPage1 = new System.Windows.Forms.TabPage();
             this.btnVerReferencia = new DevComponents.DotNetBar.ButtonX();
-            this.cbbConcepto = new System.Windows.Forms.ComboBox();
             this.btnVerDocumentos = new DevComponents.DotNetBar.ButtonX();
             this.txtMonto = new System.Windows.Forms.TextBox();
             this.lblTipo = new System.Windows.Forms.Label();
             this.lblCliente = new System.Windows.Forms.Label();
             this.Label10 = new System.Windows.Forms.Label();
-            this.cbbClientes = new System.Windows.Forms.ComboBox();
             this.dtpFecha_Emision = new System.Windows.Forms.DateTimePicker();
             this.Label9 = new System.Windows.Forms.Label();
             this.Label2 = new System.Windows.Forms.Label();
-            this.txtReferencia = new System.Windows.Forms.TextBox();
-            this.txtDocumentoPagar = new System.Windows.Forms.TextBox();
             this.Label1 = new System.Windows.Forms.Label();
             this.Label6 = new System.Windows.Forms.Label();
             this.btnBuscarCliente = new System.Windows.Forms.Button();
             this.Label5 = new System.Windows.Forms.Label();
             this.Label7 = new System.Windows.Forms.Label();
-            this.txtFactura = new System.Windows.Forms.TextBox();
             this.txtCodigo = new System.Windows.Forms.Label();
             this.Label8 = new System.Windows.Forms.Label();
             this.dtpFecha_Vencimiento = new System.Windows.Forms.DateTimePicker();
@@ -62,6 +57,11 @@
             this.btnCancelar = new DevComponents.DotNetBar.ButtonX();
             this.btnAceptar = new DevComponents.DotNetBar.ButtonX();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.cbbClientes = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.cbbConcepto = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.txtFactura = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txtDocumentoPagar = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txtReferencia = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.TabControl1.SuspendLayout();
             this.TabPage1.SuspendLayout();
             this.TabPage2.SuspendLayout();
@@ -80,25 +80,25 @@
             // 
             // TabPage1
             // 
-            this.TabPage1.Controls.Add(this.btnVerReferencia);
+            this.TabPage1.Controls.Add(this.txtReferencia);
+            this.TabPage1.Controls.Add(this.txtDocumentoPagar);
+            this.TabPage1.Controls.Add(this.txtFactura);
             this.TabPage1.Controls.Add(this.cbbConcepto);
+            this.TabPage1.Controls.Add(this.cbbClientes);
+            this.TabPage1.Controls.Add(this.btnVerReferencia);
             this.TabPage1.Controls.Add(this.btnVerDocumentos);
             this.TabPage1.Controls.Add(this.txtMonto);
             this.TabPage1.Controls.Add(this.lblTipo);
             this.TabPage1.Controls.Add(this.lblCliente);
             this.TabPage1.Controls.Add(this.Label10);
-            this.TabPage1.Controls.Add(this.cbbClientes);
             this.TabPage1.Controls.Add(this.dtpFecha_Emision);
             this.TabPage1.Controls.Add(this.Label9);
             this.TabPage1.Controls.Add(this.Label2);
-            this.TabPage1.Controls.Add(this.txtReferencia);
-            this.TabPage1.Controls.Add(this.txtDocumentoPagar);
             this.TabPage1.Controls.Add(this.Label1);
             this.TabPage1.Controls.Add(this.Label6);
             this.TabPage1.Controls.Add(this.btnBuscarCliente);
             this.TabPage1.Controls.Add(this.Label5);
             this.TabPage1.Controls.Add(this.Label7);
-            this.TabPage1.Controls.Add(this.txtFactura);
             this.TabPage1.Controls.Add(this.txtCodigo);
             this.TabPage1.Controls.Add(this.Label8);
             this.TabPage1.Controls.Add(this.dtpFecha_Vencimiento);
@@ -124,21 +124,12 @@
             this.btnVerReferencia.TabIndex = 7;
             this.btnVerReferencia.Click += new System.EventHandler(this.btnVerReferencia_Click);
             // 
-            // cbbConcepto
-            // 
-            this.cbbConcepto.FormattingEnabled = true;
-            this.cbbConcepto.Location = new System.Drawing.Point(92, 68);
-            this.cbbConcepto.Name = "cbbConcepto";
-            this.cbbConcepto.Size = new System.Drawing.Size(215, 21);
-            this.cbbConcepto.TabIndex = 2;
-            this.cbbConcepto.SelectedValueChanged += new System.EventHandler(this.cbbConcepto_SelectedValueChanged);
-            // 
             // btnVerDocumentos
             // 
             this.btnVerDocumentos.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnVerDocumentos.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnVerDocumentos.Image = global::SMA.Properties.Resources.find_icon;
-            this.btnVerDocumentos.Location = new System.Drawing.Point(235, 93);
+            this.btnVerDocumentos.Location = new System.Drawing.Point(235, 92);
             this.btnVerDocumentos.Name = "btnVerDocumentos";
             this.btnVerDocumentos.Size = new System.Drawing.Size(26, 23);
             this.btnVerDocumentos.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -181,16 +172,6 @@
             this.Label10.TabIndex = 134;
             this.Label10.Text = "Tipo:";
             // 
-            // cbbClientes
-            // 
-            this.cbbClientes.DisplayMember = "Empresa";
-            this.cbbClientes.FormattingEnabled = true;
-            this.cbbClientes.Location = new System.Drawing.Point(92, 41);
-            this.cbbClientes.Name = "cbbClientes";
-            this.cbbClientes.Size = new System.Drawing.Size(494, 21);
-            this.cbbClientes.TabIndex = 1;
-            this.cbbClientes.ValueMember = "Cliente_ID";
-            // 
             // dtpFecha_Emision
             // 
             this.dtpFecha_Emision.CustomFormat = "dd/MM/yyyy";
@@ -217,20 +198,6 @@
             this.Label2.Size = new System.Drawing.Size(78, 13);
             this.Label2.TabIndex = 113;
             this.Label2.Text = "Fecha emision:";
-            // 
-            // txtReferencia
-            // 
-            this.txtReferencia.Location = new System.Drawing.Point(92, 147);
-            this.txtReferencia.Name = "txtReferencia";
-            this.txtReferencia.Size = new System.Drawing.Size(137, 20);
-            this.txtReferencia.TabIndex = 6;
-            // 
-            // txtDocumentoPagar
-            // 
-            this.txtDocumentoPagar.Location = new System.Drawing.Point(92, 121);
-            this.txtDocumentoPagar.Name = "txtDocumentoPagar";
-            this.txtDocumentoPagar.Size = new System.Drawing.Size(137, 20);
-            this.txtDocumentoPagar.TabIndex = 5;
             // 
             // Label1
             // 
@@ -276,15 +243,6 @@
             this.Label7.Size = new System.Drawing.Size(43, 13);
             this.Label7.TabIndex = 124;
             this.Label7.Text = "Codigo:";
-            // 
-            // txtFactura
-            // 
-            this.txtFactura.Location = new System.Drawing.Point(92, 95);
-            this.txtFactura.Name = "txtFactura";
-            this.txtFactura.Size = new System.Drawing.Size(137, 20);
-            this.txtFactura.TabIndex = 3;
-            this.txtFactura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFactura_KeyPress);
-            this.txtFactura.Validated += new System.EventHandler(this.txtFactura_Validated);
             // 
             // txtCodigo
             // 
@@ -385,6 +343,78 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // cbbClientes
+            // 
+            this.cbbClientes.DisplayMember = "Text";
+            this.cbbClientes.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbbClientes.FocusHighlightColor = System.Drawing.Color.LemonChiffon;
+            this.cbbClientes.FocusHighlightEnabled = true;
+            this.cbbClientes.FormattingEnabled = true;
+            this.cbbClientes.ItemHeight = 14;
+            this.cbbClientes.Location = new System.Drawing.Point(92, 42);
+            this.cbbClientes.Name = "cbbClientes";
+            this.cbbClientes.Size = new System.Drawing.Size(494, 20);
+            this.cbbClientes.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.cbbClientes.TabIndex = 3;
+            // 
+            // cbbConcepto
+            // 
+            this.cbbConcepto.DisplayMember = "Text";
+            this.cbbConcepto.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbbConcepto.FocusHighlightColor = System.Drawing.Color.LemonChiffon;
+            this.cbbConcepto.FocusHighlightEnabled = true;
+            this.cbbConcepto.FormattingEnabled = true;
+            this.cbbConcepto.ItemHeight = 14;
+            this.cbbConcepto.Location = new System.Drawing.Point(92, 68);
+            this.cbbConcepto.Name = "cbbConcepto";
+            this.cbbConcepto.Size = new System.Drawing.Size(215, 20);
+            this.cbbConcepto.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.cbbConcepto.TabIndex = 3;
+            this.cbbConcepto.SelectedValueChanged += new System.EventHandler(this.cbbConcepto_SelectedValueChanged);
+            // 
+            // txtFactura
+            // 
+            // 
+            // 
+            // 
+            this.txtFactura.Border.Class = "TextBoxBorder";
+            this.txtFactura.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtFactura.FocusHighlightColor = System.Drawing.Color.LemonChiffon;
+            this.txtFactura.FocusHighlightEnabled = true;
+            this.txtFactura.Location = new System.Drawing.Point(91, 94);
+            this.txtFactura.Name = "txtFactura";
+            this.txtFactura.Size = new System.Drawing.Size(137, 20);
+            this.txtFactura.TabIndex = 3;
+            this.txtFactura.Validated += new System.EventHandler(this.txtFactura_Validated_1);
+            // 
+            // txtDocumentoPagar
+            // 
+            // 
+            // 
+            // 
+            this.txtDocumentoPagar.Border.Class = "TextBoxBorder";
+            this.txtDocumentoPagar.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtDocumentoPagar.FocusHighlightColor = System.Drawing.Color.LemonChiffon;
+            this.txtDocumentoPagar.FocusHighlightEnabled = true;
+            this.txtDocumentoPagar.Location = new System.Drawing.Point(91, 120);
+            this.txtDocumentoPagar.Name = "txtDocumentoPagar";
+            this.txtDocumentoPagar.Size = new System.Drawing.Size(137, 20);
+            this.txtDocumentoPagar.TabIndex = 3;
+            // 
+            // txtReferencia
+            // 
+            // 
+            // 
+            // 
+            this.txtReferencia.Border.Class = "TextBoxBorder";
+            this.txtReferencia.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtReferencia.FocusHighlightColor = System.Drawing.Color.LemonChiffon;
+            this.txtReferencia.FocusHighlightEnabled = true;
+            this.txtReferencia.Location = new System.Drawing.Point(91, 146);
+            this.txtReferencia.Name = "txtReferencia";
+            this.txtReferencia.Size = new System.Drawing.Size(136, 20);
+            this.txtReferencia.TabIndex = 3;
+            // 
             // frmAgregarCxC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -418,18 +448,14 @@
         internal System.Windows.Forms.Label lblTipo;
         internal System.Windows.Forms.Label lblCliente;
         internal System.Windows.Forms.Label Label10;
-        internal System.Windows.Forms.ComboBox cbbClientes;
         internal System.Windows.Forms.DateTimePicker dtpFecha_Emision;
         internal System.Windows.Forms.Label Label9;
         internal System.Windows.Forms.Label Label2;
-        internal System.Windows.Forms.TextBox txtReferencia;
-        internal System.Windows.Forms.TextBox txtDocumentoPagar;
         internal System.Windows.Forms.Label Label1;
         internal System.Windows.Forms.Label Label6;
         internal System.Windows.Forms.Button btnBuscarCliente;
         internal System.Windows.Forms.Label Label5;
         internal System.Windows.Forms.Label Label7;
-        internal System.Windows.Forms.TextBox txtFactura;
         internal System.Windows.Forms.Label txtCodigo;
         internal System.Windows.Forms.Label Label8;
         internal System.Windows.Forms.DateTimePicker dtpFecha_Vencimiento;
@@ -441,8 +467,12 @@
         internal DevComponents.DotNetBar.ButtonX btnAceptar;
         private DevComponents.DotNetBar.StyleManager styleManager1;
         private DevComponents.DotNetBar.ButtonX btnVerDocumentos;
-        private System.Windows.Forms.ComboBox cbbConcepto;
         private DevComponents.DotNetBar.ButtonX btnVerReferencia;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private DevComponents.DotNetBar.Controls.ComboBoxEx cbbClientes;
+        private DevComponents.DotNetBar.Controls.ComboBoxEx cbbConcepto;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtFactura;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtReferencia;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtDocumentoPagar;
     }
 }

@@ -14,7 +14,7 @@ namespace SMA.BL
             try
             {
                 //Si el almacen existe entonces actualizamos 
-                if (VendedorDA.Existe(Vendedor.ID))
+                if (VendedorDA.Existe(Vendedor.Codigo))
                 {
                     VendedorDA.Actualizar(Vendedor);
                 }

@@ -125,12 +125,12 @@ namespace SMA.Clientes.CuentasPagar
         private void CargarMovimiento(cCuentasPagar Cuenta)
         {
             //Cargamos el movimiento que se recibe como parametro para mostrarlo en los controles
-            txtCodigo.Text = Cuenta.ID.ToString();
+            txtCodigo.Text = Cuenta.Codigo.ToString();
             cbbProveedor.SelectedValue = Cuenta.ProveedorID;
-            cbbConcepto.SelectedValue = Cuenta.ConceptoID;
-            txtFactura.Text = Cuenta.FacturaID.ToString();
-            txtDocumentoPagar.Text = Cuenta.DocumentoID.ToString();
-            txtReferencia.Text = Cuenta.ReferenciaID;
+            cbbConcepto.SelectedValue = Cuenta.CodigoConcepto;
+            txtFactura.Text = Cuenta.CodigoFactura.ToString();
+            txtDocumentoPagar.Text = Cuenta.CodigoDocumento.ToString();
+            txtReferencia.Text = Cuenta.CodigoReferencia;
             txtMonto.Text = Cuenta.Monto.ToString();
             dtpFecha_Emision.Value = Cuenta.FechaEmision;
             dtpFecha_Vencimiento.Value = Cuenta.FechaVencimiento;
@@ -149,7 +149,7 @@ namespace SMA.Clientes.CuentasPagar
 
         }
 
-        private void TipoConcepto(Int32 ConceptoID)
+        private void TipoConcepto(Int16 ConceptoID)
         {
             //Determinamos el tipo de concepto seleccionado
             ConceptoCxPBL ObjetoConcepto = new ConceptoCxPBL();
@@ -190,13 +190,13 @@ namespace SMA.Clientes.CuentasPagar
             try
             {
                 cCuentasPagar Cuenta = new cCuentasPagar();
-                Cuenta.ID = Convert.ToInt32(txtCodigo.Text);
+                Cuenta.Codigo = Convert.ToInt32(txtCodigo.Text);
                 Cuenta.ProveedorID = ObtenerProveedor();
-                Cuenta.ConceptoID = ObtenerConcepto();
-                Cuenta.FacturaID = ObtenerFactura();
+                Cuenta.CodigoConcepto = ObtenerConcepto();
+                Cuenta.CodigoFactura = ObtenerFactura();
                 Cuenta.Estatus = true;
-                Cuenta.DocumentoID = txtDocumentoPagar.Text;
-                Cuenta.ReferenciaID = ObtenerReferencia();
+                Cuenta.CodigoDocumento = txtDocumentoPagar.Text;
+                Cuenta.CodigoReferencia = ObtenerReferencia();
                 Cuenta.FechaEmision = dtpFecha_Emision.Value;
                 Cuenta.FechaVencimiento = dtpFecha_Vencimiento.Value;
                 Cuenta.Monto = Convert.ToDecimal(txtMonto.Text);
@@ -307,11 +307,11 @@ namespace SMA.Clientes.CuentasPagar
             //Obtenemos el codigo del concepto seleccionado
             try
             {
-                Int32 C;
-                if (Int32.TryParse(cbbConcepto.SelectedValue.ToString(), out C))
+                Int16 C;
+                if (Int16.TryParse(cbbConcepto.SelectedValue.ToString(), out C))
                 {
                     //Codigo del concepto
-                    C = Convert.ToInt32(cbbConcepto.SelectedValue.ToString());
+                    C = Convert.ToInt16(cbbConcepto.SelectedValue.ToString());
                     //Mostramos el tipo de concepto
                     TipoConcepto(C);
                 }

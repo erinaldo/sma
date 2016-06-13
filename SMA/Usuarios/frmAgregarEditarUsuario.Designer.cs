@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAgregarEditarUsuario));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -51,11 +51,11 @@
             this.btnEliminar = new DevComponents.DotNetBar.ButtonX();
             this.btnAgregar = new DevComponents.DotNetBar.ButtonX();
             this.dgvPerfil = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.lblID = new System.Windows.Forms.Label();
-            this.btnCancelar = new DevComponents.DotNetBar.ButtonX();
-            this.btnAceptar = new DevComponents.DotNetBar.ButtonX();
             this.cID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cPerfil = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblCodigo = new System.Windows.Forms.Label();
+            this.btnCancelar = new DevComponents.DotNetBar.ButtonX();
+            this.btnAceptar = new DevComponents.DotNetBar.ButtonX();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -271,14 +271,14 @@
             this.dgvPerfil.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cID,
             this.cPerfil});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPerfil.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPerfil.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvPerfil.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgvPerfil.Location = new System.Drawing.Point(6, 6);
             this.dgvPerfil.Name = "dgvPerfil";
@@ -286,15 +286,29 @@
             this.dgvPerfil.TabIndex = 0;
             this.dgvPerfil.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPerfil_CellClick);
             // 
-            // lblID
+            // cID
             // 
-            this.lblID.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblID.BackColor = System.Drawing.SystemColors.Info;
-            this.lblID.Location = new System.Drawing.Point(375, 8);
-            this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(50, 23);
-            this.lblID.TabIndex = 19;
-            this.lblID.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cID.DataPropertyName = "Codigo";
+            this.cID.HeaderText = "ID";
+            this.cID.Name = "cID";
+            this.cID.Visible = false;
+            // 
+            // cPerfil
+            // 
+            this.cPerfil.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cPerfil.DataPropertyName = "PerfilCodigo";
+            this.cPerfil.HeaderText = "Nombre perfil";
+            this.cPerfil.Name = "cPerfil";
+            // 
+            // lblCodigo
+            // 
+            this.lblCodigo.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblCodigo.BackColor = System.Drawing.SystemColors.Info;
+            this.lblCodigo.Location = new System.Drawing.Point(375, 8);
+            this.lblCodigo.Name = "lblCodigo";
+            this.lblCodigo.Size = new System.Drawing.Size(50, 23);
+            this.lblCodigo.TabIndex = 19;
+            this.lblCodigo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnCancelar
             // 
@@ -322,29 +336,16 @@
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
-            // cID
-            // 
-            this.cID.DataPropertyName = "ID";
-            this.cID.HeaderText = "ID";
-            this.cID.Name = "cID";
-            this.cID.Visible = false;
-            // 
-            // cPerfil
-            // 
-            this.cPerfil.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cPerfil.DataPropertyName = "PerfilID";
-            this.cPerfil.HeaderText = "Nombre perfil";
-            this.cPerfil.Name = "cPerfil";
-            // 
             // frmAgregarEditarUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(437, 230);
-            this.Controls.Add(this.lblID);
+            this.Controls.Add(this.lblCodigo);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.tabControl1);
+            this.DoubleBuffered = true;
             this.EnableGlass = false;
             this.Name = "frmAgregarEditarUsuario";
             this.Load += new System.EventHandler(this.frmAgregarEditarUsuario_Load);
@@ -383,7 +384,7 @@
         private DevComponents.DotNetBar.ButtonX btnAgregar;
         private DevComponents.DotNetBar.ButtonX btnCancelar;
         private DevComponents.DotNetBar.ButtonX btnAceptar;
-        private System.Windows.Forms.Label lblID;
+        private System.Windows.Forms.Label lblCodigo;
         private System.Windows.Forms.CheckBox ckbResetOnLogin;
         private System.Windows.Forms.DataGridViewTextBoxColumn cID;
         private System.Windows.Forms.DataGridViewTextBoxColumn cPerfil;

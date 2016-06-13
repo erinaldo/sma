@@ -37,8 +37,8 @@ namespace SMA.Clientes.CuentasCobrar.Reportes
             {
                 //Si el parametro de Proveedor tiene algun valor entonces filtramos al Proveedor seleccionado para que
                 //solo muestre informacion de este
-                Int64 Codigo = Convert.ToInt64(ClienteID);
-                cbCliente.DataSource = ObjetoCliente.Filtrar(Codigo, Codigo, null, null, null);
+                Int32 Codigo = Convert.ToInt32(ClienteID);
+                cbCliente.DataSource = ObjetoCliente.Filtrar(Codigo, Codigo);
             }
             else
             {

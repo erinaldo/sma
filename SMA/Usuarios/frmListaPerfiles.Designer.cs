@@ -34,9 +34,9 @@
             this.btnSeleccionar = new DevComponents.DotNetBar.ButtonX();
             this.styleManager1 = new DevComponents.DotNetBar.StyleManager(this.components);
             this.txtBusqueda = new System.Windows.Forms.TextBox();
-            this.cDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvComponente = new System.Windows.Forms.DataGridView();
+            this.cCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvComponente)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,21 +78,6 @@
             this.txtBusqueda.TabIndex = 4;
             this.txtBusqueda.TextChanged += new System.EventHandler(this.txtBusqueda_TextChanged);
             // 
-            // cDescripcion
-            // 
-            this.cDescripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cDescripcion.DataPropertyName = "Descripcion";
-            this.cDescripcion.HeaderText = "Descripción";
-            this.cDescripcion.Name = "cDescripcion";
-            this.cDescripcion.ReadOnly = true;
-            // 
-            // cCodigo
-            // 
-            this.cCodigo.DataPropertyName = "ID";
-            this.cCodigo.HeaderText = "Codigo";
-            this.cCodigo.Name = "cCodigo";
-            this.cCodigo.ReadOnly = true;
-            // 
             // dgvComponente
             // 
             this.dgvComponente.AllowUserToAddRows = false;
@@ -108,6 +93,21 @@
             this.dgvComponente.TabIndex = 5;
             this.dgvComponente.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvComponente_CellClick);
             // 
+            // cCodigo
+            // 
+            this.cCodigo.DataPropertyName = "Codigo";
+            this.cCodigo.HeaderText = "Codigo";
+            this.cCodigo.Name = "cCodigo";
+            this.cCodigo.ReadOnly = true;
+            // 
+            // cDescripcion
+            // 
+            this.cDescripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cDescripcion.DataPropertyName = "Descripcion";
+            this.cDescripcion.HeaderText = "Descripción";
+            this.cDescripcion.Name = "cDescripcion";
+            this.cDescripcion.ReadOnly = true;
+            // 
             // frmListaPerfiles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -117,6 +117,7 @@
             this.Controls.Add(this.btnSeleccionar);
             this.Controls.Add(this.dgvComponente);
             this.Controls.Add(this.txtBusqueda);
+            this.DoubleBuffered = true;
             this.EnableGlass = false;
             this.Name = "frmListaPerfiles";
             this.Text = "Lista de perfiles";
@@ -133,9 +134,9 @@
         private DevComponents.DotNetBar.ButtonX btnSeleccionar;
         private DevComponents.DotNetBar.StyleManager styleManager1;
         private System.Windows.Forms.TextBox txtBusqueda;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cDescripcion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cCodigo;
         private System.Windows.Forms.DataGridView dgvComponente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cCodigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cDescripcion;
 
     }
 }

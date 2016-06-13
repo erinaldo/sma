@@ -47,7 +47,7 @@ namespace SMA.Compras
             SeleccionarProveedor(ProveedorID);
         }
 
-        private void SeleccionarProveedor(Int64 _ProveedorID)
+        private void SeleccionarProveedor(Int32 _ProveedorID)
         {
             //Refresca los cambios realizados en la tabla de clientes en el formulario de muestra
             IagregarEditarRecepcion FormInterface = this.Owner as IagregarEditarRecepcion;
@@ -85,7 +85,7 @@ namespace SMA.Compras
             if (Criterio == "Codigo")
             {
                 List<cProveedor> Resultado = (from C in ListaProveedor
-                                               where C.ID==Convert.ToInt32(txtBusqueda.Text)
+                                               where C.Codigo==Convert.ToInt32(txtBusqueda.Text)
                                                select C).ToList();
                 ActualizarGrid(Resultado);
 

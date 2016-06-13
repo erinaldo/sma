@@ -7,12 +7,12 @@ namespace SMA.Entity
 {
     public class cConcepto
     {
-        private int _ID;
+        private Int16 _Codigo;
 
-        public int ID
+        public Int16 Codigo
         {
-            get { return _ID; }
-            set { _ID = value; }
+            get { return _Codigo; }
+            set { _Codigo = value; }
         }
         private string _Descripcion;
 

@@ -12,7 +12,7 @@ namespace SMA.BL
         public void GuardarCambios(cUsuario Usuario)
         {
             //Si el usuario existe entonces actualizamos 
-            if (UsuarioDA.Existe(Usuario.ID))
+            if (UsuarioDA.Existe(Usuario.Codigo))
             {
                 UsuarioDA.Actualizar(Usuario);
             }
@@ -23,12 +23,12 @@ namespace SMA.BL
             }
         }
 
-        public cUsuario BuscarPorID(Int32 ID)
+        public cUsuario BuscarPorCodigo(Int32 Codigo)
         {
             //Buscamos el usuario por codigo
             try
             {
-                return UsuarioDA.BuscarPorID(ID);
+                return UsuarioDA.BuscarPorID(Codigo);
             }
             catch(Exception Ex)
             {
@@ -49,11 +49,11 @@ namespace SMA.BL
             }
         }
 
-        public void Eliminar(Int32 ID)
+        public void Eliminar(Int32 Codigo)
         {
             try
             {
-                UsuarioDA.Eliminar(ID);
+                UsuarioDA.Eliminar(Codigo);
             }
             catch(Exception Ex)
             {
@@ -73,12 +73,12 @@ namespace SMA.BL
             }
         }
 
-        public List<cRolesModulosUsuarios> ListarPermisos(Int32 UsuarioID)
+        public List<cRolesModulosUsuarios> ListarPermisos(Int32 UsuarioCodigo)
         {
             //RETORNAMOS LOS MODULOS Y PERMISOS RELACIONADOS AL USUARIO Y AL PERFIL QUE PERTENECE EL USUARIO
             try
             {
-               return UsuarioDA.ListarPermisos(UsuarioID);
+               return UsuarioDA.ListarPermisos(UsuarioCodigo);
             }
             catch(Exception Ex)
             {
@@ -86,12 +86,12 @@ namespace SMA.BL
             }
         }
 
-        public void ActualizarUltimoLogin(Int32 UsuarioID)
+        public void ActualizarUltimoLogin(Int32 UsuarioCodigo)
         {
             try
             {
                 //ACTUALIZAMOS LA FECHA DE ULTIMO LOGIN
-                cUsuario Usuario = BuscarPorID(UsuarioID);
+                cUsuario Usuario = BuscarPorCodigo(UsuarioCodigo);
                 Usuario.FechaUltimoLogin = DateTime.Now;
                 GuardarCambios(Usuario);
             }

@@ -7,7 +7,7 @@ namespace SMA.Entity
 {
    public class cAntiguedadSaldo
     {
-        private Int64 _ID;
+        private Int64 _Codigo;
         private String _NombreComercial;
         private Decimal _TotalFactura;
         private Decimal _Corriente;
@@ -17,10 +17,10 @@ namespace SMA.Entity
         private Decimal _Mas91Dias;
         private DateTime _FechaReferencia;
 
-        public Int64 ID
+        public Int64 Codigo
         {
-            get { return _ID; }
-            set { _ID = value; }
+            get { return _Codigo; }
+            set { _Codigo = value; }
         }
         public String NombreComercial
         {

@@ -14,7 +14,7 @@ namespace SMA.Clientes.CuentasPagar
 {
     public partial class frmRecibirPago : Office2007Form, IAgregarCxC
     {
-        private Int64? ClienteID;
+        private Int32? CodigoCliente;
         Decimal Monto_;
 
         #region Constructores
@@ -24,9 +24,9 @@ namespace SMA.Clientes.CuentasPagar
         }
 
 
-        public frmRecibirPago(Int64 ClienteID):this()
+        public frmRecibirPago(Int32 CodigoCliente):this()
         {
-            this.ClienteID = ClienteID;
+            this.CodigoCliente = CodigoCliente;
         }
         #endregion
 
@@ -54,24 +54,25 @@ namespace SMA.Clientes.CuentasPagar
             {
                 ClienteBL ObjetoCliente = new ClienteBL();
 
-                if (ClienteID.HasValue)
+                if (CodigoCliente.HasValue)
                 {
-                    cbbClientes.DataSource = ObjetoCliente.Filtrar(ClienteID, ClienteID, null, null, null);
+                    Int32 Codigo = Convert.ToInt32(CodigoCliente);
+                    cbbClientes.DataSource = ObjetoCliente.Filtrar(Codigo, Codigo);
                     cbbClientes.DisplayMember = "NombreComercial";
-                    cbbClientes.ValueMember = "ID";
+                    cbbClientes.ValueMember = "Codigo";
                 }
                 else
                 {
                     cbbClientes.DataSource = ObjetoCliente.Listar();
                     cbbClientes.DisplayMember = "NombreComercial";
-                    cbbClientes.ValueMember = "ID";
+                    cbbClientes.ValueMember = "Codigo";
                 }
 
 
                 ConceptoCxCBL ObjetoConcepto = new ConceptoCxCBL();
                 cbbConcepto.DataSource = ObjetoConcepto.ListarConceptoAbono();
                 cbbConcepto.DisplayMember = "Descripcion";
-                cbbConcepto.ValueMember = "ID";
+                cbbConcepto.ValueMember = "Codigo";
             }
             catch(Exception Ex)
             {
@@ -84,7 +85,7 @@ namespace SMA.Clientes.CuentasPagar
             if (ValidacionMonto())
             try
             {
-                Int32 Concepto = ObtenerConcepto();             //Codigo del concepto
+                Int16 Concepto = ObtenerConcepto();             //Codigo del concepto
                 String DescripcionConcepto=cbbConcepto.Text;    //Descripcion de concepto
                 Decimal Monto = ObtenerMonto();                  //Monto de la transaccion
                 string Documento = txtDocumento.Text;           //Documento que identifica el pago
@@ -115,13 +116,13 @@ namespace SMA.Clientes.CuentasPagar
             }
         }
 
-        private Int32 ObtenerConcepto()
+        private Int16 ObtenerConcepto()
         {
             //Obtenemos el concepto de pago seleccionado
-            Int32 ConceptoID;
-            if (Int32.TryParse(cbbConcepto.SelectedValue.ToString(), out ConceptoID))
+            Int16 ConceptoID;
+            if (Int16.TryParse(cbbConcepto.SelectedValue.ToString(), out ConceptoID))
             {
-                return Convert.ToInt32(cbbConcepto.SelectedValue.ToString());
+                return Convert.ToInt16(cbbConcepto.SelectedValue.ToString());
             }
             else
             {
@@ -166,11 +167,12 @@ namespace SMA.Clientes.CuentasPagar
                     foreach (DataGridViewRow Item in dgvPagos.Rows)
                     {
                         cCuentasCobrar Cuenta = new cCuentasCobrar();
-                        Cuenta.ID = -1;
-                        Cuenta.ConceptoID = Item.Cells[0].Value;
-                        Cuenta.ClienteID = ObtenerCliente();
-                        Cuenta.DocumentoID = Item.Cells[2].Value;
-                        Cuenta.ReferenciaID = Item.Cells[3].Value.ToString();
+                        Cuenta.Codigo = -1;
+                        Cuenta.CodigoFactura = -1;
+                        Cuenta.CodigoConcepto = Item.Cells[0].Value;
+                        Cuenta.CodigoCliente = ObtenerCliente();
+                        Cuenta.CodigoDocumento = Item.Cells[2].Value;
+                        Cuenta.CodigoReferencia = Item.Cells[3].Value.ToString();
                         Cuenta.Notas = Item.Cells[6].Value.ToString();
                         Cuenta.FechaEmision = Convert.ToDateTime(Item.Cells[4].Value);
                         Cuenta.FechaVencimiento = Convert.ToDateTime(Item.Cells[4].Value);
@@ -190,61 +192,57 @@ namespace SMA.Clientes.CuentasPagar
             }
         }
 
-        private Int64 ObtenerCliente()
+        private Int32 ObtenerCliente()
         {
-            Int64 Codigo;
-            if(Int64.TryParse(cbbClientes.SelectedValue.ToString(),out Codigo))
+            Int32 Codigo;
+            if(Int32.TryParse(cbbClientes.SelectedValue.ToString(),out Codigo))
             {
-                return Convert.ToInt64(cbbClientes.SelectedValue.ToString());
+                return Convert.ToInt32(cbbClientes.SelectedValue.ToString());
             }
             else
             {
                 throw new Exception ("Debe seleccionar un cliente para realizar la transaccion");
             }
         }
-
-     
-
-
-private void btnCancelar_Click(object sender, EventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-private void txtDocumentoPagar_Validated(object sender, EventArgs e)
-{
-    if (txtDocumentoPagar.Text != string.Empty)
-    {
-        BuscarMontoDocumento();
-    }
-}
+      
 
-private void BuscarMontoDocumento()
-{
-    try
-    {
-        //Buscamos el documento y asignamos los valores del mismo al formulario
-        cCuentasCobrar Cuenta;
-        CuentasCobrarBL ObjetoCuenta = new CuentasCobrarBL();
+        private void BuscarMontoDocumento()
+        {
+            try
+            {
+                //Buscamos el documento y asignamos los valores del mismo al formulario
+                List<cCuentasCobrar> Cuenta;
+                CuentasCobrarBL ObjetoCuenta = new CuentasCobrarBL();
 
-        Cuenta = ObjetoCuenta.BuscarPorID(txtDocumentoPagar.Text);
-        if ((Int64)Cuenta.ClienteID == (Int64)(cbbClientes.SelectedValue))
-        {
-            txtMonto.Text = Cuenta.Monto.ToString();
-            Monto_ = Cuenta.Monto;
+                //buscamos los documentos de tipo cargo que tiene el cliente
+                Cuenta = ObjetoCuenta.ListarCargosGenerales(ObtenerCliente());
+                //Si posee alguno
+                if (Cuenta.Count>0)
+                {
+                    //Buscamos el balance del documento seleccionado
+                    Monto_ = (from x in Cuenta
+                             where x.CodigoDocumento.ToString()==txtDocumentoPagar.Text
+                             select x.Balance).FirstOrDefault();
+                    txtMonto.Text = Monto_.ToString();
+                  
+                }
+                else
+                {
+                    throw new Exception("El documento no pertenece al cliente seleccionado, favor validar");
+                    LimpiarCampos();
+                }
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message + "Error al seleccionar documento", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                LimpiarCampos();
+            }
         }
-        else
-        {
-            throw new Exception("El documento no pertenece al cliente seleccionado, favor validar");
-            LimpiarCampos();
-        }
-    }
-    catch (Exception Ex)
-    {
-        MessageBox.Show(Ex.Message + "Error al seleccionar documento", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        LimpiarCampos();
-    }
-}
 
        
 
@@ -257,9 +255,9 @@ private void BuscarMontoDocumento()
 
         private void btnVerDocumento_Click(object sender, EventArgs e)
         {
-            if (ClienteID.HasValue)
+            if (CodigoCliente.HasValue)
             {
-                Int64 Codigo = Convert.ToInt64(ClienteID);
+                Int32 Codigo = Convert.ToInt32(CodigoCliente);
                 frmListaFacturasPorCliente ListarDocumentos = new frmListaFacturasPorCliente(Codigo, "Referencia");
                 ListarDocumentos.ShowDialog(this);
             }
@@ -303,6 +301,19 @@ private void BuscarMontoDocumento()
             else
             {
                 throw new Exception("Existe un error en el monto proporcionado, favor verifique");
+            }
+        }
+
+        private void txtDocumentoPagar_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDocumentoPagar_Validated(object sender, EventArgs e)
+        {
+            if (txtDocumentoPagar.Text != string.Empty)
+            {
+                BuscarMontoDocumento();
             }
         }
         

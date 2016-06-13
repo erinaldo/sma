@@ -9,12 +9,16 @@ namespace SMA.BL
 {
     public class CuentasCobrarBL
     {
-        public  List<cCuentasCobrar> ListarCargosGenerales(Int64 ID)
+        public  List<cCuentasCobrar> ListarCargosGenerales(Int32 CodigoCliente)
         {
             try
             {
                 //Retornamos la lista de cargos generales que no posee referencia
-                return CuentaCobrarDA.ListaCargosGenerales(ID);
+                ///<remarks>
+                ///La lista de cargos generales son escencialmente cargos que no tienen referencia
+                ///osea son los cargos a los que se les hace referencia
+                ///</remarks
+                return CuentaCobrarDA.ListaCargosGenerales(CodigoCliente);
             }
             catch (Exception Ex)
             {
@@ -22,13 +26,13 @@ namespace SMA.BL
             }
         }
 
-        public List<cCuentasCobrar> ListaPagoCargos(String Referencia,Int64 ClienteID)
+        public List<cCuentasCobrar> ListaPagoCargos(String CodigoReferencia,Int32 CodigoCliente)
         {
-            if (Referencia!=null)
+            if (CodigoReferencia!=null)
             {
                 try
                 {
-                    return CuentaCobrarDA.ListaCargosPagos(Referencia,ClienteID);
+                    return CuentaCobrarDA.ListaCargosPagos(CodigoReferencia,CodigoCliente);
                 }
                 catch (Exception Ex)
                 {
@@ -48,7 +52,7 @@ namespace SMA.BL
                 if (ValidacionDocumentos(Cuenta))
                 {
                     //Si el almacen existe entonces actualizamos 
-                    if (CuentaCobrarDA.Existe(Cuenta.ID))
+                    if (CuentaCobrarDA.Existe(Cuenta.Codigo))
                     {
                         CuentaCobrarDA.Actualizar(Cuenta);
                     }
@@ -56,7 +60,7 @@ namespace SMA.BL
                     //Si el almacen es nuevo entonces creamos
                     {
                        
-                            if ((CuentaCobrarDA.Existe(Cuenta.DocumentoID.ToString(), (Int64)Cuenta.ClienteID))==false || (ConcCxCDA.BuscarPorID((Int32)Cuenta.ConceptoID).Referencia == "S"))
+                            if ((CuentaCobrarDA.Existe(Cuenta.CodigoDocumento.ToString(), (Int32)Cuenta.CodigoCliente))==false || (ConcCxCDA.BuscarPorID((Int16)Cuenta.CodigoConcepto).Referencia == "S"))
 
                             {
                                 if (ValidacionReferencia(Cuenta))
@@ -84,7 +88,7 @@ namespace SMA.BL
 
         {
             //Validacion de documento vacio
-            if(Cuenta.DocumentoID==null)
+            if(Cuenta.CodigoDocumento==null)
             {
                 throw new Exception("Debe especificar un numero de documento");
             }
@@ -99,10 +103,10 @@ namespace SMA.BL
         private Boolean ValidacionReferencia(cCuentasCobrar Cuenta)
         {
             //Validamos si la referencia existe en caso de que el concepto asi lo requiera 
-            Int32 Concepto =Convert.ToInt32(Cuenta.ConceptoID);
+            Byte Concepto =Convert.ToByte(Cuenta.CodigoConcepto);
             if (ConcCxCDA.BuscarPorID(Concepto).Referencia == "S")
             {
-                if (Cuenta.ReferenciaID.ToString() != String.Empty)
+                if (Cuenta.CodigoReferencia.ToString() != String.Empty)
                 {
                     return true;
                 }
@@ -117,8 +121,9 @@ namespace SMA.BL
             }
         }
 
-        public List<cCuentasCobrar> ListaDocumentosCxC(Int64 ID)
+        public List<cCuentasCobrar> ListaDocumentosCxC(Int32 ID)
         {
+            //CARGAMOS LOS DOCUMENTOS DE CUENTAS POR COBRAR CON BALANCE MAYOR A 0
             try
             {
                 return CuentaCobrarDA.ListaDocumentosCxC(ID);
@@ -129,7 +134,7 @@ namespace SMA.BL
             }
         }
 
-        public cCuentasCobrar BuscarPorID(Int64 ID)
+        public cCuentasCobrar BuscarPorID(Int32 ID)
         {
             //Buscamos un movimiento especifico por el ID de la base de datos
             try
@@ -148,10 +153,10 @@ namespace SMA.BL
             try
             {
                 cCuentasCobrar Cuenta = CuentaCobrarDA.BuscarPorID(DocumentoID);
-                Int64 Codigo; //Variable de comprobacion
+                Int32 Codigo; //Variable de comprobacion
 
                 //Validamos que retornamos un valor no nulo
-                if(Cuenta.ID==0)
+                if(Cuenta.Codigo==0)
                 {
                     //Retornamos un error si no existe resultado
                     throw new Exception("El documento seleccionada no existe, favor verificar");
@@ -169,7 +174,7 @@ namespace SMA.BL
             }
         }
 
-        public List<cCuentasCobrar> ImpresionComprobanteAbono(Int64 ID)
+        public List<cCuentasCobrar> ImpresionComprobanteAbono(Int32 ID)
         {
             //informacion para el reporte de recibo de cuentas por cobrar
             try
@@ -187,7 +192,7 @@ namespace SMA.BL
         {
             //Cancelacion de un abono
             //Localizamos el concepto para verificar el tipo
-            cConcepto Concepto = ConcCxCDA.BuscarPorID((Int32)Cuenta.ConceptoID);
+            cConcepto Concepto = ConcCxCDA.BuscarPorID((Int16)Cuenta.CodigoConcepto);
 
             //Tipo Abono
             if(Concepto.Tipo.ToString()=="A")
@@ -196,7 +201,7 @@ namespace SMA.BL
                 if (Concepto.Descripcion.ToString() == "Nota de Credito")
                 {
                     //Documento Nota de Credito
-                    cFactura stNotaCredito = FacturaDA.BuscarPorID(Cuenta.FacturaID, "D");
+                    cFactura stNotaCredito = FacturaDA.BuscarPorID(Cuenta.CodigoFactura, "D");
                     //Verificamos Si esta Cancelado
                     if (stNotaCredito.EstatusID.ToString() == "C")
                     {
@@ -221,7 +226,7 @@ namespace SMA.BL
                 //Verificamos el estatus de la factura en caso de que sea
                 if(Concepto.Descripcion.ToString()=="Factura")
                 {
-                    cFactura stFactura = FacturaDA.BuscarPorID(Cuenta.FacturaID, "F");
+                    cFactura stFactura = FacturaDA.BuscarPorID(Cuenta.CodigoFactura, "F");
                    
                     //Si la factura esta cancelada cancelamos la transaccion
                     if(stFactura.EstatusID.ToString()=="C")
@@ -237,7 +242,7 @@ namespace SMA.BL
                 else
                 {
                     //Si es un cargo aplicado verificamos que no tenga pagos vigentes
-                    List<cCuentasCobrar> ListaPagos=(from c in ListaPagoCargos(Cuenta.FacturaID.ToString(),(Int64)Cuenta.ClienteID)
+                    List<cCuentasCobrar> ListaPagos=(from c in ListaPagoCargos(Cuenta.CodigoFactura.ToString(),(Int32)Cuenta.CodigoCliente)
                                                      select c).ToList();
 
                     //Si tiene Cargos o pagos relacionados
@@ -254,15 +259,15 @@ namespace SMA.BL
             }
         }
 
-        public List<cCuentasCobrar> FiltrarCuentas( Int32 IndicadorFechaEmision,
-                                                            Int32 IndicadorFechaVencimiento,
-                                                            Int32 IndicadorConcepto,
+        public List<cCuentasCobrar> FiltrarCuentas( Int16 IndicadorFechaEmision,
+                                                            Int16 IndicadorFechaVencimiento,
+                                                            Int16 IndicadorConcepto,
                                                             String CriterioMonto,
                                                             String CriterioBalance,
                                                             Decimal Monto,
                                                             Decimal Balance,
-                                                            Int32 ConceptoID,
-                                                            Int64 ClienteID,
+                                                            Int16 ConceptoID,
+                                                            Int32 ClienteID,
                                                             DateTime FechaDesde,
                                                             DateTime FechaHasta)
         {
@@ -280,8 +285,8 @@ namespace SMA.BL
                                                                     DateTime FechaHasta,
                                                                     DateTime FechaCorte,
                                                                     Int32 IndicadorCorte,
-                                                                    Int64 ClienteDesde,
-                                                                    Int64 ClienteHasta)
+                                                                    Int32 ClienteDesde,
+                                                                    Int32 ClienteHasta)
         {
 
             //Arroja el reporte estado de cuenta general para un cliente o grupos de clientes
@@ -299,8 +304,8 @@ namespace SMA.BL
                                                                    DateTime FechaHasta,
                                                                    DateTime FechaCorte,
                                                                    Int32 IndicadorCorte,
-                                                                   Int64 ClienteDesde,
-                                                                   Int64 ClienteHasta)
+                                                                   Int32 ClienteDesde,
+                                                                   Int32 ClienteHasta)
         {
 
             //Arroja el reporte estado de cuenta general para un cliente o grupos de clientes
@@ -336,8 +341,8 @@ namespace SMA.BL
         public List<cAntiguedadSaldo> AntiguedadSaldo(String IndicadorFecha,
                                                              DateTime FechaReferencia,
                                                              DateTime? FechaCorte,
-                                                             Int64 ClienteDesde,
-                                                             Int64 ClienteHasta)
+                                                             Int32 ClienteDesde,
+                                                             Int32 ClienteHasta)
         {
             try
             {
@@ -352,8 +357,8 @@ namespace SMA.BL
         public List<cAntiguedadSaldoDetalle> AntiguedadSaldoDetalle(String IndicadorFecha,
                                                              DateTime FechaReferencia,
                                                              DateTime? FechaCorte,
-                                                             Int64 ClienteDesde,
-                                                             Int64 ClienteHasta)
+                                                             Int32 ClienteDesde,
+                                                             Int32 ClienteHasta)
         {
             try
             {
@@ -365,10 +370,10 @@ namespace SMA.BL
             }
         }
 
-        public List<cCuentasCobrar> ReportePorConcepto(Int64? ClienteDesde,
-                                                              Int64? ClienteHasta,
-                                                              DateTime? FechaDesde,
-                                                              DateTime? FechaHasta,
+        public List<cCuentasCobrar> ReportePorConcepto(Int32 ClienteDesde,
+                                                              Int32 ClienteHasta,
+                                                              DateTime FechaDesde,
+                                                              DateTime FechaHasta,
                                                               String CriterioCantidad,
                                                               String Conceptos,
                                                               Decimal ValorMonto)
@@ -411,7 +416,7 @@ namespace SMA.BL
             }
         }
 
-        public List<cReporteEstadoCuenta> ReporteDocumentosPorCobrar(Int64? ClienteDesde, Int64? ClienteHasta, DateTime FechaCorte)
+        public List<cReporteEstadoCuenta> ReporteDocumentosPorCobrar(Int32? ClienteDesde, Int32? ClienteHasta, DateTime FechaCorte)
         {
             try
             {
@@ -426,14 +431,15 @@ namespace SMA.BL
         public List<cReporteEstadoCuenta> ReporteAbonoPorPeriodo(DateTime FechaDesde,
                                                                     DateTime FechaHasta,
                                                                     DateTime? FechaCorte,
-                                                                    Int64 ClienteDesde,
-                                                                    Int64 ClienteHasta)
+                                                                    Int32 ClienteDesde,
+                                                                    Int32 ClienteHasta,
+                                                                    Int16 IndicadorCorte)
         {
 
             //Arroja el reporte estado de cuenta general para un cliente o grupos de clientes
             try
             {
-                return CuentaCobrarDA.ReporteAbonoPorPeriodo(FechaDesde, FechaHasta, FechaCorte,ClienteDesde,ClienteHasta);
+                return CuentaCobrarDA.ReporteAbonoPorPeriodo(FechaDesde, FechaHasta, FechaCorte,ClienteDesde,ClienteHasta,IndicadorCorte);
             }
             catch (Exception Ex)
             {

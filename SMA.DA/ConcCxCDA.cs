@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using SMA.Entity;
 using System.Data;
-using System.Data.SqlClient;
-
+using MySql.Data.MySqlClient;
+using MySql.Data;
 
 
 namespace SMA.DA
@@ -18,27 +18,27 @@ namespace SMA.DA
             {
 
                 //Declaramos la conexion hacia la base de datos
-                using (SqlConnection Conn = new SqlConnection(cConexion.CadenaConexion()))
+                using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
                 {
                     Conn.Open();
                     //Nombre del procedimiento
                     string StoreProc = "uspInsertarConcCxC";
                     //Creamos el command para la insercion
-                    SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
+                    MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
 
                     //Parametros
-                    Cmd.Parameters.AddWithValue("Descripcion", Concepto.Descripcion);
-                    Cmd.Parameters.AddWithValue("Tipo", Concepto.Tipo);
-                    Cmd.Parameters.AddWithValue("Automatico", Concepto.Automatico);
-                    Cmd.Parameters.AddWithValue("Notas", Concepto.Notas);
-                    Cmd.Parameters.AddWithValue("Referencia", Concepto.Referencia);
+                    Cmd.Parameters.AddWithValue("p_Descripcion", Concepto.Descripcion);
+                    Cmd.Parameters.AddWithValue("p_Tipo", Concepto.Tipo);
+                    Cmd.Parameters.AddWithValue("p_Automatico", Concepto.Automatico);
+                    Cmd.Parameters.AddWithValue("p_Notas", Concepto.Notas);
+                    Cmd.Parameters.AddWithValue("p_Referencia", Concepto.Referencia);
                     Cmd.ExecuteNonQuery();
                 }
 
 
             }
-            catch (SqlException Ex)
+            catch (MySqlException Ex)
             {
                 throw Ex;
             }
@@ -50,52 +50,52 @@ namespace SMA.DA
             {
 
                 //Declaramos la conexion hacia la base de datos
-                using (SqlConnection Conn = new SqlConnection(cConexion.CadenaConexion()))
+                using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
                 {
                     Conn.Open();
                     //Nombre del procedimiento
                     string StoreProc = "uspActualizarConcCxC";
                     //Creamos el command para la insercion
-                    SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
+                    MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
 
                     //Parametros
-                    Cmd.Parameters.AddWithValue("ID", Concepto.ID);
-                    Cmd.Parameters.AddWithValue("Descripcion", Concepto.Descripcion);
-                    Cmd.Parameters.AddWithValue("Notas", Concepto.Notas);
-                    Cmd.Parameters.AddWithValue("Referencia", Concepto.Referencia);
+                    Cmd.Parameters.AddWithValue("p_Codigo", Concepto.Codigo);
+                    Cmd.Parameters.AddWithValue("p_Descripcion", Concepto.Descripcion);
+                    Cmd.Parameters.AddWithValue("p_Notas", Concepto.Notas);
+                    Cmd.Parameters.AddWithValue("p_Referencia", Concepto.Referencia);
                     Cmd.ExecuteNonQuery();
                 }
 
 
             }
-            catch (SqlException Ex)
+            catch (MySqlException Ex)
             {
                 throw Ex;
             }
         }
 
-        public static cConcepto BuscarPorID(int ID)
+        public static cConcepto BuscarPorID(Int16 ID)
         {
             try
             {
                 //Declaramos la conexion hacia la base de datos
-                using (SqlConnection Conn = new SqlConnection(cConexion.CadenaConexion()))
+                using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
                 {
                     Conn.Open();
                     //Nombre del procedimiento
-                    string StoreProc = "uspBuscarConcCxCPorID";
+                    string StoreProc = "uspBuscarConcCxCPorCodigo";
                     //Creamos el command para la insercion
-                    SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
+                    MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
                     //Parametros
-                    Cmd.Parameters.AddWithValue("ConceptoID", ID);
-                    SqlDataReader Reader = Cmd.ExecuteReader();
+                    Cmd.Parameters.AddWithValue("p_Codigo", ID);
+                    MySqlDataReader Reader = Cmd.ExecuteReader();
 
                     cConcepto Concepto = new cConcepto();
                     while (Reader.Read())
                     {
-                        Concepto.ID = Reader.GetInt32(Reader.GetOrdinal("ID"));
+                        Concepto.Codigo = Reader.GetByte(Reader.GetOrdinal("Codigo"));
                         Concepto.Descripcion = Reader.GetString(Reader.GetOrdinal("Descripcion"));
                         Concepto.Tipo = Reader.GetString(Reader.GetOrdinal("Tipo"));
                         Concepto.Notas = Reader.IsDBNull(Reader.GetOrdinal("Notas")) ? null : Reader.GetString(Reader.GetOrdinal("Notas"));
@@ -106,7 +106,7 @@ namespace SMA.DA
                     return Concepto;
                 }
             }
-            catch (SqlException Ex)
+            catch (MySqlException Ex)
             {
 
                 throw Ex;
@@ -120,23 +120,23 @@ namespace SMA.DA
             try
             {
                 //Declaramos la conexion hacia la base de datos
-                using (SqlConnection Conn = new SqlConnection(cConexion.CadenaConexion()))
+                using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
                 {
                     Conn.Open();
                     //Nombre del procedimiento
-                    string StoreProc = "uspListaConcCxC";
+                    string StoreProc = "uspListarConcCxC";
                     //Creamos el command para la insercion
-                    SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
+                    MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
                     //Ejecutamos el lector 
-                    SqlDataReader Reader = Cmd.ExecuteReader();
+                    MySqlDataReader Reader = Cmd.ExecuteReader();
 
 
                     List<cConcepto> Lista = new List<cConcepto>();
                     while (Reader.Read())
                     {
                         cConcepto Concepto = new cConcepto();
-                        Concepto.ID = Reader.GetInt32(Reader.GetOrdinal("ID"));
+                        Concepto.Codigo = Reader.GetInt16(Reader.GetOrdinal("Codigo"));
                         Concepto.Descripcion = Reader.GetString(Reader.GetOrdinal("Descripcion"));
                         Concepto.Tipo = Reader.GetString(Reader.GetOrdinal("Tipo"));
                         Concepto.Notas = Reader.IsDBNull(Reader.GetOrdinal("Notas")) ? null : Reader.GetString(Reader.GetOrdinal("Notas"));
@@ -152,7 +152,7 @@ namespace SMA.DA
                     return Lista;
                 }
             }
-            catch (SqlException Ex)
+            catch (MySqlException Ex)
             {
                 throw Ex;
             }
@@ -161,14 +161,14 @@ namespace SMA.DA
 
 
 
-        public static Boolean Existe(int ID)
+        public static Boolean Existe(Int16 ID)
         {
             //Buscamos si un Articulo existe en la base de datos
-            int result;
-            string Valor = BuscarPorID(ID).ID.ToString();
+            Int16 result;
+            string Valor = BuscarPorID(ID).Codigo.ToString();
             if (Valor != "0")
             {
-                return int.TryParse(Valor, out result);
+                return Int16.TryParse(Valor, out result);
             }
             else
             {

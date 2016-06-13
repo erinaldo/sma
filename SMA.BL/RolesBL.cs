@@ -9,11 +9,11 @@ namespace SMA.BL
 {
     public class RolesBL
     {
-      public List<cRoles> Listar()
+      public List<cRoles> Listar(Int32 CodigoModulo)
         {
           try
           {
-              return RolesDA.Listar();
+              return RolesDA.Listar(CodigoModulo);
           }
           catch(Exception Ex)
           {

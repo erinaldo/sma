@@ -40,19 +40,23 @@
             this.btnCancelar = new DevComponents.DotNetBar.ButtonX();
             this.btnAceptar = new DevComponents.DotNetBar.ButtonX();
             this.styleManager1 = new DevComponents.DotNetBar.StyleManager(this.components);
+            this.btnListaFamiliares2 = new DevComponents.DotNetBar.ButtonX();
+            this.btnListaFamiliares1 = new DevComponents.DotNetBar.ButtonX();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnListaFamiliares2);
+            this.groupBox2.Controls.Add(this.btnListaFamiliares1);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.cbbClienteHasta);
             this.groupBox2.Controls.Add(this.cbbClienteDesde);
-            this.groupBox2.Location = new System.Drawing.Point(12, 12);
+            this.groupBox2.Location = new System.Drawing.Point(8, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(410, 79);
+            this.groupBox2.Size = new System.Drawing.Size(369, 79);
             this.groupBox2.TabIndex = 125;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Rango de Clientes";
@@ -60,7 +64,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 49);
+            this.label2.Location = new System.Drawing.Point(15, 46);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 3;
@@ -69,7 +73,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 22);
+            this.label1.Location = new System.Drawing.Point(15, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 13);
             this.label1.TabIndex = 2;
@@ -78,23 +82,23 @@
             // cbbClienteHasta
             // 
             this.cbbClienteHasta.FormattingEnabled = true;
-            this.cbbClienteHasta.Location = new System.Drawing.Point(62, 46);
+            this.cbbClienteHasta.Location = new System.Drawing.Point(62, 42);
             this.cbbClienteHasta.Name = "cbbClienteHasta";
-            this.cbbClienteHasta.Size = new System.Drawing.Size(342, 21);
+            this.cbbClienteHasta.Size = new System.Drawing.Size(269, 21);
             this.cbbClienteHasta.TabIndex = 1;
             // 
             // cbbClienteDesde
             // 
             this.cbbClienteDesde.FormattingEnabled = true;
-            this.cbbClienteDesde.Location = new System.Drawing.Point(62, 19);
+            this.cbbClienteDesde.Location = new System.Drawing.Point(62, 15);
             this.cbbClienteDesde.Name = "cbbClienteDesde";
-            this.cbbClienteDesde.Size = new System.Drawing.Size(342, 21);
+            this.cbbClienteDesde.Size = new System.Drawing.Size(269, 21);
             this.cbbClienteDesde.TabIndex = 0;
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.dtpFechaCorte);
-            this.groupBox3.Location = new System.Drawing.Point(12, 97);
+            this.groupBox3.Location = new System.Drawing.Point(8, 97);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(124, 50);
             this.groupBox3.TabIndex = 126;
@@ -114,7 +118,7 @@
             this.btnCancelar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnCancelar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
-            this.btnCancelar.Location = new System.Drawing.Point(314, 105);
+            this.btnCancelar.Location = new System.Drawing.Point(275, 105);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(102, 42);
             this.btnCancelar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -127,7 +131,7 @@
             this.btnAceptar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnAceptar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnAceptar.Image = ((System.Drawing.Image)(resources.GetObject("btnAceptar.Image")));
-            this.btnAceptar.Location = new System.Drawing.Point(206, 105);
+            this.btnAceptar.Location = new System.Drawing.Point(167, 105);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(102, 42);
             this.btnAceptar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -137,19 +141,45 @@
             // 
             // styleManager1
             // 
-            this.styleManager1.ManagerStyle = DevComponents.DotNetBar.eStyle.Office2007Blue;
+            this.styleManager1.ManagerStyle = DevComponents.DotNetBar.eStyle.Office2010Blue;
+            // 
+            // btnListaFamiliares2
+            // 
+            this.btnListaFamiliares2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnListaFamiliares2.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnListaFamiliares2.Image = ((System.Drawing.Image)(resources.GetObject("btnListaFamiliares2.Image")));
+            this.btnListaFamiliares2.Location = new System.Drawing.Point(337, 41);
+            this.btnListaFamiliares2.Name = "btnListaFamiliares2";
+            this.btnListaFamiliares2.Size = new System.Drawing.Size(26, 23);
+            this.btnListaFamiliares2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnListaFamiliares2.TabIndex = 16;
+            // 
+            // btnListaFamiliares1
+            // 
+            this.btnListaFamiliares1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnListaFamiliares1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnListaFamiliares1.Image = ((System.Drawing.Image)(resources.GetObject("btnListaFamiliares1.Image")));
+            this.btnListaFamiliares1.Location = new System.Drawing.Point(337, 14);
+            this.btnListaFamiliares1.Name = "btnListaFamiliares1";
+            this.btnListaFamiliares1.Size = new System.Drawing.Size(26, 23);
+            this.btnListaFamiliares1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnListaFamiliares1.TabIndex = 15;
             // 
             // frmParametroCobranzaGeneral
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(421, 159);
+            this.ClientSize = new System.Drawing.Size(385, 153);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.DoubleBuffered = true;
             this.EnableGlass = false;
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(401, 191);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(401, 191);
             this.Name = "frmParametroCobranzaGeneral";
             this.Text = "Cobranza general";
             this.Load += new System.EventHandler(this.frmParametroCobranzaGeneral_Load);
@@ -172,5 +202,7 @@
         internal DevComponents.DotNetBar.ButtonX btnCancelar;
         internal DevComponents.DotNetBar.ButtonX btnAceptar;
         private DevComponents.DotNetBar.StyleManager styleManager1;
+        private DevComponents.DotNetBar.ButtonX btnListaFamiliares2;
+        private DevComponents.DotNetBar.ButtonX btnListaFamiliares1;
     }
 }

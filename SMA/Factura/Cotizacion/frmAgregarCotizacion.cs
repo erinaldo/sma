@@ -565,7 +565,7 @@ namespace SMA.Factura.Cotizacion
             txtCantidad.Focus();
         }
 
-        public void BusquedaCliente(Int64 Codigo)
+        public void BusquedaCliente(Int32 Codigo)
         {
             try
             {
@@ -585,7 +585,7 @@ namespace SMA.Factura.Cotizacion
         {
             lblDireccion.Text = Cliente.Direccion.ToString();
             lblRNC.Text = Cliente.RNC.ToString();
-            cbbCliente.SelectedValue = Cliente.ID;
+            cbbCliente.SelectedValue = Cliente.Codigo;
 
 
             AsignarFechaVencimiento(Cliente);

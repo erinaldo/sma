@@ -10,7 +10,7 @@ namespace SMA.Compras
     {
         //void SeleccionarCliente(Int32 Codigo);
         void BuscarArticulo(Int64 Codigo);
-        void BusquedaProveedor(Int64 Codigo);
+        void BusquedaProveedor(Int32 Codigo);
         void BuscarReferencia(Int64 DocumentoID);
         
     }

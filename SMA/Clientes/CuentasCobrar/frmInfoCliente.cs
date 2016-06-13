@@ -14,23 +14,23 @@ namespace SMA.Clientes.CuentasPagar
 {
     public partial class frmInfoCliente : Office2007Form
     {
-        private Int64 ClienteID;
+        private Int32 CodigoCliente;
 
         public frmInfoCliente()
         {
             InitializeComponent();
         }
 
-        public frmInfoCliente(Int64 ClienteID):this()
+        public frmInfoCliente(Int32 CodigoCliente):this()
         {
-            this.ClienteID = ClienteID;
+            this.CodigoCliente = CodigoCliente;
         }
         private void frmInfoCliente_Load(object sender, EventArgs e)
         {
             try
             {
                 ClienteBL ObjetoCliente = new ClienteBL();
-                MostrarDatos(ObjetoCliente.BuscarPorID(ClienteID));
+                MostrarDatos(ObjetoCliente.BuscarPorID(CodigoCliente));
             }
             catch(Exception Ex)
             {
@@ -41,7 +41,7 @@ namespace SMA.Clientes.CuentasPagar
         private void MostrarDatos(cCliente Cliente)
         {
             //Mostramos los datos del cliente
-            txtAtencionCobros.Text = Cliente.ContactoCobros;
+            //txtAtencionCobros.Text = Cliente.ContactoCobros;
             txtTelefono.Text = Cliente.Telefono;
             txtEmail.Text = Cliente.Correo;
             txtDiasCredito.Text = Cliente.DiasCredito.ToString();

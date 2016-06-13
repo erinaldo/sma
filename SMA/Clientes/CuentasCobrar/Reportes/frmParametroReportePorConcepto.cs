@@ -14,16 +14,16 @@ namespace SMA.Clientes.CuentasCobrar.Reportes
 {
     public partial class frmParametroReportePorConcepto : Office2007Form
     {
-        private Int64? ClienteID;
-        private DateTime? FechaDesde=null;
-        private DateTime? FechaHasta=null;
+        private Int32? ClienteID;
+        private DateTime FechaDesde;
+        private DateTime FechaHasta;
 
         public frmParametroReportePorConcepto()
         {
             InitializeComponent();
         }
 
-        public frmParametroReportePorConcepto(Int64 ClienteID):this()
+        public frmParametroReportePorConcepto(Int32 ClienteID):this()
         {
             this.ClienteID = ClienteID;
         }
@@ -42,8 +42,8 @@ namespace SMA.Clientes.CuentasCobrar.Reportes
             cbbClienteDesde.DataSource = ObjetoCliente.Listar();
             cbbClienteHasta.DataSource = ObjetoCliente.Listar();
 
-            cbbClienteDesde.ValueMember = "ID";
-            cbbClienteHasta.ValueMember = "ID";
+            cbbClienteDesde.ValueMember = "Codigo";
+            cbbClienteHasta.ValueMember = "Codigo";
             cbbClienteDesde.DisplayMember = "NombreComercial";
             cbbClienteHasta.DisplayMember = "NombreComercial";
 
@@ -59,7 +59,7 @@ namespace SMA.Clientes.CuentasCobrar.Reportes
             ConceptoCxCBL ObjetoConcepto=new ConceptoCxCBL();
             lbConceptos.DataSource=ObjetoConcepto.Listar();
             lbConceptos.DisplayMember="Descripcion";
-            lbConceptos.ValueMember="ID";
+            lbConceptos.ValueMember="Codigo";
         }
 
         private void rbTodosConceptos_CheckedChanged(object sender, EventArgs e)
@@ -86,11 +86,13 @@ namespace SMA.Clientes.CuentasCobrar.Reportes
             try
             {
                 CuentasCobrarBL Cuenta = new CuentasCobrarBL();
-                Int64? ClienteDesde = ObtenerCliente(cbbClienteDesde.SelectedValue);
-                Int64? ClienteHasta = ObtenerCliente(cbbClienteHasta.SelectedValue);
+                Int32 ClienteDesde = ObtenerCliente(cbbClienteDesde.SelectedValue);
+                Int32 ClienteHasta = ObtenerCliente(cbbClienteHasta.SelectedValue);
                 String CriterioCantidad = ObtenerCriterio();
                 Decimal ValorMonto = ObtenerMontos();
                 String Conceptos = ObtenerConceptos();
+                FechaDesde = dtpFechaDesde.Value;
+                FechaHasta = dtpFechaHasta.Value;
                 List<cCuentasCobrar> Lista = Cuenta.ReportePorConcepto(ClienteDesde, ClienteHasta, FechaDesde, FechaHasta, CriterioCantidad, Conceptos, ValorMonto);
                 frmrptPorConcepto ReportePorConcepto = new frmrptPorConcepto(Lista);
                 ReportePorConcepto.ShowDialog(this);
@@ -101,23 +103,23 @@ namespace SMA.Clientes.CuentasCobrar.Reportes
             }
         }
 
-        private Int64? ObtenerCliente(object p)
+        private Int32 ObtenerCliente(object p)
         {
             if(p!=null)
             {
-                Int64 Codigo;
-                if(Int64.TryParse(p.ToString(),out Codigo))
+                Int32 Codigo;
+                if(Int32.TryParse(p.ToString(),out Codigo))
                 {
-                    return Convert.ToInt64(p.ToString());
+                    return Convert.ToInt32(p.ToString());
                 }
                 else
                 {
-                    return null;
+                    return -1;
                 }
             }
             else
             {
-                return null;
+                return -1;
             }
         }
 
@@ -156,7 +158,7 @@ namespace SMA.Clientes.CuentasCobrar.Reportes
         {
             if (rbTodosConceptos.Checked)
             {
-                return null;
+                return "";
             }
 
             else
@@ -188,7 +190,7 @@ namespace SMA.Clientes.CuentasCobrar.Reportes
                     }
                     else
                     {
-                        Resultado = null;
+                        Resultado = "";
                     }
 
                     return Resultado;
@@ -223,12 +225,12 @@ namespace SMA.Clientes.CuentasCobrar.Reportes
 
         private void dtpFechaDesde_ValueChanged(object sender, EventArgs e)
         {
-            FechaDesde = dtpFechaDesde.Value;
+           
         }
 
         private void dtpFechaHasta_ValueChanged(object sender, EventArgs e)
         {
-            FechaHasta = dtpFechaHasta.Value;
+            
         }
 
         private void rbSeleccion_CheckedChanged(object sender, EventArgs e)

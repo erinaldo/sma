@@ -61,6 +61,7 @@
             this.lbModulos.Name = "lbModulos";
             this.lbModulos.Size = new System.Drawing.Size(216, 160);
             this.lbModulos.TabIndex = 1;
+            this.lbModulos.Click += new System.EventHandler(this.lbModulos_Click);
             // 
             // lbModulosAsignados
             // 

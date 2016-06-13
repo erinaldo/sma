@@ -28,12 +28,12 @@ namespace SMA
                 cUsuario Usuario = ObjetoUsuario.ObtenerUsuario(txtUsuario.Text, txtContrasena.Text);
 
                 //VALIDAMOS SI EXISTE ALGUN RESULTADO
-                if(Usuario!=null && Usuario.ResetPassOnLogin!=true)
+                if (Usuario != null && Usuario.ResetPassOnLogin != true)
                 {
                     //CARGAMOS LA LISTA DE PERSMISOS DEL USUARIO
-                    cGlobal.ListaModulosPermisos = ObjetoUsuario.ListarPermisos(Usuario.ID);
+                    cGlobal.ListaModulosPermisos = ObjetoUsuario.ListarPermisos(Usuario.Codigo);
                     //ACTUALIZAMOS SU ULTIMO LOGIN
-                    ObjetoUsuario.ActualizarUltimoLogin(Usuario.ID);
+                    ObjetoUsuario.ActualizarUltimoLogin(Usuario.Codigo);
 
                     frmPrincipal Principal = new frmPrincipal();
                     Principal.Show();
@@ -45,13 +45,14 @@ namespace SMA
                     MessageBox.Show("Los datos proporcionados no son validos, revise y vuelva a intentarlo", "Error en acceso", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 }
 
-                if(Usuario!=null && Usuario.ResetPassOnLogin==true)
+                if (Usuario != null && Usuario.ResetPassOnLogin == true)
                 {
                     //MOSTRAMOS EL FORMULARIO PARA RESETEAR LA CLAVE
                     frmResetearClave ResetarClave = new frmResetearClave(Usuario);
                     ResetarClave.ShowDialog(this);
                 }
 
+                
                 
             }
             catch(Exception Ex)

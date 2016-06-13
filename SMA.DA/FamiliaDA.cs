@@ -57,7 +57,7 @@ namespace SMA.DA
                     Cmd.CommandType = CommandType.StoredProcedure;
                     
                     //Parametros
-                    Cmd.Parameters.AddWithValue("FamiliaID",Familia.ID);
+                    Cmd.Parameters.AddWithValue("FamiliaID",Familia.Codigo);
                    Cmd.Parameters.AddWithValue("Descripcion", Familia.Descripcion);
                     Cmd.Parameters.AddWithValue("Notas",Familia.Notas);
 
@@ -121,7 +121,7 @@ namespace SMA.DA
                     cFamilia Familia = new cFamilia();
                     while (Reader.Read())
                     {
-                        Familia.ID = Reader.GetInt32(Reader.GetOrdinal("ID"));
+                        Familia.Codigo = Reader.GetInt32(Reader.GetOrdinal("ID"));
                         Familia.Notas =Reader.IsDBNull(Reader.GetOrdinal("Notas"))?null: Reader.GetString(Reader.GetOrdinal("Notas"));
                         Familia.Descripcion = Reader.GetString(Reader.GetOrdinal("Descripcion"));
                         
@@ -160,7 +160,7 @@ namespace SMA.DA
                     while (Reader.Read())
                     {
                         cFamilia Familia = new cFamilia();
-                        Familia.ID = Reader.GetInt32(Reader.GetOrdinal("ID"));
+                        Familia.Codigo = Reader.GetInt32(Reader.GetOrdinal("ID"));
                         Familia.Descripcion = Reader.GetString(Reader.GetOrdinal("Descripcion"));
                         Familia.Notas = Reader.IsDBNull(Reader.GetOrdinal("Notas"))? null: Reader.GetString(Reader.GetOrdinal("Notas"));
 
@@ -186,7 +186,7 @@ namespace SMA.DA
         {
             //Buscamos si un Articulo existe en la base de datos
             int result;
-            string Valor = BuscarPorID(ID).ID.ToString();
+            string Valor = BuscarPorID(ID).Codigo.ToString();
             if (Valor != "0")
             {
                 return int.TryParse(Valor, out result);

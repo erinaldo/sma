@@ -14,15 +14,15 @@ namespace SMA.Clientes.CuentasPagar
 {
     public partial class frmBuscarCxC : Office2007Form
     {
-        Int32 IndicadorFechaEmision = -1;
-        Int32 IndicadorFechaVencimiento = -1;
-        Int32 IndicadorConcepto = -1;
+        Int16 IndicadorFechaEmision = -1;
+        Int16 IndicadorFechaVencimiento = -1;
+        Int16 IndicadorConcepto = -1;
         String CriterioMonto;
         String CriterioBalance;
         Decimal Monto;
         Decimal Balance;
-        Int32 ConceptoID;
-        Int64 ClienteID;
+        Int16 CodigoConcepto;
+        Int32 CodigoCliente;
         DateTime FechaDesde;
         DateTime FechaHasta;
 
@@ -32,9 +32,9 @@ namespace SMA.Clientes.CuentasPagar
             InitializeComponent();
         }
 
-        public frmBuscarCxC(Int64 ClienteID):this()
+        public frmBuscarCxC(Int32 CodigoCliente):this()
         {
-            this.ClienteID = ClienteID;
+            this.CodigoCliente = CodigoCliente;
         }
         #endregion
 
@@ -42,7 +42,7 @@ namespace SMA.Clientes.CuentasPagar
         {
             ConceptoCxCBL ObjetoConcepto = new ConceptoCxCBL();
             lbConceptos.DataSource = ObjetoConcepto.Listar();
-            lbConceptos.ValueMember = "ID";
+            lbConceptos.ValueMember = "Codigo";
             lbConceptos.DisplayMember = "Descripcion";
         }
 
@@ -76,7 +76,7 @@ namespace SMA.Clientes.CuentasPagar
                 {
                     CuentasCobrarBL ObjetoCuenta = new CuentasCobrarBL();
                     //Realizamos la busqueda y guardamos el resultado
-                    List<cCuentasCobrar> ListaFiltrada = ObjetoCuenta.FiltrarCuentas(IndicadorFechaEmision, IndicadorFechaVencimiento, IndicadorConcepto, CriterioMonto, CriterioBalance, Monto, Balance, ConceptoID, ClienteID, FechaDesde, FechaHasta);
+                    List<cCuentasCobrar> ListaFiltrada = ObjetoCuenta.FiltrarCuentas(IndicadorFechaEmision, IndicadorFechaVencimiento, IndicadorConcepto, CriterioMonto, CriterioBalance, Monto, Balance, CodigoConcepto, CodigoCliente, FechaDesde, FechaHasta);
                     //Enviamos el resultado utilizando la interface
                     FormInterfaceGestionCuentas.AplicarFiltro(ListaFiltrada);
                 }
@@ -121,7 +121,7 @@ namespace SMA.Clientes.CuentasPagar
                 IndicadorFechaVencimiento = -1;
             }
 
-            ConceptoID = ObtenerConcepto();
+            CodigoConcepto = ObtenerConcepto();
             //Criterios de Balance y Monto
             CriterioBalance = cbCriterioBalance.Text;
             CriterioMonto = cbCriterioMonto.Text;
@@ -133,13 +133,13 @@ namespace SMA.Clientes.CuentasPagar
             FechaHasta = dtpHasta.Value;
         }
 
-        private Int32 ObtenerConcepto()
+        private Int16 ObtenerConcepto()
         {
             //Obtenemos el codigo del concepto a buscar
-            Int32 Codigo;
-            if(Int32.TryParse(lbConceptos.SelectedValue.ToString(),out Codigo))
+            Int16 Codigo;
+            if(Int16.TryParse(lbConceptos.SelectedValue.ToString(),out Codigo))
             {
-                return Convert.ToInt32(lbConceptos.SelectedValue.ToString());
+                return Convert.ToInt16(lbConceptos.SelectedValue.ToString());
             }
             else
             {

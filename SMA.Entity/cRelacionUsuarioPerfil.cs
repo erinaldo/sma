@@ -7,26 +7,26 @@ namespace SMA.Entity
 {
    public class cRelacionUsuarioPerfil
     {
-        private Int32 _ID;
+        private Int32 _Codigo;
 
-        public Int32 ID
+        public Int32 Codigo
         {
-            get { return _ID; }
-            set { _ID = value; }
+            get { return _Codigo; }
+            set { _Codigo = value; }
         }
-        private Object _UsuarioID;
+        private Object _UsuarioCodigo;
 
-        public Object UsuarioID
+        public Object UsuarioCodigo
         {
-            get { return _UsuarioID; }
-            set { _UsuarioID = value; }
+            get { return _UsuarioCodigo; }
+            set { _UsuarioCodigo = value; }
         }
-        private Object _PerfilID;
+        private Object _PerfilCodigo;
 
-        public Object PerfilID
+        public Object PerfilCodigo
         {
-            get { return _PerfilID; }
-            set { _PerfilID = value; }
+            get { return _PerfilCodigo; }
+            set { _PerfilCodigo = value; }
         }
     }
 }

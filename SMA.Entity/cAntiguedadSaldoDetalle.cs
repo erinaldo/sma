@@ -14,12 +14,12 @@ namespace SMA.Entity
             get { return _Concepto; }
             set { _Concepto = value; }
         }
-        private String _DocumentoID;
+        private String _CodigoDocumento;
 
-        public String DocumentoID
+        public String CodigoDocumento
         {
-            get { return _DocumentoID; }
-            set { _DocumentoID = value; }
+            get { return _CodigoDocumento; }
+            set { _CodigoDocumento = value; }
         }
         private DateTime _FechaEmision;
 

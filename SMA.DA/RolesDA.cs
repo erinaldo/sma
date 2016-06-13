@@ -4,35 +4,40 @@ using System.Linq;
 using System.Text;
 using SMA.Entity;
 using System.Data;
-using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
+using MySql.Data;
 
 namespace SMA.DA
 {
     public static class RolesDA
     {
-        public static List<cRoles> Listar()
+        public static List<cRoles> Listar(Int32 CodigoModulo)
         {
-
+            //BUSCAMOS LOS ROLES RELACIONADOS CON EL MODULO
             try
             {
                 //Declaramos la conexion hacia la base de datos
-                using (SqlConnection Conn = new SqlConnection(cConexion.CadenaConexion()))
+                using (MySqlConnection Conn = new MySqlConnection(cConexion.CadenaConexion()))
                 {
                     Conn.Open();
                     //Nombre del procedimiento
-                    string StoreProc = "uspListarRoles";
+                    string StoreProc = "uspListarRolPorCodigoMod";
                     //Creamos el command para la insercion
-                    SqlCommand Cmd = new SqlCommand(StoreProc, Conn);
+                    MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
+                    
+                    //Parametro
+                    Cmd.Parameters.AddWithValue("p_CodigoModulo", CodigoModulo);
+
                     //Ejecutamos el lector 
-                    SqlDataReader Reader = Cmd.ExecuteReader();
+                    MySqlDataReader Reader = Cmd.ExecuteReader();
 
 
                     List<cRoles> Lista = new List<cRoles>();
                     while (Reader.Read())
                     {
                         cRoles Rol = new cRoles();
-                        Rol.ID = Reader.GetInt32(Reader.GetOrdinal("ID"));
+                        Rol.Codigo = Reader.GetInt16(Reader.GetOrdinal("Codigo"));
                         Rol.Descripcion = Reader.GetString(Reader.GetOrdinal("Descripcion"));
                         
                         //Agregamos el articulo a la lista
@@ -45,7 +50,7 @@ namespace SMA.DA
                 }
             }
 
-            catch (SqlException Ex)
+            catch (MySqlException Ex)
             {
                 throw Ex;
 

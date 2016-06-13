@@ -14,14 +14,14 @@ namespace SMA.Clientes.CuentasCobrar.Reportes
 {
     public partial class frmParametroEstadoCuentaCliente : Office2007Form
     {
-        Int64? ClienteID;
+        Int32? ClienteID;
         String TipoReporte;
         DateTime FechaDesde;
         DateTime FechaHasta;
         DateTime FechaCorte;
-        Int32 IndicadorCorte;
-        Int64 ClienteDesde;
-        Int64 ClienteHasta;
+        Int16 IndicadorCorte;
+        Int32 ClienteDesde;
+        Int32 ClienteHasta;
 
         public frmParametroEstadoCuentaCliente()
         {
@@ -29,7 +29,7 @@ namespace SMA.Clientes.CuentasCobrar.Reportes
         }
 
         //CONSTRUCTOR
-        public frmParametroEstadoCuentaCliente(Int64 ClienteID, String TipoReporte):this()
+        public frmParametroEstadoCuentaCliente(Int32 ClienteID, String TipoReporte):this()
         {
             this.ClienteID = ClienteID;
             this.TipoReporte = TipoReporte;
@@ -42,25 +42,27 @@ namespace SMA.Clientes.CuentasCobrar.Reportes
 
         private void frmParametroEstadoCuentaCliente_Load(object sender, EventArgs e)
         {
-            ClienteBL ObjetoCliente = new ClienteBL();
-            if (ClienteID.HasValue)
+            try
             {
-                //Si el parametro de Proveedor tiene algun valor entonces filtramos al Proveedor seleccionado para que
-                //solo muestre informacion de este
-                Int64 Codigo = Convert.ToInt64(ClienteID);
-                cbbClienteDesde.DataSource = ObjetoCliente.Filtrar(Codigo, Codigo, null, null,null);
-                cbbClienteHasta.DataSource = ObjetoCliente.Filtrar(Codigo, Codigo, null, null,null);
-            }
-            else
-            {
+                ClienteBL ObjetoCliente = new ClienteBL();
                 cbbClienteDesde.DataSource = ObjetoCliente.Listar();
-                cbbClienteHasta.DataSource = ObjetoCliente.Listar();
+                cbbClienteDesde.ValueMember = "Codigo";
+                cbbClienteDesde.DisplayMember = "NombreComercial";
 
+                if (ClienteID.HasValue)
+                {
+                    //Si el parametro de Proveedor tiene algun valor entonces filtramos al Proveedor seleccionado para que
+                    //solo muestre informacion de este
+                    Int32 Codigo = Convert.ToInt32(ClienteID);
+                    cbbClienteDesde.SelectedValue = Codigo;
+                }
+
+                
             }
-            cbbClienteDesde.ValueMember = "ID";
-            cbbClienteHasta.ValueMember = "ID";
-            cbbClienteDesde.DisplayMember = "NombreComercial";
-            cbbClienteHasta.DisplayMember = "NombreComercial";
+            catch(Exception Ex)
+            {
+                MessageBox.Show(Ex.Message);
+            }
         }
 
         private void ObtenerDatos()
@@ -69,13 +71,13 @@ namespace SMA.Clientes.CuentasCobrar.Reportes
             FechaHasta = dtpFechaHasta.Value;
             FechaCorte = dtpFechaCorte.Value;
             IndicadorCorte = ObtenerIndicadorCorte();
-            ClienteDesde = Convert.ToInt64(cbbClienteDesde.SelectedValue.ToString());
-            ClienteHasta = Convert.ToInt64(cbbClienteHasta.SelectedValue.ToString());
+            ClienteDesde = Convert.ToInt32(cbbClienteDesde.SelectedValue.ToString());
+            ClienteHasta = Convert.ToInt32(cbbClienteDesde.SelectedValue.ToString());
 
 
         }
 
-        private int ObtenerIndicadorCorte()
+        private Int16 ObtenerIndicadorCorte()
         {
             //Indicador de Fecha de Corte
             if (rbFechaCorte.Checked)

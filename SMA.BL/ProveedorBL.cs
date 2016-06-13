@@ -13,7 +13,7 @@ namespace SMA.BL
         public void GuardarCambios(cProveedor Proveedor)
         {
             //Si el almacen existe entonces actualizamos 
-            if (ProveedorDA.Existe(Proveedor.ID))
+            if (ProveedorDA.Existe(Proveedor.Codigo))
             {
                 ProveedorDA.Actualizar(Proveedor);
             }
@@ -37,12 +37,12 @@ namespace SMA.BL
             }
         }
 
-        public cProveedor BuscarPorID(Int64 ID)
+        public cProveedor BuscarPorID(Int32 ID)
         {
             return ProveedorDA.BuscarPorID(ID);
         }
 
-        public void Eliminar(Int64 ID)
+        public void Eliminar(Int32 ID)
         {
             //Antes de marcar el almacen como eliminado comprobamos que no contenga articulos con existencia
             if (ValidacionExistencia(ID))
@@ -62,8 +62,8 @@ namespace SMA.BL
             return true;
         }
 
-        public List<cProveedor> Filtrar(Int64? CodigoDesde,
-                                             Int64? CodigoHasta,
+        public List<cProveedor> Filtrar(Int32? CodigoDesde,
+                                             Int32? CodigoHasta,
                                              String Nombre,
                                              Boolean? EstatusID)
         {
@@ -78,7 +78,7 @@ namespace SMA.BL
             }
         }
 
-        public List<cProveedor> Catalogo(Int64 CodigoDesde, Int64 CodigoHasta, Boolean? Estatus)
+        public List<cProveedor> Catalogo(Int32 CodigoDesde, Int32 CodigoHasta, Boolean? Estatus)
         {
             try
             {

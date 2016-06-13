@@ -27,7 +27,7 @@ namespace SMA.BL
             try
             {
                 //COMPROBAMOS SI LA RELACION EXISTE
-                if (Existe(Relacion.ModuloPerfilID, Relacion.RolID)==false)
+                if (Existe(Relacion.ModuloPerfilID, Relacion.CodigoRol)==false)
                 {
                     RelacionModuloPerfilRolDA.CrearRelacionModuloPerfilRol(Relacion);
                 }
@@ -51,7 +51,7 @@ namespace SMA.BL
             }
         }
 
-        private Boolean Existe(Int32 RelacionID,Int32 RolID)
+        private Boolean Existe(Int32 RelacionID,Int16 RolID)
         {
             try
             {
