@@ -6,7 +6,7 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>4.74896cm</Width>
+              <Width>4.27271cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>3.61125cm</Width>
@@ -18,7 +18,7 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox4">
+                    <Textbox Name="Textbox1">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -28,18 +28,23 @@
                               <Value>Concepto</Value>
                               <Style>
                                 <FontSize>12pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox4</rd:DefaultName>
+                      <rd:DefaultName>Textbox1</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
                         </Border>
-                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </BottomBorder>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -60,6 +65,7 @@
                               <Value>Monto</Value>
                               <Style>
                                 <FontSize>12pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -71,7 +77,11 @@
                         <Border>
                           <Style>None</Style>
                         </Border>
-                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </BottomBorder>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -87,14 +97,14 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="ConceptoID">
+                    <Textbox Name="CodigoConcepto">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!ConceptoID.Value</Value>
+                              <Value>=Fields!CodigoConcepto.Value</Value>
                               <Style>
                                 <FontSize>12pt</FontSize>
                               </Style>
@@ -103,7 +113,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>ConceptoID</rd:DefaultName>
+                      <rd:DefaultName>CodigoConcepto</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -156,7 +166,7 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox41">
+                    <Textbox Name="Textbox3">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -172,7 +182,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox41</rd:DefaultName>
+                      <rd:DefaultName>Textbox3</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -230,7 +240,7 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox57">
+                    <Textbox Name="Textbox5">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -246,7 +256,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox57</rd:DefaultName>
+                      <rd:DefaultName>Textbox5</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -307,7 +317,7 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox54">
+                    <Textbox Name="Textbox7">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -323,7 +333,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox54</rd:DefaultName>
+                      <rd:DefaultName>Textbox7</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -374,14 +384,14 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox21">
+                    <Textbox Name="Textbox8">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Balance del periodo:</Value>
+                              <Value />
                               <Style>
                                 <FontSize>12pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
@@ -393,7 +403,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox21</rd:DefaultName>
+                      <rd:DefaultName>Textbox8</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -476,6 +486,7 @@
                             <Value>Tipo</Value>
                             <Style>
                               <FontSize>12pt</FontSize>
+                              <FontWeight>Bold</FontWeight>
                             </Style>
                           </TextRun>
                         </TextRuns>
@@ -487,7 +498,11 @@
                       <Border>
                         <Style>None</Style>
                       </Border>
-                      <BackgroundColor>LightGrey</BackgroundColor>
+                      <BottomBorder>
+                        <Color>Black</Color>
+                        <Style>Solid</Style>
+                        <Width>1pt</Width>
+                      </BottomBorder>
                       <PaddingLeft>2pt</PaddingLeft>
                       <PaddingRight>2pt</PaddingRight>
                       <PaddingTop>2pt</PaddingTop>
@@ -646,10 +661,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>dsResumenCuentaCobrar</DataSetName>
-        <Top>0.74cm</Top>
-        <Left>3.53573cm</Left>
+        <Top>0.105cm</Top>
+        <Left>3.16049cm</Left>
         <Height>3.6cm</Height>
-        <Width>11.99792cm</Width>
+        <Width>11.52167cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -657,13 +672,13 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>2in</Height>
+    <Height>1.57292in</Height>
     <Style />
   </Body>
-  <Width>7.70175in</Width>
+  <Width>7.02467in</Width>
   <Page>
     <PageHeader>
-      <Height>2.54cm</Height>
+      <Height>0.85417in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -687,7 +702,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox59</rd:DefaultName>
           <Top>0.3937cm</Top>
-          <Left>6.00607cm</Left>
+          <Left>5.39271cm</Left>
           <Height>0.73229cm</Height>
           <Width>7.05724cm</Width>
           <Style>
@@ -719,8 +734,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox59</rd:DefaultName>
-          <Top>1.5124cm</Top>
-          <Left>6.00607cm</Left>
+          <Top>1.1949cm</Top>
+          <Left>5.39271cm</Left>
           <Height>0.73229cm</Height>
           <Width>7.05724cm</Width>
           <ZIndex>1</ZIndex>
@@ -742,7 +757,9 @@
               <TextRuns>
                 <TextRun>
                   <Value>Página:</Value>
-                  <Style />
+                  <Style>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style>
@@ -751,10 +768,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox61</rd:DefaultName>
-          <Top>0.52599cm</Top>
-          <Left>14.12558cm</Left>
+          <Top>0cm</Top>
+          <Left>14.97225cm</Left>
           <Height>0.6cm</Height>
-          <Width>2.5cm</Width>
+          <Width>1.65333cm</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -774,17 +791,19 @@
               <TextRuns>
                 <TextRun>
                   <Value>=Globals!PageNumber</Value>
-                  <Style />
+                  <Style>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style />
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>PageNumber</rd:DefaultName>
-          <Top>0.52599cm</Top>
+          <Top>0cm</Top>
           <Left>16.62558cm</Left>
           <Height>0.6cm</Height>
-          <Width>2.5cm</Width>
+          <Width>1.21707cm</Width>
           <ZIndex>3</ZIndex>
           <Style>
             <Border>
@@ -805,6 +824,7 @@
                 <TextRun>
                   <Value>=Globals!ExecutionTime</Value>
                   <Style>
+                    <FontWeight>Bold</FontWeight>
                     <Format>d</Format>
                   </Style>
                 </TextRun>
@@ -813,10 +833,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>ExecutionTime</rd:DefaultName>
-          <Top>0.52599cm</Top>
-          <Left>0.26458cm</Left>
+          <Top>0cm</Top>
+          <Left>0cm</Left>
           <Height>0.6cm</Height>
-          <Width>3.34667cm</Width>
+          <Width>4.06105cm</Width>
           <ZIndex>4</ZIndex>
           <Style>
             <Border>
@@ -835,23 +855,11 @@
         </Border>
       </Style>
     </PageHeader>
-    <PageFooter>
-      <Height>2.54cm</Height>
-      <PrintOnFirstPage>true</PrintOnFirstPage>
-      <PrintOnLastPage>true</PrintOnLastPage>
-      <Style>
-        <Border>
-          <Style>None</Style>
-        </Border>
-      </Style>
-    </PageFooter>
-    <PageHeight>29.7cm</PageHeight>
-    <PageWidth>21cm</PageWidth>
-    <LeftMargin>2cm</LeftMargin>
-    <RightMargin>2cm</RightMargin>
-    <TopMargin>2cm</TopMargin>
-    <BottomMargin>2cm</BottomMargin>
-    <ColumnSpacing>0.13cm</ColumnSpacing>
+    <LeftMargin>0.3in</LeftMargin>
+    <RightMargin>0.3in</RightMargin>
+    <TopMargin>0.3in</TopMargin>
+    <BottomMargin>0.3in</BottomMargin>
+    <ColumnSpacing>0.05118in</ColumnSpacing>
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
@@ -861,7 +869,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>304561dc-520b-4c33-8e77-acf0224d7503</rd:DataSourceID>
+      <rd:DataSourceID>6c248f80-cf08-479a-ae0b-8063089954aa</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -875,25 +883,33 @@
           <DataField>Balance</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="ClienteID">
-          <DataField>ClienteID</DataField>
+        <Field Name="Codigo">
+          <DataField>Codigo</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CodigoCliente">
+          <DataField>CodigoCliente</DataField>
           <rd:TypeName>System.Object</rd:TypeName>
         </Field>
-        <Field Name="ConceptoID">
-          <DataField>ConceptoID</DataField>
+        <Field Name="CodigoConcepto">
+          <DataField>CodigoConcepto</DataField>
           <rd:TypeName>System.Object</rd:TypeName>
         </Field>
-        <Field Name="DocumentoID">
-          <DataField>DocumentoID</DataField>
+        <Field Name="CodigoDocumento">
+          <DataField>CodigoDocumento</DataField>
           <rd:TypeName>System.Object</rd:TypeName>
+        </Field>
+        <Field Name="CodigoFactura">
+          <DataField>CodigoFactura</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="CodigoReferencia">
+          <DataField>CodigoReferencia</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="Estatus">
           <DataField>Estatus</DataField>
           <rd:TypeName>System.Boolean</rd:TypeName>
-        </Field>
-        <Field Name="FacturaID">
-          <DataField>FacturaID</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="FechaEmision">
           <DataField>FechaEmision</DataField>
@@ -903,20 +919,12 @@
           <DataField>FechaVencimiento</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
-        <Field Name="ID">
-          <DataField>ID</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
         <Field Name="Monto">
           <DataField>Monto</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="Notas">
           <DataField>Notas</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ReferenciaID">
-          <DataField>ReferenciaID</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="Tipo">
@@ -927,10 +935,10 @@
       <rd:DataSetInfo>
         <rd:DataSetName>SMA.Entity</rd:DataSetName>
         <rd:TableName>cReporteResumenCuentaCobrar</rd:TableName>
-        <rd:ObjectDataSourceType>SMA.Entity.cReporteResumenCuentaCobrar, SMA.Entity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceType>SMA.Entity.cReporteResumenCuentaCobrar, SMA.Entity, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
-  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
   <rd:ReportID>cffce57f-f40f-49e6-805b-611160c6da34</rd:ReportID>
 </Report>

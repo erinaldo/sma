@@ -303,7 +303,7 @@ namespace SMA.BL
         public List<cReporteEstadoCuenta> EstadoCuentaDetallado(DateTime FechaDesde,
                                                                    DateTime FechaHasta,
                                                                    DateTime FechaCorte,
-                                                                   Int32 IndicadorCorte,
+                                                                   Int16 IndicadorCorte,
                                                                    Int32 ClienteDesde,
                                                                    Int32 ClienteHasta)
         {
@@ -388,7 +388,7 @@ namespace SMA.BL
              }
         }
 
-        public List<cReporteResumenCuentaCobrar> ReporteResumenCuentaCobrar(Int64? ClienteID,
+        public List<cReporteResumenCuentaCobrar> ReporteResumenCuentaCobrar(Int32? ClienteID,
                                                              DateTime? FechaDesde,
                                                              DateTime? FechaHasta)
          {
@@ -402,7 +402,7 @@ namespace SMA.BL
             }
          }
 
-        public List<cReporteEstadoCuenta> ReporteResumenCuentaCobrarDetalle(Int64? ClienteID,
+        public List<cReporteEstadoCuenta> ReporteResumenCuentaCobrarDetalle(Int32? ClienteID,
                                                             DateTime? FechaDesde,
                                                             DateTime? FechaHasta)
         {

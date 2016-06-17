@@ -16,7 +16,7 @@ namespace SMA.Clientes.CuentasCobrar.Reportes
     {
         private Int64? ClienteID;
 
-        private Int64? CodigoCliente;
+        private Int32? CodigoCliente;
         private DateTime? FechaDesde;
         private DateTime? FechaHasta;
 
@@ -25,7 +25,7 @@ namespace SMA.Clientes.CuentasCobrar.Reportes
             InitializeComponent();
         }
 
-        public frmParametroResumenCuentaCobrar(Int64 ClienteID):this()
+        public frmParametroResumenCuentaCobrar(Int32 ClienteID):this()
         {
             this.ClienteID = ClienteID;
         }
@@ -46,30 +46,38 @@ namespace SMA.Clientes.CuentasCobrar.Reportes
 
 
             }
-            cbCliente.ValueMember = "ID";
+            cbCliente.ValueMember = "Codigo";
             cbCliente.DisplayMember = "NombreComercial";
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            ObtenerDatos();
-             
-            CuentasCobrarBL ObjetoCuenta=new CuentasCobrarBL();
-            //RESUMEN DE CUENTAS
-            if(rbResumen.Checked)
+            try
             {
-            
-                List<cReporteResumenCuentaCobrar> Lista=ObjetoCuenta.ReporteResumenCuentaCobrar(CodigoCliente,FechaDesde,FechaHasta);
-                frmrptResumenCuentasCobrar ResumenCuentas=new frmrptResumenCuentasCobrar(Lista);
-                ResumenCuentas.ShowDialog(this);
+
+                ObtenerDatos();
+
+                CuentasCobrarBL ObjetoCuenta = new CuentasCobrarBL();
+                //RESUMEN DE CUENTAS
+                if (rbResumen.Checked)
+                {
+
+                    List<cReporteResumenCuentaCobrar> Lista = ObjetoCuenta.ReporteResumenCuentaCobrar(CodigoCliente, FechaDesde, FechaHasta);
+                    frmrptResumenCuentasCobrar ResumenCuentas = new frmrptResumenCuentasCobrar(Lista);
+                    ResumenCuentas.ShowDialog(this);
+                }
+
+                //RESUMEN DETALLADO
+                if (rbResumenyMov.Checked)
+                {
+                    List<cReporteEstadoCuenta> Lista = ObjetoCuenta.ReporteResumenCuentaCobrarDetalle(CodigoCliente, FechaDesde, FechaHasta);
+                    frmrptResumenCuentaCobrarDetalle ResumenDetallado = new frmrptResumenCuentaCobrarDetalle(Lista);
+                    ResumenDetallado.ShowDialog(this);
+                }
             }
-            
-            //RESUMEN DETALLADO
-            if(rbResumenyMov.Checked)
+            catch(Exception Ex)
             {
-                List<cReporteEstadoCuenta> Lista = ObjetoCuenta.ReporteResumenCuentaCobrarDetalle(CodigoCliente, FechaDesde, FechaHasta);
-                frmrptResumenCuentaCobrarDetalle ResumenDetallado = new frmrptResumenCuentaCobrarDetalle(Lista);
-                ResumenDetallado.ShowDialog(this);
+                MessageBox.Show(Ex.Message);
             }
 
         }
@@ -77,30 +85,31 @@ namespace SMA.Clientes.CuentasCobrar.Reportes
         private void ObtenerDatos()
         {
             CodigoCliente = ObtenerCodigo();
-            
+            FechaHasta = dtpFechaHasta.Value;
+            FechaDesde = dtpFechaDesde.Value;
         }
 
-        private Int64? ObtenerCodigo()
+        private Int32 ObtenerCodigo()
         {
             //Obtenemos el codigo de cliente
             if (cbCliente.Text != String.Empty)
             {
-                return Convert.ToInt64(cbCliente.SelectedValue.ToString());
+                return Convert.ToInt32(cbCliente.SelectedValue.ToString());
             }
             else
             {
-                return null;
+                return -1;
             }
         }
 
         private void dtpFechaDesde_ValueChanged(object sender, EventArgs e)
         {
-            FechaDesde = dtpFechaDesde.Value;
+            
         }
 
         private void dtpFechaHasta_ValueChanged(object sender, EventArgs e)
         {
-            FechaHasta = dtpFechaHasta.Value;
+            
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

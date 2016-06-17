@@ -553,9 +553,9 @@ namespace SMA.DA
         public static List<cReporteEstadoCuenta> EstadoCuentaDetallado(DateTime FechaDesde,
                                                                   DateTime FechaHasta,
                                                                   DateTime FechaCorte,
-                                                                  Int32 IndicadorCorte,
-                                                                  Int64 ClienteDesde,
-                                                                  Int64 ClienteHasta)
+                                                                  Int16 IndicadorCorte,
+                                                                  Int32 ClienteDesde,
+                                                                  Int32 ClienteHasta)
         {
             try
             {
@@ -564,17 +564,17 @@ namespace SMA.DA
                 {
                     Conn.Open();
                     //Nombre del procedimiento
-                    string StoreProc = "uspReporteEstadoCuentaDetalladoCliente";
+                    string StoreProc = "uspRptEstCtaDetClte";
                     //Creamos el command para la insercion
                     MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
                     //Variable
-                    Cmd.Parameters.AddWithValue("FechaCorte", FechaCorte);
-                    Cmd.Parameters.AddWithValue("ClienteDesde", ClienteDesde);
-                    Cmd.Parameters.AddWithValue("ClienteHasta", ClienteHasta);
-                    Cmd.Parameters.AddWithValue("IndicadorCorte", IndicadorCorte);
-                    Cmd.Parameters.AddWithValue("FechaDesde", FechaDesde);
-                    Cmd.Parameters.AddWithValue("FechaHasta", FechaHasta);
+                    Cmd.Parameters.AddWithValue("p_FechaCorte", FechaCorte);
+                    Cmd.Parameters.AddWithValue("p_ClienteDesde", ClienteDesde);
+                    Cmd.Parameters.AddWithValue("p_ClienteHasta", ClienteHasta);
+                    Cmd.Parameters.AddWithValue("p_IndicadorCorte", IndicadorCorte);
+                    Cmd.Parameters.AddWithValue("p_FechaDesde", FechaDesde);
+                    Cmd.Parameters.AddWithValue("p_FechaHasta", FechaHasta);
                     //Ejecutamos el lector
 
                     MySqlDataReader Reader = Cmd.ExecuteReader();
@@ -584,7 +584,7 @@ namespace SMA.DA
                     while (Reader.Read())
                     {
                         cReporteEstadoCuenta Cuenta = new cReporteEstadoCuenta();
-                        Cuenta.CodigoCliente = Reader.GetInt64(Reader.GetOrdinal("CodigoCliente"));
+                        Cuenta.CodigoCliente = Reader.GetInt32(Reader.GetOrdinal("Codigo"));
                         Cuenta.NombreCliente = Reader.GetString(Reader.GetOrdinal("NombreComercial"));
                         Cuenta.Direccion = Reader.IsDBNull(Reader.GetOrdinal("Direccion")) ? null : Reader.GetString(Reader.GetOrdinal("Direccion"));
                         Cuenta.Provincia = Reader.IsDBNull(Reader.GetOrdinal("Provincia")) ? null : Reader.GetString(Reader.GetOrdinal("Provincia"));
@@ -592,7 +592,7 @@ namespace SMA.DA
                         Cuenta.RNC = Reader.GetString(Reader.GetOrdinal("RNC"));
                         Cuenta.Telefono = Reader.GetString(Reader.GetOrdinal("Telefono"));
                         Cuenta.Fax = Reader.GetString(Reader.GetOrdinal("Fax"));
-                        Cuenta.ContactoCobros = Reader.GetString(Reader.GetOrdinal("ContactoCobros"));
+                        //Cuenta.ContactoCobros = Reader.GetString(Reader.GetOrdinal("ContactoCobros"));
                         Cuenta.LimiteCredito = Reader.GetDecimal(Reader.GetOrdinal("LimiteCredito"));
                         Cuenta.DiasCredito = Reader.GetInt32(Reader.GetOrdinal("DiasCredito"));
                         Cuenta.BalanceDisponible = Reader.GetDecimal(Reader.GetOrdinal("BalanceDisponible"));
@@ -604,6 +604,8 @@ namespace SMA.DA
                         Cuenta.Monto = Reader.GetDecimal(Reader.GetOrdinal("Cargos"));
                         Cuenta.Abonos = Reader.GetDecimal(Reader.GetOrdinal("Abono"));
                         Cuenta.Balance = Reader.GetDecimal(Reader.GetOrdinal("BalanceDocumento"));
+                        Cuenta.FechaInicio = FechaDesde;
+                        Cuenta.FechaFin = FechaHasta;
                         //Agregamos el articulo a la lista
                         Lista.Add(Cuenta);
                     }
@@ -864,7 +866,7 @@ namespace SMA.DA
 
         }
 
-        public static List<cReporteResumenCuentaCobrar> ReporteResumenCuentaCobrar(Int64? ClienteID,
+        public static List<cReporteResumenCuentaCobrar> ReporteResumenCuentaCobrar(Int32? ClienteID,
                                                              DateTime? FechaDesde,
                                                              DateTime? FechaHasta)
         {
@@ -875,14 +877,14 @@ namespace SMA.DA
                 {
                     Conn.Open();
                     //Nombre del procedimiento
-                    string StoreProc = "uspResumenMovCuentaCobrar";
+                    string StoreProc = "uspRptResumenMovCuenCobrar";
                     //Creamos el command para la insercion
                     MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
                     //Variable
-                    Cmd.Parameters.AddWithValue("CodigoCliente", ClienteID);
-                    Cmd.Parameters.AddWithValue("FechaDesde", FechaDesde);
-                    Cmd.Parameters.AddWithValue("FechaHasta", FechaHasta);
+                    Cmd.Parameters.AddWithValue("p_CodigoCliente", ClienteID);
+                    Cmd.Parameters.AddWithValue("p_FechaDesde", FechaDesde);
+                    Cmd.Parameters.AddWithValue("p_FechaHasta", FechaHasta);
   
                     //Ejecutamos el lector
 
@@ -913,7 +915,7 @@ namespace SMA.DA
 
         }
 
-        public static List<cReporteEstadoCuenta> ReporteResumenCuentaCobrarDetalle(Int64? ClienteID,
+        public static List<cReporteEstadoCuenta> ReporteResumenCuentaCobrarDetalle(Int32? ClienteID,
                                                              DateTime? FechaDesde,
                                                              DateTime? FechaHasta)
         {
@@ -924,14 +926,14 @@ namespace SMA.DA
                 {
                     Conn.Open();
                     //Nombre del procedimiento
-                    string StoreProc = "uspResumenMovCuentasCobrarDetalle";
+                    string StoreProc = "uspRptResumenMovCuentasCobrarDetalle";
                     //Creamos el command para la insercion
                     MySqlCommand Cmd = new MySqlCommand(StoreProc, Conn);
                     Cmd.CommandType = CommandType.StoredProcedure;
                     //Variable
-                    Cmd.Parameters.AddWithValue("CodigoCliente", ClienteID);
-                    Cmd.Parameters.AddWithValue("FechaDesde", FechaDesde);
-                    Cmd.Parameters.AddWithValue("FechaHasta", FechaHasta);
+                    Cmd.Parameters.AddWithValue("p_CodigoCliente", ClienteID);
+                    Cmd.Parameters.AddWithValue("p_FechaDesde", FechaDesde);
+                    Cmd.Parameters.AddWithValue("p_FechaHasta", FechaHasta);
                     //Ejecutamos el lector
 
                     MySqlDataReader Reader = Cmd.ExecuteReader();
@@ -949,7 +951,6 @@ namespace SMA.DA
                         Cuenta.RNC = Reader.GetString(Reader.GetOrdinal("RNC"));
                         Cuenta.Telefono = Reader.GetString(Reader.GetOrdinal("Telefono"));
                         Cuenta.Fax = Reader.GetString(Reader.GetOrdinal("Fax"));
-                        Cuenta.ContactoCobros = Reader.GetString(Reader.GetOrdinal("ContactoCobros"));
                         Cuenta.LimiteCredito = Reader.GetDecimal(Reader.GetOrdinal("LimiteCredito"));
                         Cuenta.DiasCredito = Reader.GetInt32(Reader.GetOrdinal("DiasCredito"));
                         Cuenta.BalanceDisponible = Reader.GetDecimal(Reader.GetOrdinal("BalanceDisponible"));
@@ -961,6 +962,8 @@ namespace SMA.DA
                         Cuenta.Monto = Reader.GetDecimal(Reader.GetOrdinal("Cargos"));
                         Cuenta.Abonos = Reader.GetDecimal(Reader.GetOrdinal("Abono"));
                         Cuenta.Balance = Reader.GetDecimal(Reader.GetOrdinal("BalanceDocumento"));
+                        Cuenta.FechaInicio = FechaDesde.Value;
+                        Cuenta.FechaFin = FechaHasta.Value;
                         //Agregamos el articulo a la lista
                         Lista.Add(Cuenta);
                     }
